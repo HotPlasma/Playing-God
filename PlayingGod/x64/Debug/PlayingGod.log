@@ -1,0 +1,5 @@
+﻿  SceneTexture.cpp
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\scenetexture.cpp(325): warning C4305: '+=': truncation from 'double' to 'float'
+  GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+  PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Debug\PlayingGod.exe
+  PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Debug\PlayingGod.pdb (Partial PDB)
