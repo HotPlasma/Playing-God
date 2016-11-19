@@ -7,7 +7,7 @@
 #include <GLFW/glfw3.h>
 #include "scene.h"
 #include "SceneTexture.h"
-
+#include <iostream>
 
 #include <string>
 using std::string;
@@ -56,6 +56,15 @@ void resizeGL(int w, int h) {
 	scene->resize(w, h);
 }
 
+// Get mouse position every frame
+static void cursorPositionCallback(GLFWwindow *Window, double xPos, double yPos)
+{
+	std::cout << "xPos: " << xPos << " " << "yPos: " << yPos << std::endl;
+	scene->GetMousePos(window, sf::Vector2i(xPos, yPos));
+	glfwSetCursorPos(Window, 960, 540);
+}
+
+
 ///////////////////////////////////////////////////////
 ///////  Main  ////////////////////////////////////////
 ///////////////////////////////////////////////////////
@@ -65,6 +74,7 @@ int main(int argc, char *argv[])
 	// Initialize GLFW
 	if (!glfwInit()) exit(EXIT_FAILURE);
 
+
 	// Select OpenGL 4.3 with a forward compatible core profile.
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -73,15 +83,20 @@ int main(int argc, char *argv[])
 	glfwWindowHint(GLFW_RESIZABLE, FALSE);
 	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, TRUE);
 
+
+
 	// Open the window
 	string title = "Playing God";
-	window = glfwCreateWindow(500, 500, title.c_str(), NULL, NULL);
+	window = glfwCreateWindow(1920, 1080, title.c_str(), NULL, NULL);
 	if (!window) {
 		glfwTerminate();
 		exit(EXIT_FAILURE);
 	}
 	glfwMakeContextCurrent(window);
 	glfwSetKeyCallback(window, key_callback);
+
+	// Get mouse position 
+	glfwSetCursorPosCallback(window, cursorPositionCallback);
 
 	// Load the OpenGL functions.
 	gl::exts::LoadTest didLoad = gl::sys::LoadFunctions();

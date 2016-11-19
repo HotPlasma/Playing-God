@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <tchar.h>
 
+#include <SFML\Graphics.hpp>
+
 
 
 // TODO: reference additional headers your program requires here

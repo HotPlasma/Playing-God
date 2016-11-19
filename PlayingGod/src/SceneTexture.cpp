@@ -5,14 +5,15 @@
 #include <cstdio>
 #include <cstdlib>
 
-
-
 #include <iostream>
 #include <fstream>
-using std::ifstream;
 #include <sstream>
 #include <string>
+
 using std::string;
+using std::ifstream;
+
+
 
 
 //#define SINGLE_BUFFER
@@ -128,6 +129,7 @@ void SceneTexture::initScene()
 	linkMe(vertShader, fragShader);
 
 	/////////////////// Create the VBO ////////////////////
+
 	float positionData[] = {
 		//-0.8f, -0.8f, 0.0f,
 		//0.8f, -0.8f, 0.0f,
@@ -264,8 +266,12 @@ void SceneTexture::initScene()
 	gl::Uniform1f(loc, 0);
 
 #endif
+}
 
-
+void SceneTexture::GetMousePos(GLFWwindow *Gwindow, sf::Vector2i mousepos)
+{
+	Window = Gwindow;
+	MousePos = mousepos;
 
 }
 
@@ -317,33 +323,53 @@ void SceneTexture::linkMe(GLint vertShader, GLint fragShader)
 
 void SceneTexture::update(float t)
 {
-	//M = { 1,0,0,0,
-	//0,1,0,0,
-	//0,0,1,0,
-	//0,0,0,1 };
+	M = { 1,0,0,0,
+	0,1,0,0,
+	0,0,1,0,
+	0,0,0,1 };
 
-	fRot += 0.01;
+	//fRot += 0.01;
 
-	glm::mat4 rotMatrix = { cos(fRot),0,-sin(fRot),0,
-							0,1,0,0,
-							sin(fRot),0,cos(fRot),0,
-							0,0,0,1 };
+	//glm::mat4 rotMatrix = { cos(fRot),0,-sin(fRot),0,
+	//						0,1,0,0,
+	//						sin(fRot),0,cos(fRot),0,
+	//						0,0,0,1 };
 
-	glm::mat4 scaleMatrix = { 1,0,0,0,
-							  0,1,0,0,
-							  0,0,1,0,
-							  0,0,0,1 };
+	//glm::mat4 scaleMatrix = { 1,0,0,0,
+	//						  0,1,0,0,
+	//						  0,0,1,0,
+	//						  0,0,0,1 };
 
-	glm::mat4 transMatrix = { 1,0,0,0,
-							  0,1,0,0,
-							  0,0,1,0,
-							  0,0,0,1 };
+	//glm::mat4 transMatrix = { 1,0,0,0,
+	//						  0,1,0,0,
+	//						  0,0,1,0,
+	//						  0,0,0,1 };
 
-	M = scaleMatrix * transMatrix * rotMatrix;
+	//M = scaleMatrix * transMatrix * rotMatrix;
 
-	glm::mat4 V = glm::lookAt(glm::vec3(0, 0, 5), // Camera position
-		glm::vec3(0, 0, 0), // Looking at
+	 //Allows first person view changing with mouse movement
+	sf::Vector2i WindowOrigin(1920 / 2, 1080 / 2); // Middle of the screen
+	//sf::Vector2i mousePos;
+	// Get displacement of mouse
+	
+	//sf::Mouse::setPosition(WindowOrigin, Window); // Reset mouse at origin
+
+	float yAngle = (WindowOrigin - MousePos).x / 1000.0f;
+	float zAngle = (WindowOrigin - MousePos).y / 1000.0f;
+
+	FirstPersonView.ProcessUserInput(0, 0); // Send mouse position data to be processed in order to move camera
+
+	//glm::mat4 V = glm::lookAt(glm::vec3(0 , 0, 5), // Camera position
+	//	glm::vec3(0, 0, 0), // Looking at
+	//	glm::vec3(0, 1, 0)); // Up
+
+	glm::mat4 V = glm::lookAt(glm::vec3(FirstPersonView.GetCameraPos().x, FirstPersonView.GetCameraPos().y, FirstPersonView.GetCameraPos().z), // Camera position
+		glm::vec3(FirstPersonView.GetCameraView().x, FirstPersonView.GetCameraView().y, FirstPersonView.GetCameraView().z), // Looking at
 		glm::vec3(0, 1, 0)); // Up
+
+	std::cout << "X: " << FirstPersonView.GetCameraPos().x << " Y: " << FirstPersonView.GetCameraPos().y << " Z: " << FirstPersonView.GetCameraPos().z << std::endl;
+
+	//FirstPersonView.ProcessUserInput();
 
 	glm::mat4 P = glm::perspective(35.0f, 1.0f, 0.1f, 100.f);
 

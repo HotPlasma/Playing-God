@@ -8,7 +8,8 @@
 #include "Texture.h"
 
 #include "scene.h"
-
+#include "Camera.h"
+#include <GLFW/glfw3.h>
 #include "gl_core_4_3.hpp"
 
 class SceneTexture : public Scene
@@ -24,14 +25,17 @@ private:
 	float fRot;
 	void linkMe(GLint vertShader, GLint fragShader);
 	Texture *gTexture;
-
+	Camera FirstPersonView;
+	GLFWwindow *Window;
+	sf::Vector2i MousePos;
 public:
 	SceneTexture();
-
+	//void PassWindowToScreen(GLFWwindow *window);
 	void initScene();
+	void GetMousePos(GLFWwindow *Gwindow, sf::Vector2i mousepos);
 	void update(float t);
 	void render();
 	void resize(int, int);
 
 };
-#endif  //SceneTexture_H#pragma once
+#endif  

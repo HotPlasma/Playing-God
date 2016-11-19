@@ -1,5 +1,6 @@
 #ifndef SCENE_H
 #define SCENE_H
+#include <GLFW/glfw3.h>
 
 /* Abstract Scene class*/
 class Scene
@@ -11,6 +12,8 @@ public:
       Load textures, initialize shaders, etc.
       */
     virtual void initScene() = 0;
+
+	virtual void GetMousePos(GLFWwindow *Gwindow, sf::Vector2i mousepos) = 0;
 
     /**
       This is called prior to every frame.  Use this
