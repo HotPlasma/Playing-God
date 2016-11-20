@@ -36,6 +36,14 @@ void initializeGL() {
 	scene->initScene();
 }
 
+// Get mouse position every frame
+static void cursorPositionCallback(GLFWwindow *Window, double xPos, double yPos)
+{
+	std::cout << "xPos: " << xPos << " " << "yPos: " << yPos << std::endl;
+	scene->GetMousePos(window, sf::Vector2i(xPos, yPos));
+}
+
+
 ////////////////////////////////////////////////////////
 /////// Main loop  /////////////////////////////////////
 ////////////////////////////////////////////////////////
@@ -46,6 +54,9 @@ void mainLoop() {
 		scene->render();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+		// Allows camera view manipulation using mouse
+		glfwSetCursorPos(window, 960, 540);
+		glfwSetCursorPosCallback(window, cursorPositionCallback);
 	}
 }
 
@@ -56,13 +67,6 @@ void resizeGL(int w, int h) {
 	scene->resize(w, h);
 }
 
-// Get mouse position every frame
-static void cursorPositionCallback(GLFWwindow *Window, double xPos, double yPos)
-{
-	std::cout << "xPos: " << xPos << " " << "yPos: " << yPos << std::endl;
-	scene->GetMousePos(window, sf::Vector2i(xPos, yPos));
-	glfwSetCursorPos(Window, 960, 540);
-}
 
 
 ///////////////////////////////////////////////////////
@@ -95,8 +99,10 @@ int main(int argc, char *argv[])
 	glfwMakeContextCurrent(window);
 	glfwSetKeyCallback(window, key_callback);
 
-	// Get mouse position 
-	glfwSetCursorPosCallback(window, cursorPositionCallback);
+	// Hide mouse position 
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+
+	
 
 	// Load the OpenGL functions.
 	gl::exts::LoadTest didLoad = gl::sys::LoadFunctions();

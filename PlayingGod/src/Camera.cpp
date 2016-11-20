@@ -4,7 +4,7 @@
 Camera::Camera()
 {
 	// Sets Pos and View to default values
-	CameraPos = sf::Vector3f(-1.0f, 1.0f, 1.0);
+	CameraPos = sf::Vector3f(1.0f, 1.0f, 1.0);
 	CameraView = sf::Vector3f(0.0f, 1.0f, 0.0f);
 }
 

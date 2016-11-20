@@ -135,10 +135,10 @@ void SceneTexture::initScene()
 		//0.8f, -0.8f, 0.0f,
 		//0.0f,  0.8f, 0.0f 
 
-	-1.0f, -0.5f, 0.0f,
-	1.0f, -0.5f, 0.0f,
-	-1.0f, 0.5f, 0.0f,
-	1.0f, 0.5f, 0.0f
+	-5.0f, -2.5f, 0.0f,
+	5.0f, -2.5f, 0.0f,
+	-5.0f, 2.5f, 0.0f,
+	5.0f, 2.5f, 0.0f
 	};
 
 	float uvData[] = {
@@ -324,9 +324,9 @@ void SceneTexture::linkMe(GLint vertShader, GLint fragShader)
 void SceneTexture::update(float t)
 {
 	M = { 1,0,0,0,
-	0,1,0,0,
-	0,0,1,0,
-	0,0,0,1 };
+		  0,1,0,0,
+		  0,0,1,0,
+		  0,0,0,1 };
 
 	//fRot += 0.01;
 
@@ -357,7 +357,7 @@ void SceneTexture::update(float t)
 	float yAngle = (WindowOrigin - MousePos).x / 1000.0f;
 	float zAngle = (WindowOrigin - MousePos).y / 1000.0f;
 
-	FirstPersonView.ProcessUserInput(0, 0); // Send mouse position data to be processed in order to move camera
+	FirstPersonView.ProcessUserInput(yAngle, zAngle); // Send mouse position data to be processed in order to move camera
 
 	//glm::mat4 V = glm::lookAt(glm::vec3(0 , 0, 5), // Camera position
 	//	glm::vec3(0, 0, 0), // Looking at
@@ -371,7 +371,7 @@ void SceneTexture::update(float t)
 
 	//FirstPersonView.ProcessUserInput();
 
-	glm::mat4 P = glm::perspective(35.0f, 1.0f, 0.1f, 100.f);
+	glm::mat4 P = glm::perspective(60.0f, 1.0f, 1.f, 100.f);
 
 	GLuint modelMatrixID = gl::GetUniformLocation(programHandle, "mModel");
 	GLuint viewMatrixID = gl::GetUniformLocation(programHandle, "mView");
