@@ -1,26 +1,23 @@
 #ifndef SceneTexture_H
 #define SceneTexture_H
 
-#include "../libraries/glm/glm/glm.hpp"
-#include "../libraries/glm/glm/gtc/matrix_transform.hpp"
-#include "../libraries/glm/glm/gtc/type_ptr.hpp"
+
 
 #include "Texture.h"
 
 #include "scene.h"
 #include "Camera.h"
-#include <GLFW/glfw3.h>
-#include "gl_core_4_3.hpp"
+#include "ModelReader.h"
 
 class SceneTexture : public Scene
 {
 private:
 	int width, height;
-	GLuint vboHandles[3];
+	GLuint vboHandles[2];
 	GLuint vbo;
 	GLuint vaoHandle;
 	GLuint programHandle;
-	GLuint indexSize;
+	//GLuint indexSize;
 	glm::mat4 M;
 	float fRot;
 	void linkMe(GLint vertShader, GLint fragShader);
@@ -28,6 +25,10 @@ private:
 	Camera FirstPersonView;
 	GLFWwindow *Window;
 	sf::Vector2i MousePos;
+	ModelReader* m_ModelReader;
+	vector<float>positionData;
+	vector<float>uvData;
+	vector<float>normalsData;
 public:
 	SceneTexture();
 	//void PassWindowToScreen(GLFWwindow *window);

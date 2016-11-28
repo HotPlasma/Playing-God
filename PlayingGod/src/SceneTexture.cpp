@@ -5,10 +5,8 @@
 #include <cstdio>
 #include <cstdlib>
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
+#include "ModelReader.h"
+
 
 using std::string;
 using std::ifstream;
@@ -25,6 +23,8 @@ SceneTexture::SceneTexture() { }
 
 void SceneTexture::initScene()
 {
+	gl::Enable(gl::DEPTH_TEST);
+
 	//////////////////////////////////////////////////////
 	/////////// Vertex shader //////////////////////////
 	//////////////////////////////////////////////////////
@@ -128,27 +128,42 @@ void SceneTexture::initScene()
 
 	linkMe(vertShader, fragShader);
 
+	m_ModelReader = new ModelReader("assets/models/deer.obj");
+
+	positionData = m_ModelReader->GetVertices();
+	//normalsData = m_ModelReader->GetNormals();
+	uvData = m_ModelReader->GetTextureCoordinates();
+
+
+
+
+	//float* positionData = &ModelVert[0];
 	/////////////////// Create the VBO ////////////////////
 
-	float positionData[] = {
-		//-0.8f, -0.8f, 0.0f,
-		//0.8f, -0.8f, 0.0f,
-		//0.0f,  0.8f, 0.0f 
+	//positionData = {
+	//	//-0.8f, -0.8f, 0.0f,
+	//	//0.8f, -0.8f, 0.0f,
+	//	//0.0f,  0.8f, 0.0f 
 
-	-5.0f, -2.5f, 0.0f,
-	5.0f, -2.5f, 0.0f,
-	-5.0f, 2.5f, 0.0f,
-	5.0f, 2.5f, 0.0f
-	};
+	//-5.0f, -2.5f, 0.0f,
+	//5.0f, -2.5f, 0.0f,
+	//-5.0f, 2.5f, 0.0f,
+	//5.0f, 2.5f, 0.0f,
+	//5.0f, -2.5f, 0.0f,
+	//-5.0f, 2.5f, 0.0f
 
-	float uvData[] = {
-		0.0f, 0.0f,
-		1.0f, 0.0f,
-		0.0f, 1.0f,
-		1.0f, 1.0f
-		/*0.0f, 0.0f,
-		1.0f, 0.0f,
-		0.5f, 1.0f */};
+	//	//m_ModelReader
+
+	//};
+
+	//uvData = {
+	//	0.0f, 0.0f,
+	//	1.0f, 0.0f,
+	//	0.0f, 1.0f,
+	//	1.0f, 1.0f
+	//	/*0.0f, 0.0f,
+	//	1.0f, 0.0f,
+	//	0.5f, 1.0f */};
 
 	
 
@@ -177,7 +192,7 @@ void SceneTexture::initScene()
 
 
 
-	int indicesData[] = {
+	/*int indicesData[] = {
 		0, 1, 2,
 		3, 1 ,2
 
@@ -186,7 +201,7 @@ void SceneTexture::initScene()
 
 
 	fRot = 0;
-	indexSize = sizeof(indicesData);
+	indexSize = sizeof(indicesData);*/
 
 
 
@@ -221,24 +236,28 @@ void SceneTexture::initScene()
 
 	// Create and populate the buffer objects using separate buffers
 	// GLuint vboHandles[2];
-	gl::GenBuffers(3, vboHandles);
+	gl::GenBuffers(2, vboHandles);
 	GLuint positionBufferHandle = vboHandles[0];
 	GLuint uvBufferHandle = vboHandles[1];
 
-	GLuint index_buffer = vboHandles[2];
+	//gl::DEPTH_TEST;
+
+	//gl::ClearDepth(0);
+
+	//GLuint index_buffer = vboHandles[2];
 
 	//gl::GenBuffers(1, &index_buffer);
 
-	gl::BindBuffer(gl::ELEMENT_ARRAY_BUFFER, index_buffer);
+	//gl::BindBuffer(gl::ELEMENT_ARRAY_BUFFER, index_buffer);
 
-	gl::BufferData(gl::ELEMENT_ARRAY_BUFFER, indexSize, indicesData, gl::STATIC_DRAW);
+	//gl::BufferData(gl::ELEMENT_ARRAY_BUFFER, indexSize, indicesData, gl::STATIC_DRAW);
 
 
 	gl::BindBuffer(gl::ARRAY_BUFFER, positionBufferHandle);
-	gl::BufferData(gl::ARRAY_BUFFER, sizeof(positionData) * sizeof(float), positionData, gl::STATIC_DRAW);
+	gl::BufferData(gl::ARRAY_BUFFER, positionData.size() * sizeof(float), &positionData[0], gl::STATIC_DRAW);
 
 	gl::BindBuffer(gl::ARRAY_BUFFER, uvBufferHandle);
-	gl::BufferData(gl::ARRAY_BUFFER, sizeof(uvData) * sizeof(float), uvData, gl::STATIC_DRAW);
+	gl::BufferData(gl::ARRAY_BUFFER, positionData.size() * sizeof(float), &uvData[0], gl::STATIC_DRAW);
 
 
 	// Create and set-up the vertex array object
@@ -254,8 +273,11 @@ void SceneTexture::initScene()
 	gl::BindBuffer(gl::ARRAY_BUFFER, uvBufferHandle);
 	gl::VertexAttribPointer(1, 2, gl::FLOAT, FALSE, 0, (GLubyte *)NULL);
 
+	gl::BindVertexArray(vaoHandle);
+	//GLuint IndexBufferHandle = vboHandles[2];
+	//gl::BindBuffer(gl::ELEMENT_ARRAY_BUFFER, IndexBufferHandle);
 	//Load the texture
-	Bitmap bmp = Bitmap::bitmapFromFile("./assets/Flag_Of_Wales.png");
+	Bitmap bmp = Bitmap::bitmapFromFile("assets/textures/deer.bmp");
 	bmp.flipVertically();
 	gTexture = new Texture(bmp);
 	//Set texture
@@ -384,13 +406,13 @@ void SceneTexture::update(float t)
 
 void SceneTexture::render()
 {
-	gl::Clear(gl::COLOR_BUFFER_BIT);
+	//gl::Clear(gl::COLOR_BUFFER_BIT);
+	gl::Clear(gl::COLOR_BUFFER_BIT | gl::DEPTH_BUFFER_BIT);
 
-	gl::BindVertexArray(vaoHandle);
-	GLuint IndexBufferHandle = vboHandles[2];
-	gl::BindBuffer(gl::ELEMENT_ARRAY_BUFFER, IndexBufferHandle);
-	//gl::DrawArrays(gl::TRIANGLES, 0, (3*4) );
-	gl::DrawElements(gl::TRIANGLES, indexSize / sizeof(GLuint), gl::UNSIGNED_INT, NULL);
+	//gl::BindVertexArray(vaoHandle)
+
+	gl::DrawArrays(gl::TRIANGLES, 0, positionData.size() );
+	//gl::DrawElements(gl::TRIANGLES, indexSize / sizeof(GLuint), gl::UNSIGNED_INT, NULL);
 
 }
 
