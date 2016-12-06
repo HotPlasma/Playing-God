@@ -93,12 +93,18 @@ void Model::Buffer()
 {
 	gl::BindVertexArray(vaoHandle);
 	gl::BindTexture(gl::TEXTURE_2D, gTexture->object());
+	
 }
 
 void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 {
 
-
+	//float positionData[] = {
+	//	-1.0f, -0.5f, 0.0f,
+	//	1.0f, -0.5f, 0.0f,
+	//	-1.0f, 0.5f, 0.0f,
+	//	1.0f, 0.5f, 0.0f
+	//};
 
 	positionData = m_modelReader->GetVertices();
 	uvData = m_modelReader->GetTextureCoordinates();
@@ -110,10 +116,11 @@ void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 
 
 	gl::BindBuffer(gl::ARRAY_BUFFER, positionBufferHandle);
-	gl::BufferData(gl::ARRAY_BUFFER, positionData.size() * sizeof(float), &positionData[0], gl::STATIC_DRAW);
+	gl::BufferData(gl::ARRAY_BUFFER, positionData.size() * sizeof(float), positionData.data(), gl::STATIC_DRAW);
+	//gl::BindBuffer(gl::ARRAY_BUFFER, 0);
 
 	gl::BindBuffer(gl::ARRAY_BUFFER, uvBufferHandle);
-	gl::BufferData(gl::ARRAY_BUFFER, positionData.size() * sizeof(float), &uvData[0], gl::STATIC_DRAW);
+	gl::BufferData(gl::ARRAY_BUFFER, uvData.size() * sizeof(float), uvData.data(), gl::STATIC_DRAW);
 
 
 
@@ -132,6 +139,8 @@ void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 	gl::VertexAttribPointer(1, 2, gl::FLOAT, FALSE, 0, (GLubyte *)NULL);
 
 	gl::BindVertexArray(vaoHandle);
+
+	
 	//GLuint IndexBufferHandle = vboHandles[2];
 	//gl::BindBuffer(gl::ELEMENT_ARRAY_BUFFER, IndexBufferHandle);
 	//Load the texture

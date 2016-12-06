@@ -1,3 +1,19 @@
 ﻿  main.cpp
-  PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\Debug\PlayingGod.exe
-  PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\Debug\PlayingGod.pdb (Partial PDB)
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\main.cpp(3): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  gl_core_4_3.cpp
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\gl_core_4_3.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  World.cpp
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\world.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  Texture.cpp
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\texture.cpp(19): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  SceneReader.cpp
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\scenereader.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  ModelReader.cpp
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\modelreader.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  Model.cpp
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\model.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  Camera.cpp
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\camera.cpp(1): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  Bitmap.cpp
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\bitmap.cpp(19): fatal error C1083: Cannot open include file: 'stdafx.h': No such file or directory
+  Generating Code...

@@ -1,7 +1,3 @@
-﻿  World.cpp
-c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\world.cpp(427): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
-  Model.cpp
-  Generating Code...
+﻿  Model.cpp
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Debug\PlayingGod.exe
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Debug\PlayingGod.pdb (Partial PDB)
