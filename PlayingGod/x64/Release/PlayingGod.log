@@ -1,0 +1,18 @@
+﻿  Bitmap.cpp
+  Camera.cpp
+  gl_core_4_3.cpp
+  main.cpp
+src\main.cpp(43): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Model.cpp
+  ModelReader.cpp
+  SceneReader.cpp
+src\SceneReader.cpp(100): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  World.cpp
+src\World.cpp(426): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+  Texture.cpp
+  Generating code
+  All 887 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Release\PlayingGod.exe
+  PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Release\PlayingGod.pdb (Full PDB)

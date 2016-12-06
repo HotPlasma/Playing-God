@@ -6,7 +6,7 @@
 #include "gl_core_4_3.hpp"
 #include <GLFW/glfw3.h>
 #include "scene.h"
-#include "SceneTexture.h"
+#include "World.h"
 #include <iostream>
 
 #include <string>
@@ -31,7 +31,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 void initializeGL() {
 	gl::ClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 
-	scene = new SceneTexture();
+	scene = new World();
 
 	scene->initScene();
 }

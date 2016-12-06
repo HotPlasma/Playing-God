@@ -104,6 +104,7 @@ static FormatConverterFunc ConverterFuncForFormats(Bitmap::Format srcFormat, Bit
     if(srcFormat == destFormat)
         throw std::runtime_error("Just use memcpy if pixel formats are the same");
     
+
     switch(srcFormat){
             
         case Bitmap::Format_Grayscale:
