@@ -1,2 +1,2 @@
 N Deer        | O assets/models/deer.obj              | T assets/textures/deer.bmp    | tr 0 0 0      | R 0 0 0    | S 1 1 1 | M 1 E
-N LearJet     | O assets/models/learjet.obj		      | T assets/textures/learjet.bmp | Tr 10 0 0     | R 0 0 0    | S 1 1 1 | M 1 E
+N LearJet     | O assets/models/learjet.obj		      | T assets/textures/learjet.bmp | Tr 0 0 0     | R 0 0 0    | S 1 1 1 | M 1 E

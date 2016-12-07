@@ -11,18 +11,11 @@
 using std::string;
 using std::ifstream;
 
-
-
-
-//#define SINGLE_BUFFER
-
-#define BUFFER_OFFSET(i) ((char *)NULL + (i))
-
-
 World::World() { }
 
 void World::initScene()
 {
+	// Stops rendered models from being transparent
 	gl::Enable(gl::DEPTH_TEST);
 
 	//////////////////////////////////////////////////////
@@ -30,9 +23,9 @@ void World::initScene()
 	//////////////////////////////////////////////////////
 
 	// Load contents of file
-	ifstream inFile("shaders/basic.vert");
+	ifstream inFile("shaders/shader.vert");
 	if (!inFile) {
-		fprintf(stderr, "Error opening file: shader/basic.vert\n");
+		fprintf(stderr, "Error opening file: shader/shader.vert\n");
 		exit(1);
 	}
 
@@ -80,10 +73,10 @@ void World::initScene()
 	/////////// Fragment shader //////////////////////////
 	//////////////////////////////////////////////////////
 
-	// Load contents of file into shaderCode here
-	ifstream fragFile("shaders/basic.frag");
+	// Load contents of file into shader code here
+	ifstream fragFile("shaders/shader.frag");
 	if (!fragFile) {
-		fprintf(stderr, "Error opening file: shader/basic.frag\n");
+		fprintf(stderr, "Error opening file: shader/shader.frag\n");
 		exit(1);
 	}
 
@@ -128,183 +121,14 @@ void World::initScene()
 
 	linkMe(vertShader, fragShader);
 
-//	m_ModelReader = new ModelReader("assets/models/deer.obj");
-//	
-//	m_ModelReader2 = new ModelReader("assets/models/learjet.obj");
-
 	world = SceneReader("assets/scenes/Scene.txt");
-//
-////	SceneReader world("assets/scenes/Scene.txt");
-//
-	//positionData = m_ModelReader->GetVertices();
-//	//normalsData = m_ModelReader->GetNormals();
-//	uvData = m_ModelReader->GetTextureCoordinates();
-//
-//	positionData2 = m_ModelReader2->GetVertices();
-//	uvData2 = m_ModelReader2->GetTextureCoordinates();
 
-	//for (int i = 0; i < positionData2.size(); i++)
-	//{
-	//	positionData.push_back(positionData2.at(i));
-	//}
-
-
-	//float* positionData = &ModelVert[0];
-	/////////////////// Create the VBO ////////////////////
-
-	//positionData = {
-	//	//-0.8f, -0.8f, 0.0f,
-	//	//0.8f, -0.8f, 0.0f,
-	//	//0.0f,  0.8f, 0.0f 
-
-	//-5.0f, -2.5f, 0.0f,
-	//5.0f, -2.5f, 0.0f,
-	//-5.0f, 2.5f, 0.0f,
-	//5.0f, 2.5f, 0.0f,
-	//5.0f, -2.5f, 0.0f,
-	//-5.0f, 2.5f, 0.0f
-
-	//	//m_ModelReader
-
-	//};
-
-	//uvData = {
-	//	0.0f, 0.0f,
-	//	1.0f, 0.0f,
-	//	0.0f, 1.0f,
-	//	1.0f, 1.0f
-	//	/*0.0f, 0.0f,
-	//	1.0f, 0.0f,
-	//	0.5f, 1.0f */};
-
-	
-
-
-	/*float colourData[] = {
-		1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-
-
-
-	};*/
-
-
-
-	/*int indicesData[] = {
-		0, 1, 2,
-		3, 1 ,2
-
-
-	};
-
-
-	fRot = 0;
-	indexSize = sizeof(indicesData);*/
-
-
-
-#ifdef SINGLE_BUFFER
-	// Create and set-up the vertex array object using an interlaced buffer
-	gl::GenVertexArrays(1, &vaoHandle);
-	gl::BindVertexArray(vaoHandle);
-
-	//Create and load buffer
-	gl::GenBuffers(1, &vbo);
-	gl::BindBuffer(gl::ARRAY_BUFFER, vbo);
-	gl::BufferData(gl::ARRAY_BUFFER, 3 * 6 * sizeof(GLfloat), NULL, gl::STATIC_DRAW);
-	gl::BufferSubData(gl::ARRAY_BUFFER, 0, 3 * 3 * sizeof(GLfloat), positionData);
-	gl::BufferSubData(gl::ARRAY_BUFFER, 3 * 3 * sizeof(GLfloat), 3 * 3 * sizeof(GLfloat), colourData);
-
-
-	//Get the VertexPosition attrib handle
-	GLuint loc1;
-	loc1 = gl::GetAttribLocation(programHandle, "VertexPosition");
-	gl::EnableVertexAttribArray(loc1);
-	//Set the location and tell it the data format
-	gl::VertexAttribPointer(1, 2, gl::FLOAT, FALSE, 0, 0);
-
-	//Get the VertexColour attrib handle
-	GLuint loc2;
-	loc2 = gl::GetAttribLocation(programHandle, "VertexColour");
-	gl::EnableVertexAttribArray(loc2);
-	//Set the location and tell it the data format
-	gl::VertexAttribPointer(loc2, 3, gl::FLOAT, FALSE, 0, BUFFER_OFFSET(3 * 3 * sizeof(GLfloat)));
-
-#else
 
 	for (int i = 0; i < world.ModelList.size(); i++)
 	{
 		world.ModelList[i].DrawModel(true, true);
 	}
 
-	// Create and populate the buffer objects using separate buffers
-	// GLuint vboHandles[2];
-	//gl::GenBuffers(2, vboHandles);
-	//GLuint positionBufferHandle = vboHandles[0];
-	//GLuint uvBufferHandle = vboHandles[1];
-
-	////gl::DEPTH_TEST;
-
-	////gl::ClearDepth(0);
-
-	////GLuint index_buffer = vboHandles[2];
-
-	////gl::GenBuffers(1, &index_buffer);
-
-	////gl::BindBuffer(gl::ELEMENT_ARRAY_BUFFER, index_buffer);
-
-	////gl::BufferData(gl::ELEMENT_ARRAY_BUFFER, indexSize, indicesData, gl::STATIC_DRAW);
-
-
-	//gl::BindBuffer(gl::ARRAY_BUFFER, positionBufferHandle);
-	//gl::BufferData(gl::ARRAY_BUFFER, positionData.size() * sizeof(float), &positionData[0], gl::STATIC_DRAW);
-
-	//gl::BindBuffer(gl::ARRAY_BUFFER, uvBufferHandle);
-	//gl::BufferData(gl::ARRAY_BUFFER, positionData.size() * sizeof(float), &uvData[0], gl::STATIC_DRAW);
-
-
-	//// Create and set-up the vertex array object
-	//gl::GenVertexArrays(1, &vaoHandle);
-	//gl::BindVertexArray(vaoHandle);
-
-	//gl::EnableVertexAttribArray(0);  // Vertex position
-	//gl::EnableVertexAttribArray(1);  // Vertex color
-
-	//gl::BindBuffer(gl::ARRAY_BUFFER, positionBufferHandle);
-	//gl::VertexAttribPointer(0, 3, gl::FLOAT, FALSE, 0, (GLubyte *)NULL);
-
-	//gl::BindBuffer(gl::ARRAY_BUFFER, uvBufferHandle);
-	//gl::VertexAttribPointer(1, 2, gl::FLOAT, FALSE, 0, (GLubyte *)NULL);
-
-	//gl::BindVertexArray(vaoHandle);
-	////GLuint IndexBufferHandle = vboHandles[2];
-	////gl::BindBuffer(gl::ELEMENT_ARRAY_BUFFER, IndexBufferHandle);
-	////Load the texture
-	//Bitmap bmp = Bitmap::bitmapFromFile("assets/textures/deer.bmp");
-	//bmp.flipVertically();
-	//gTexture = new Texture(bmp);
-	////Set texture
-	//gl::ActiveTexture(gl::TEXTURE0);
-	//gl::BindTexture(gl::TEXTURE_2D, gTexture->object());
-	//GLint loc = gl::GetUniformLocation(programHandle, "tex");
-
-	//gl::Uniform1f(loc, 0);
-
-#endif
 }
 
 void World::GetMousePos(GLFWwindow *Gwindow, sf::Vector2i mousepos)
@@ -362,31 +186,19 @@ void World::linkMe(GLint vertShader, GLint fragShader)
 
 void World::update(float t)
 {
+
+	// Creates camera and view using MVP
+
+	// Identity matrix
+
+	// Changing M effects model in scene
+
 	M = { 1,0,0,0,
 		  0,1,0,0,
 		  0,0,1,0,
 		  0,0,0,1 };
 
-	//fRot += 0.01;
-
-	//glm::mat4 rotMatrix = { cos(fRot),0,-sin(fRot),0,
-	//						0,1,0,0,
-	//						sin(fRot),0,cos(fRot),0,
-	//						0,0,0,1 };
-
-	//glm::mat4 scaleMatrix = { 1,0,0,0,
-	//						  0,1,0,0,
-	//						  0,0,1,0,
-	//						  0,0,0,1 };
-
-	//glm::mat4 transMatrix = { 1,0,0,0,
-	//						  0,1,0,0,
-	//						  0,0,1,0,
-	//						  0,0,0,1 };
-
-	//M = scaleMatrix * transMatrix * rotMatrix;
-
-	 //Allows first person view changing with mouse movement
+	 // Allows first person view changing with mouse movement
 	sf::Vector2i WindowOrigin(1920 / 2, 1080 / 2); // Middle of the screen
 
 	float yAngle = (WindowOrigin - MousePos).x / 1000.0f;
@@ -398,10 +210,12 @@ void World::update(float t)
 		glm::vec3(FirstPersonView.GetCameraView().x, FirstPersonView.GetCameraView().y, FirstPersonView.GetCameraView().z), // Looking at
 		glm::vec3(0, 1, 0)); // Up
 
-	std::cout << "X: " << FirstPersonView.GetCameraPos().x << " Y: " << FirstPersonView.GetCameraPos().y << " Z: " << FirstPersonView.GetCameraPos().z << std::endl;
+	//std::cout << "X: " << FirstPersonView.GetCameraPos().x << " Y: " << FirstPersonView.GetCameraPos().y << " Z: " << FirstPersonView.GetCameraPos().z << std::endl;
 
 
-	glm::mat4 P = glm::perspective(60.0f, 1.0f, 1.f, 100.f);
+	glm::mat4 P = glm::perspective(60.0f, 1.0f, 1.f, 100.f); // Sets FOV and vision culls
+
+	// Send data to shader for processing
 
 	GLuint modelMatrixID = gl::GetUniformLocation(programHandle, "mModel");
 	GLuint viewMatrixID = gl::GetUniformLocation(programHandle, "mView");
@@ -414,18 +228,17 @@ void World::update(float t)
 
 void World::render()
 {
-	//gl::Clear(gl::COLOR_BUFFER_BIT);
+	// Check depth and clear last frame
 	gl::Clear(gl::COLOR_BUFFER_BIT | gl::DEPTH_BUFFER_BIT);
 
 	
-
+	// Render all models in current scene
 	for (int i = 0; i < world.ModelList.size(); i++)
 	{
 		world.ModelList.at(i).Buffer();
 		gl::DrawArrays(gl::TRIANGLES, 0, world.ModelList.at(i).positionData.size());
 		
 	}
-	//gl::DrawElements(gl::TRIANGLES, indexSize / sizeof(GLuint), gl::UNSIGNED_INT, NULL);
 
 }
 

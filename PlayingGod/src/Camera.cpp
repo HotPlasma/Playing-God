@@ -4,23 +4,23 @@
 Camera::Camera()
 {
 	// Sets Pos and View to default values
-	CameraPos = sf::Vector3f(1.0f, 1.0f, 1.0);
-	CameraView = sf::Vector3f(0.0f, 1.0f, 0.0f);
+	CameraPos = glm::vec3(1.0f, 1.0f, 1.0);
+	CameraView = glm::vec3(0.0f, 1.0f, 0.0f);
 }
 
-sf::Vector3f Camera::GetCameraPos()
+glm::vec3 Camera::GetCameraPos()
 {
 	return CameraPos;
 }
 
-sf::Vector3f Camera::GetCameraView()
+glm::vec3 Camera::GetCameraView()
 {
 	return CameraView;
 }
 
 void Camera::ProcessUserInput(float yAngle, float zAngle) 
 {
-		sf::Vector3f ViewVec = CameraView - CameraPos;
+	glm::vec3 ViewVec = CameraView - CameraPos;
 	
 		// Allows looking around with the mouse
 		CameraView.x = CameraPos.x + (float)cosf(-yAngle) * ViewVec.x - sinf(-yAngle) * ViewVec.z;

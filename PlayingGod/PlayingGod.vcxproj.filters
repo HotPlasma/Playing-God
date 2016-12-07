@@ -79,10 +79,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\basic.frag">
+    <None Include="shaders\shader.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="shaders\basic.vert">
+    <None Include="shaders\shader.vert">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

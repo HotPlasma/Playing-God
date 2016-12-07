@@ -153,8 +153,8 @@
     <ClInclude Include="include\Texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\basic.frag" />
-    <None Include="shaders\basic.vert" />
+    <None Include="shaders\shader.frag" />
+    <None Include="shaders\shader.vert" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="assets\scenes\Scene.txt" />

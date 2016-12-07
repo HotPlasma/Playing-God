@@ -99,12 +99,6 @@ void Model::Buffer()
 void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 {
 
-	//float positionData[] = {
-	//	-1.0f, -0.5f, 0.0f,
-	//	1.0f, -0.5f, 0.0f,
-	//	-1.0f, 0.5f, 0.0f,
-	//	1.0f, 0.5f, 0.0f
-	//};
 
 	positionData = m_modelReader->GetVertices();
 	uvData = m_modelReader->GetTextureCoordinates();
@@ -117,7 +111,6 @@ void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 
 	gl::BindBuffer(gl::ARRAY_BUFFER, positionBufferHandle);
 	gl::BufferData(gl::ARRAY_BUFFER, positionData.size() * sizeof(float), positionData.data(), gl::STATIC_DRAW);
-	//gl::BindBuffer(gl::ARRAY_BUFFER, 0);
 
 	gl::BindBuffer(gl::ARRAY_BUFFER, uvBufferHandle);
 	gl::BufferData(gl::ARRAY_BUFFER, uvData.size() * sizeof(float), uvData.data(), gl::STATIC_DRAW);
@@ -140,10 +133,6 @@ void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 
 	gl::BindVertexArray(vaoHandle);
 
-	
-	//GLuint IndexBufferHandle = vboHandles[2];
-	//gl::BindBuffer(gl::ELEMENT_ARRAY_BUFFER, IndexBufferHandle);
-	//Load the texture
 	bmp = Bitmap::bitmapFromFile(sTexture);
 	bmp.flipVertically();
 	gTexture = new Texture(bmp);

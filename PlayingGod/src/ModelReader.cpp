@@ -2,16 +2,12 @@
 #include "ModelReader.h"
 
 
-//ModelReader::ModelReader()
-//{
-//
-//}
 
 ModelReader::ModelReader(string filename)
 {
 	ReadModelObjData(filename);
 
-	//expand the data suitable for lDrawArrays()
+	// Expand the data suitable for lDrawArrays()
 	CreateExpandedVertices();
 	CreateExpandedNormals();
 	CreateExpandedTextureCoordinates();
@@ -31,7 +27,7 @@ void ModelReader::ReadModelObjData(string filename)
 		std::cerr << "File " << filename << " not found.";
 		DebugBreak();
 		throw std::invalid_argument( "File not found" );
-		return;	//ERROR!!!
+		return;	// Throws error if file not found
 	}
 
 	string line;
@@ -40,41 +36,40 @@ void ModelReader::ReadModelObjData(string filename)
 	{
 		istringstream iss(line);
 
-		// process the line
+		// Process the line
 		token = "";
 
-		iss >> token; // read to first whitespace
+		iss >> token; // Read to next whitespace
 	
 		if (token == "#")
 		{
-			// ignore rest of line
+			// Ignore rest of line
 		}
 		else if (token == "g")
 		{
-			// read the model name
+			// Read the model name
 			iss >> m_modelName;
-			// ignore rest of line
+			// Ignore rest of line
 		}
-		else if (token == "v")
+		else if (token == "v") // Read in vertex
 		{
 			ProcessVertexLine(iss);
 		}
-		else if (token == "vn")
+		else if (token == "vn") // Read in vertex normal
 		{
 			ProcessVertexNormalLine(iss);
 		}
-		else if (token == "vt")
+		else if (token == "vt") // Read in texture point
 		{
 			ProcessVertexTextureLine(iss);
 		}
-		else if (token == "f")
+		else if (token == "f") // Read in face
 		{
 			ProcessFaceLine(iss);
 		}
 		else
 		{
-			// ignore any line without these qualifiers
-			// ignore rest of line
+			// Ignore any line without these qualifers
 		}
 	}
 	modelfile.close();
@@ -133,23 +128,21 @@ void ModelReader::ProcessFaceLine(istringstream& iss)
 	{
 		iss >> iFaces;
 		m_faceVertexIndices.push_back(iFaces - 1);
-		// now look for a slash
+		// Now look for a slash
 		int lookAhead = iss.peek();
 		if (lookAhead == forwardSlash)
 		{
-			// if its a slash we have either 1/2/3 or 1//2
-			// get rid of this slash
+			// If its a slash get rid of it
 			int discard = iss.get();
-			// now we can look at what is after the slash
-			// is it another slash?
+			// Check for another slash after
 			lookAhead = iss.peek();
 
 			if (lookAhead == forwardSlash)
 			{
-				// if it is then get rid of it
+				// If it is then get rid of it
 				discard = iss.get();
 
-				// now we read the normal - ie it was 1//2
+				// Get normal
 
 				int iNormal = 0;
 				iss >> iNormal;
@@ -158,14 +151,13 @@ void ModelReader::ProcessFaceLine(istringstream& iss)
 			}
 			else
 			{
-				// here we only had 1 slash so it must be 1/2/3
-				// read the teture index
+				// If only one slash then its a texture index
 				int iTexture;
 				iss >> iTexture;
 				m_faceTextureIndices.push_back(iTexture - 1);
-				// get the slash
+				// Discard slash
 				discard = iss.get();
-				// read the normal
+				// Get normal
 				int iNormal;
 				iss >> iNormal;
 				m_faceNormalIndices.push_back(iNormal - 1);
@@ -174,7 +166,7 @@ void ModelReader::ProcessFaceLine(istringstream& iss)
 		}
 		else
 		{
-			// nothing to do here - is f 1 2 3
+			// Discard unimportant data or whitespace
 		}
 	}
 }
@@ -202,13 +194,11 @@ void ModelReader::CreateExpandedVertices()
 }
 void ModelReader::CreateExpandedNormals()
 {
-	// we create a list of normal triplets for each face (with duplicates)
-	// this will then be the same size as the vertexTriplets vector
+	// Creates a list of normal triplets
 
 	for (std::vector<unsigned int>::iterator it = m_faceNormalIndices.begin() ; it != m_faceNormalIndices.end(); ++it)
 	{
-		//here we have a 1 base index
-		// get the face number as 0 indexed
+	// Loop through and aquire 
 		int vertexNormalNumber = (*it);
 
 		int a;
@@ -234,11 +224,7 @@ void ModelReader::CreateExpandedNormals()
 }
 void ModelReader::CreateExpandedTextureCoordinates()
 {
-	// create actual vertices here (with duplicates)
-	// this is in the form that glDrawArrays can work with
-	//
-	// assume triangles so far
-	// assert((faceVertexIndices.size() % 3) == 0);
+	// Get workable texture coordinates
 
 	for (std::vector<unsigned int>::iterator it = m_faceTextureIndices.begin() ; it != m_faceTextureIndices.end(); ++it)
 	{
@@ -255,7 +241,7 @@ void ModelReader::CreateExpandedTextureCoordinates()
 }
 
 
-// Get methods gove access to the vector data
+// Get methods give access to the vector data for rendering
 
 vector<float>& ModelReader::GetVertices()
 {
