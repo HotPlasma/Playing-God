@@ -16,7 +16,7 @@
  limitations under the License.
  */
 
-#include "stdafx.h"
+#include "PreHeader.h"
 
 #include "Texture.h"
 #include <stdexcept>

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "PreHeader.h"
 #include "SceneReader.h"
 
 SceneReader::SceneReader()
@@ -59,39 +59,39 @@ void SceneReader::ReadSceneFile(string filename)
 			{
 				// Create the translator vector3f
 				iss >> data;
-				Temp.SetPosition(sf::Vector3f(stof(data), Temp.GetPosition().y, Temp.GetPosition().z));
+				Temp.SetPosition(glm::vec3(stof(data), Temp.GetPosition().y, Temp.GetPosition().z));
 
 				iss >> data;
-				Temp.SetPosition(sf::Vector3f(Temp.GetPosition().x, stof(data), Temp.GetPosition().z));
+				Temp.SetPosition(glm::vec3(Temp.GetPosition().x, stof(data), Temp.GetPosition().z));
 
 				iss >> data;
-				Temp.SetPosition(sf::Vector3f(Temp.GetPosition().x, Temp.GetPosition().y, stof(data)));
+				Temp.SetPosition(glm::vec3(Temp.GetPosition().x, Temp.GetPosition().y, stof(data)));
 			}
 
 			else if(data == "R") // Model needs to be rotated
 			{
 				// Create rotation vector3f
 				iss >> data;
-				Temp.SetRotation(sf::Vector3f(stof(data), Temp.GetRotation().y, Temp.GetRotation().z));
+				Temp.SetRotation(glm::vec3(stof(data), Temp.GetRotation().y, Temp.GetRotation().z));
 
 				iss >> data;
-				Temp.SetRotation(sf::Vector3f(Temp.GetRotation().x, stof(data), Temp.GetRotation().z));
+				Temp.SetRotation(glm::vec3(Temp.GetRotation().x, stof(data), Temp.GetRotation().z));
 
 				iss >> data;
-				Temp.SetRotation(sf::Vector3f(Temp.GetRotation().x, Temp.GetRotation().y, stof(data)));
+				Temp.SetRotation(glm::vec3(Temp.GetRotation().x, Temp.GetRotation().y, stof(data)));
 			}
 
 			else if(data == "S") // Model needs to be scaled
 			{
 				// Create scale vector3f
 				iss >> data;
-				Temp.SetScale(sf::Vector3f(stof(data), Temp.GetScale().y, Temp.GetScale().z));
+				Temp.SetScale(glm::vec3(stof(data), Temp.GetScale().y, Temp.GetScale().z));
 
 				iss >> data;
-				Temp.SetScale(sf::Vector3f(Temp.GetScale().x, stof(data), Temp.GetScale().z));
+				Temp.SetScale(glm::vec3(Temp.GetScale().x, stof(data), Temp.GetScale().z));
 
 				iss >> data;
-				Temp.SetScale(sf::Vector3f(Temp.GetScale().x, Temp.GetScale().y, stof(data)));
+				Temp.SetScale(glm::vec3(Temp.GetScale().x, Temp.GetScale().y, stof(data)));
 			}
 
 			else if (data == "M") // Assign material to model

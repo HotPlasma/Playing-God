@@ -1,6 +1,6 @@
 #pragma once
 
-#include "stdafx.h"
+#include "PreHeader.h"
 
 class Camera // Class Designed to hold my camera positions and navigate it on user input
 {

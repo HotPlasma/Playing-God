@@ -1,12 +1,15 @@
-#include "stdafx.h"
+#include "PreHeader.h"
 #include "Model.h"
 
 Model::Model()
 {
-
+	M = { 1,0,0,0,
+		0,1,0,0,
+		0,0,1,0,
+		0,0,0,1 };
 }
 
-Model::Model(string FileLocation, string TextureLocation, sf::Vector3f Position, sf::Vector3f Rotation, sf::Vector3f Scale, int MaterialID)
+Model::Model(string FileLocation, string TextureLocation, glm::vec3 Position, glm::vec3 Rotation, glm::vec3 Scale, int MaterialID)
 {
 	// Constucts a model with the given variables
 	sFileName = FileLocation;
@@ -15,6 +18,11 @@ Model::Model(string FileLocation, string TextureLocation, sf::Vector3f Position,
 	ModelRotation = Rotation;
 	ModelScale = Scale;
 	ModelMaterial = MaterialID;
+
+	M = { 1,0,0,0,
+		0,1,0,0,
+		0,0,1,0,
+		0,0,0,1 };
 }
 
 string Model::GetFileLocation()
@@ -27,17 +35,17 @@ GLuint Model::GetTextureLocation()
 	return m_textureID;
 }
 
-sf::Vector3f Model::GetPosition()
+glm::vec3 Model::GetPosition()
 {
 	return ModelPosition;
 }
 
-sf::Vector3f Model::GetRotation()
+glm::vec3 Model::GetRotation()
 {
 	return ModelRotation;
 }
 
-sf::Vector3f Model::GetScale()
+glm::vec3 Model::GetScale()
 {
 	return ModelScale;
 }
@@ -59,17 +67,17 @@ void  Model::SetTextureLocation(string NewLocation)
 	sTexture = NewLocation;
 }
 
-void  Model::SetPosition(sf::Vector3f NewPosition)
+void  Model::SetPosition(glm::vec3 NewPosition)
 {
 	ModelPosition = NewPosition;
 }
 
-void  Model::SetRotation(sf::Vector3f NewRotation)
+void  Model::SetRotation(glm::vec3 NewRotation)
 {
 	ModelRotation = NewRotation;
 }
 
-void  Model::SetScale(sf::Vector3f NewScale)
+void  Model::SetScale(glm::vec3 NewScale)
 {
 	ModelScale = NewScale;
 }
@@ -98,6 +106,28 @@ void Model::Buffer()
 
 void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 {
+	/*M = { 1,0,0,0,
+		0,1,0,0,
+		0,0,1,0,
+		0,0,0,1 };*/
+
+
+	glm::mat4 rotMatrix = { cos(ModelRotation.x),0,-sin(ModelRotation.x),0,
+		0,1,0,0,
+		sin(ModelRotation.x),0,cos(ModelRotation.x),0,
+		0,0,0,1 };
+
+	glm::mat4 scaleMatrix = { ModelScale.x,0,0,0,
+		0,ModelScale.y,0,0,
+		0,0,ModelScale.z,0,
+		0,0,0,1 };
+
+	glm::mat4 transMatrix = { 1,0,0,0,
+		0,1,0,0,
+		0,0,1,0,
+		ModelPosition.x,ModelPosition.y,ModelPosition.z,1 };
+
+	M = scaleMatrix * transMatrix * rotMatrix;
 
 
 	positionData = m_modelReader->GetVertices();

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "PreHeader.h"
 
 #include "World.h"
 
@@ -193,10 +193,6 @@ void World::update(float t)
 
 	// Changing M effects model in scene
 
-	M = { 1,0,0,0,
-		  0,1,0,0,
-		  0,0,1,0,
-		  0,0,0,1 };
 
 	 // Allows first person view changing with mouse movement
 	sf::Vector2i WindowOrigin(1920 / 2, 1080 / 2); // Middle of the screen
@@ -213,17 +209,23 @@ void World::update(float t)
 	//std::cout << "X: " << FirstPersonView.GetCameraPos().x << " Y: " << FirstPersonView.GetCameraPos().y << " Z: " << FirstPersonView.GetCameraPos().z << std::endl;
 
 
-	glm::mat4 P = glm::perspective(60.0f, 1.0f, 1.f, 100.f); // Sets FOV and vision culls
+	glm::mat4 P = glm::perspective(60.0f, 1.0f, 1.f, 500.f); // Sets FOV and vision culls
 
 	// Send data to shader for processing
 
-	GLuint modelMatrixID = gl::GetUniformLocation(programHandle, "mModel");
+
 	GLuint viewMatrixID = gl::GetUniformLocation(programHandle, "mView");
 	GLuint projectionMatrixID = gl::GetUniformLocation(programHandle, "mProjection");
 
-	gl::UniformMatrix4fv(modelMatrixID, 1, gl::FALSE_, glm::value_ptr(M));
+	
 	gl::UniformMatrix4fv(viewMatrixID, 1, gl::FALSE_, glm::value_ptr(V));
 	gl::UniformMatrix4fv(projectionMatrixID, 1, gl::FALSE_, glm::value_ptr(P));
+}
+
+void World::ModelUpdate(int index)
+{
+	GLuint modelMatrixID = gl::GetUniformLocation(programHandle, "mModel");
+	gl::UniformMatrix4fv(modelMatrixID, 1, gl::FALSE_, glm::value_ptr(world.ModelList.at(index).M));
 }
 
 void World::render()
@@ -236,6 +238,7 @@ void World::render()
 	for (int i = 0; i < world.ModelList.size(); i++)
 	{
 		world.ModelList.at(i).Buffer();
+		ModelUpdate(i);
 		gl::DrawArrays(gl::TRIANGLES, 0, world.ModelList.at(i).positionData.size());
 		
 	}

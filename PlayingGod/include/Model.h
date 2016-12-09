@@ -1,6 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
 #include <string>
 #include "ModelReader.h"
 #include <Bitmap.h>
@@ -15,15 +14,17 @@ private:
 	string sTexture; // File location of the texture
 	int ModelMaterial; // Which material the model with have. Different integers are different materials.
 
-	sf::Vector3f ModelPosition; // Position of Model
-	sf::Vector3f ModelRotation; // Rotation of Model
-	sf::Vector3f ModelScale; // Scale of Model
+	glm::vec3 ModelPosition; // Position of Model
+	glm::vec3 ModelRotation; // Rotation of Model
+	glm::vec3 ModelScale; // Scale of Model
 
 	GLuint m_textureID; // ID of the texture
 	ModelReader* m_modelReader; // Model Reader for the render the model
 	GLuint programHandle;
 	Texture *gTexture;
-	Bitmap bmp = Bitmap::bitmapFromFile("assets/textures/deer.bmp");;
+	Bitmap bmp = Bitmap::bitmapFromFile("assets/textures/Default.bmp");;
+
+	
 
 	GLuint vboHandles[2];
 	GLuint vbo;
@@ -33,25 +34,27 @@ private:
 
 public:
 	Model(); // Constructor
-	Model(string FileLocation, string TextureLocation, sf::Vector3f Position, sf::Vector3f Rotation, sf::Vector3f Scale, int MaterialID); // Full constructor
+	Model(string FileLocation, string TextureLocation, glm::vec3 Position, glm::vec3 Rotation, glm::vec3, int MaterialID); // Full constructor
 	string GetFileLocation(); // Returns location of obj
 	GLuint GetTextureLocation(); // Returns location of texture
-	sf::Vector3f GetPosition(); // Returns rosition of model
-	sf::Vector3f GetRotation(); // Returns rotation of model
-	sf::Vector3f GetScale(); // Returns scale of model
+	glm::vec3 GetPosition(); // Returns rosition of model
+	glm::vec3 GetRotation(); // Returns rotation of model
+	glm::vec3 GetScale(); // Returns scale of model
 	int GetMaterial(); // Returns materialID
 
 	void SetTexture(GLuint TextureID); // Set texture ID
 	void SetFileLocation(string NewLocation); // Set obj location
 	void SetTextureLocation(string NewLocation); // Set texture location
-	void SetPosition(sf::Vector3f NewPosition); // Set model position
-	void SetRotation(sf::Vector3f NewRotation); // Set model rotation
-	void SetScale(sf::Vector3f NewScale); // Set model scale
+	void SetPosition(glm::vec3 NewPosition); // Set model position
+	void SetRotation(glm::vec3 NewRotation); // Set model rotation
+	void SetScale(glm::vec3 NewScale); // Set model scale
 	void SetMaterial(int MaterialID); // Set model MaterialID
 	void Buffer();
 
 	vector<float> positionData;
 	vector<float> uvData;
+
+	glm::mat4 M;
 
 	void LoadModel(string Model); // Loads in the model to be rendered
 	void DrawModel(bool drawWithNormals, bool drawWithTexture); // Draws model

@@ -1,2 +1,13 @@
-N Deer        | O assets/models/deer.obj              | T assets/textures/deer.bmp    | tr 0 0 0      | R 0 0 0    | S 1 1 1 | M 1 E
-N LearJet     | O assets/models/learjet.obj		      | T assets/textures/learjet.bmp | Tr 0 0 0     | R 0 0 0    | S 1 1 1 | M 1 E
+N Deer       | O assets/models/deer.obj               | T assets/textures/deer.bmp      | Tr 0 -15 0     | R 0 0 0    | S 0.3 0.3 0.3 | M 1 E
+N GrassyPlane| O assets/models/Plane.obj		      | T assets/textures/Grassy.bmp    | Tr 0 -5 0      | R 0 0 0    | S 1 1 1       | M 1 E
+N GrassyPlane| O assets/models/Plane.obj		      | T assets/textures/Grassy.bmp    | Tr 50 -5 0     | R 0 0 0    | S 1 1 1       | M 1 E
+N GrassyPlane| O assets/models/Plane.obj		      | T assets/textures/Grassy.bmp    | Tr 50 -5 50    | R 0 0 0    | S 1 1 1       | M 1 E
+N GrassyPlane| O assets/models/Plane.obj		      | T assets/textures/Grassy.bmp    | Tr 0 -5 50     | R 0 0 0    | S 1 1 1       | M 1 E
+N Stump      | O assets/models/stump.obj		      | T assets/textures/stump.bmp     | Tr 10 -5 0     | R 0 0 0    | S 1 1 1       | M 1 E
+N Rock       | O assets/models/Rock.obj		          | T assets/textures/Rock.bmp      | Tr 15 -4 25    | R 0 0 0    | S 1 1 1       | M 1 E
+N Skybox     | O assets/models/skybox.obj		      | T assets/textures/skybox.bmp    | Tr 0 0 0       | R 0 0 0    | S 1 1 1       | M 1 E
+N FarmHouse  | O assets/models/farmhouse.obj		  | T assets/textures/farmhouse.bmp | Tr 50 -4 0     | R 0 0 0    | S 1 1 1       | M 1 E
+N Logs       | O assets/models/logs.obj		          | T assets/textures/logs.bmp      | Tr 37 -4 10    | R 0 0 0    | S 1 1 1       | M 1 E
+N Fence      | O assets/models/fence.obj		      | T assets/textures/fence.bmp     | Tr 50 -5 50    | R 0 0 0    | S 1 1 1       | M 1 E
+N Tree       | O assets/models/deadtree.obj		      | T assets/textures/bark.bmp      | Tr 20 -5 50    | R 0 0 0    | S 1 1 1       | M 1 E
+N Tree       | O assets/models/deadtree.obj		      | T assets/textures/bark.bmp      | Tr 30 -5 30    | R 35 0 0   | S 1 1 1       | M 1 E

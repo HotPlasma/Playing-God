@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "PreHeader.h"
 #include "Camera.h"
 
 Camera::Camera()

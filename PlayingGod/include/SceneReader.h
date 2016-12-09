@@ -1,6 +1,6 @@
 #pragma once
 
-#include "stdafx.h"
+#include "PreHeader.h"
 #include "Model.h"
 #include <vector>
 #include "Texture.h"
@@ -8,6 +8,7 @@
 class SceneReader
 {
 public:
+	// Reads in a .txt file and creates models from the data
 	SceneReader();
 	SceneReader(string filename); // Takes a file name and loads in a scene
 	vector<Model> ModelList; // Vector of models which makes up the scene

@@ -149,7 +149,7 @@
     <ClInclude Include="include\SceneReader.h" />
     <ClInclude Include="include\World.h" />
     <ClInclude Include="include\stb_image.h" />
-    <ClInclude Include="include\stdafx.h" />
+    <ClInclude Include="include\PreHeader.h" />
     <ClInclude Include="include\Texture.h" />
   </ItemGroup>
   <ItemGroup>

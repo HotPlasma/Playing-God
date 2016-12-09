@@ -2,33 +2,27 @@
 #define SCENE_H
 #include <GLFW/glfw3.h>
 
-/* Abstract Scene class*/
+// Abstract class in order to set up world
 class Scene
 {
 public:
 	Scene() : m_animate(true) { }
 	
-    /**
-      Load textures, initialize shaders, etc.
-      */
+  
+    // Load in all texture and initilise shaders
     virtual void initScene() = 0;
 
 	virtual void GetMousePos(GLFWwindow *Gwindow, sf::Vector2i mousepos) = 0;
 
-    /**
-      This is called prior to every frame.  Use this
-      to update your animation.
-      */
+
+	// Run every frame
     virtual void update( float t ) = 0;
 
-    /**
-      Draw your scene.
-      */
+    // Draw Scene
     virtual void render() = 0;
 
-    /**
-      Called when screen is resized
-      */
+
+	// Aloow screen to be resized without causing rendering issues
     virtual void resize(int, int) = 0;
     
     void animate( bool value ) { m_animate = value; }
