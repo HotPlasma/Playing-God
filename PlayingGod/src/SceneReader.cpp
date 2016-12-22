@@ -70,15 +70,10 @@ void SceneReader::ReadSceneFile(string filename)
 
 			else if(data == "R") // Model needs to be rotated
 			{
-				// Create rotation vector3f
+				// Create rotation float
 				iss >> data;
-				Temp.SetRotation(glm::vec3(stof(data), Temp.GetRotation().y, Temp.GetRotation().z));
+				Temp.SetRotation(stof(data));
 
-				iss >> data;
-				Temp.SetRotation(glm::vec3(Temp.GetRotation().x, stof(data), Temp.GetRotation().z));
-
-				iss >> data;
-				Temp.SetRotation(glm::vec3(Temp.GetRotation().x, Temp.GetRotation().y, stof(data)));
 			}
 
 			else if(data == "S") // Model needs to be scaled

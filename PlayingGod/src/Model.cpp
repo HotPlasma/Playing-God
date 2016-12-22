@@ -9,7 +9,7 @@ Model::Model()
 		0,0,0,1 };
 }
 
-Model::Model(string FileLocation, string TextureLocation, glm::vec3 Position, glm::vec3 Rotation, glm::vec3 Scale, int MaterialID)
+Model::Model(string FileLocation, string TextureLocation, glm::vec3 Position, float Rotation, glm::vec3 Scale, int MaterialID)
 {
 	// Constucts a model with the given variables
 	sFileName = FileLocation;
@@ -40,7 +40,7 @@ glm::vec3 Model::GetPosition()
 	return ModelPosition;
 }
 
-glm::vec3 Model::GetRotation()
+float Model::GetRotation()
 {
 	return ModelRotation;
 }
@@ -72,7 +72,7 @@ void  Model::SetPosition(glm::vec3 NewPosition)
 	ModelPosition = NewPosition;
 }
 
-void  Model::SetRotation(glm::vec3 NewRotation)
+void  Model::SetRotation(float NewRotation)
 {
 	ModelRotation = NewRotation;
 }
@@ -106,28 +106,30 @@ void Model::Buffer()
 
 void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 {
-	/*M = { 1,0,0,0,
-		0,1,0,0,
-		0,0,1,0,
-		0,0,0,1 };*/
 
+	// Create rotation matrix for each model
 
-	glm::mat4 rotMatrix = { cos(ModelRotation.x),0,-sin(ModelRotation.x),0,
+	glm::mat4 rotMatrix = { cos(glm::radians(ModelRotation)),0,sin(glm::radians(ModelRotation)),0,
 		0,1,0,0,
-		sin(ModelRotation.x),0,cos(ModelRotation.x),0,
+		-sin(glm::radians(ModelRotation)),0,cos(glm::radians(ModelRotation)),0,
 		0,0,0,1 };
 
+
+	// Create scale matrix for each model
 	glm::mat4 scaleMatrix = { ModelScale.x,0,0,0,
 		0,ModelScale.y,0,0,
 		0,0,ModelScale.z,0,
 		0,0,0,1 };
+
+	// Create transform matrix for each model
 
 	glm::mat4 transMatrix = { 1,0,0,0,
 		0,1,0,0,
 		0,0,1,0,
 		ModelPosition.x,ModelPosition.y,ModelPosition.z,1 };
 
-	M = scaleMatrix * transMatrix * rotMatrix;
+	// 
+	M = transMatrix * rotMatrix * scaleMatrix;
 
 
 	positionData = m_modelReader->GetVertices();

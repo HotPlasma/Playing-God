@@ -15,7 +15,7 @@ private:
 	int ModelMaterial; // Which material the model with have. Different integers are different materials.
 
 	glm::vec3 ModelPosition; // Position of Model
-	glm::vec3 ModelRotation; // Rotation of Model
+	float ModelRotation; // Rotation of Model
 	glm::vec3 ModelScale; // Scale of Model
 
 	GLuint m_textureID; // ID of the texture
@@ -34,11 +34,11 @@ private:
 
 public:
 	Model(); // Constructor
-	Model(string FileLocation, string TextureLocation, glm::vec3 Position, glm::vec3 Rotation, glm::vec3, int MaterialID); // Full constructor
+	Model(string FileLocation, string TextureLocation, glm::vec3 Position, float Rotation, glm::vec3, int MaterialID); // Full constructor
 	string GetFileLocation(); // Returns location of obj
 	GLuint GetTextureLocation(); // Returns location of texture
 	glm::vec3 GetPosition(); // Returns rosition of model
-	glm::vec3 GetRotation(); // Returns rotation of model
+	float GetRotation(); // Returns rotation of model
 	glm::vec3 GetScale(); // Returns scale of model
 	int GetMaterial(); // Returns materialID
 
@@ -46,7 +46,7 @@ public:
 	void SetFileLocation(string NewLocation); // Set obj location
 	void SetTextureLocation(string NewLocation); // Set texture location
 	void SetPosition(glm::vec3 NewPosition); // Set model position
-	void SetRotation(glm::vec3 NewRotation); // Set model rotation
+	void SetRotation(float NewRotation); // Set model rotation
 	void SetScale(glm::vec3 NewScale); // Set model scale
 	void SetMaterial(int MaterialID); // Set model MaterialID
 	void Buffer();

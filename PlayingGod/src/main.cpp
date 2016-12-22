@@ -36,10 +36,75 @@ void initializeGL() {
 	scene->initScene();
 }
 
+void glfwSetWindowPositionCenter(GLFWwindow* window) {
+	// Get windows height and width
+	int WindowX, WindowY;
+	glfwGetWindowPos(window, &WindowX, &WindowY);
+
+	int Width, Height;
+	glfwGetWindowSize(window, &Width, &Height);
+
+	// Get the distance needed to centre the window
+	Width *= 0.5;
+	Height *= 0.5;
+
+	WindowX += Width;
+	WindowY += Height;
+
+	// Accounts for multiple monitors
+	int CombinedMonitorsLength;
+	GLFWmonitor **MonitorList = glfwGetMonitors(&CombinedMonitorsLength);
+
+	if (MonitorList == NULL) {
+		// No monitors detected
+		return;
+	}
+
+	// Figure out which monitor the window is in
+	GLFWmonitor *WindowOwner = NULL;
+	int WindowOwnerX, WindowOwnerY, WindowOwnerWidth, WindowOwnerHeight;
+
+	for (int i = 0; i < CombinedMonitorsLength; i++) {
+		// Get the monitor position
+		int MonitorX, MonitorY;
+		glfwGetMonitorPos(MonitorList[i], &MonitorX, &MonitorY);
+
+		// Create video mode to get monitors size
+		int MonitorWidth, MonitorHeight;
+		GLFWvidmode *monitor_vidmode = (GLFWvidmode*)glfwGetVideoMode(MonitorList[i]);
+
+		if (monitor_vidmode == NULL) {
+			// Video mode is required for width and height, so skip this monitor
+			continue;
+
+		}
+		else {
+			MonitorWidth = monitor_vidmode->width;
+			MonitorHeight = monitor_vidmode->height;
+		}
+
+		// Set the WindowOwner to this monitor if the center of the window is within its bounding box
+		if ((WindowX > MonitorX && WindowX < (MonitorX + MonitorWidth)) && (WindowY > MonitorY && WindowY < (MonitorY + MonitorHeight))) {
+			WindowOwner = MonitorList[i];
+
+			WindowOwnerX = MonitorX;
+			WindowOwnerY = MonitorY;
+
+			WindowOwnerWidth = MonitorWidth;
+			WindowOwnerHeight = MonitorHeight;
+		}
+	}
+
+	if (WindowOwner != NULL) {
+		// Set the window position to the center of the monitor which launched the exe
+		glfwSetWindowPos(window, WindowOwnerX + (WindowOwnerWidth * 0.5) - Width, WindowOwnerY + (WindowOwnerHeight * 0.5) - Height);
+	}
+}
+
 // Get mouse position every frame
 static void cursorPositionCallback(GLFWwindow *Window, double xPos, double yPos)
 {
-	std::cout << "xPos: " << xPos << " " << "yPos: " << yPos << std::endl;
+	//std::cout << "xPos: " << xPos << " " << "yPos: " << yPos << std::endl;
 	scene->GetMousePos(window, sf::Vector2i(xPos, yPos));
 }
 
@@ -97,6 +162,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	glfwMakeContextCurrent(window);
+	glfwSetWindowPositionCenter(window);
 	glfwSetKeyCallback(window, key_callback);
 
 	// Hide mouse position 
