@@ -11,7 +11,10 @@
 using std::string;
 using std::ifstream;
 
-World::World() { }
+World::World(sf::Vector2i windowSize)
+{
+	m_windowSize = windowSize;
+}
 
 void World::initScene()
 {
@@ -131,11 +134,10 @@ void World::initScene()
 
 }
 
-void World::GetMousePos(GLFWwindow *Gwindow, sf::Vector2i mousepos)
+void World::setMousePos(GLFWwindow *Gwindow, sf::Vector2i mousepos)
 {
 	Window = Gwindow;
 	MousePos = mousepos;
-
 }
 
 void World::linkMe(GLint vertShader, GLint fragShader)
@@ -245,7 +247,3 @@ void World::render()
 
 }
 
-void World::resize(int w, int h)
-{
-	gl::Viewport(0, 0, w, h);
-}

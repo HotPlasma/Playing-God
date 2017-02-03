@@ -1,17 +1,12 @@
-﻿  Bitmap.cpp
-  Model.cpp
-  SceneReader.cpp
-src\SceneReader.cpp(100): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Texture.cpp
-  World.cpp
-src\World.cpp(425): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
-  main.cpp
-src\main.cpp(43): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+﻿  main.cpp
+src\main.cpp(62): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+src\main.cpp(63): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+src\main.cpp(114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+src\main.cpp(122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Generating code
-  173 of 888 functions (19.5%) were compiled, the rest were copied from previous compilation.
+  27 of 1079 functions ( 2.5%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    68 functions had inline decision re-evaluated but remain unchanged
+    20 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Release\PlayingGod.exe
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Release\PlayingGod.pdb (Full PDB)

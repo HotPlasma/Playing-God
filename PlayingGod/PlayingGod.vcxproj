@@ -91,7 +91,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>./libraries/GLFW/glfw-3.2.1.bin.WIN64/include;</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SFML_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>./libraries/GLFW/glfw-3.2.1.bin.WIN64/lib-vc2015</AdditionalLibraryDirectories>
@@ -130,23 +130,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Bitmap.cpp" />
+    <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\gl_core_4_3.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Menu.cpp" />
     <ClCompile Include="src\Model.cpp" />
     <ClCompile Include="src\ModelReader.cpp" />
     <ClCompile Include="src\SceneReader.cpp" />
+    <ClCompile Include="src\TextureLoader.cpp" />
     <ClCompile Include="src\World.cpp" />
     <ClCompile Include="src\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Bitmap.h" />
+    <ClInclude Include="include\Button.h" />
     <ClInclude Include="include\Camera.h" />
     <ClInclude Include="include\gl_core_4_3.hpp" />
+    <ClInclude Include="include\Menu.h" />
     <ClInclude Include="include\Model.h" />
     <ClInclude Include="include\ModelReader.h" />
     <ClInclude Include="include\scene.h" />
     <ClInclude Include="include\SceneReader.h" />
+    <ClInclude Include="include\TextureLoader.h" />
     <ClInclude Include="include\World.h" />
     <ClInclude Include="include\stb_image.h" />
     <ClInclude Include="include\PreHeader.h" />
