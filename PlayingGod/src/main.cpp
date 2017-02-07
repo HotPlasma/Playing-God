@@ -7,7 +7,7 @@
 #include <GLFW/glfw3.h>
 #include "scene.h"
 #include "World.h"
-#include <Menu.h>
+#include <MainMenu.h>
 #include <iostream>
 
 #include <string>

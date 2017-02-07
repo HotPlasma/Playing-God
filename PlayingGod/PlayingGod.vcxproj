@@ -129,12 +129,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\AbstractMenu.cpp" />
     <ClCompile Include="src\Bitmap.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\gl_core_4_3.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Menu.cpp" />
+    <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\Model.cpp" />
     <ClCompile Include="src\ModelReader.cpp" />
     <ClCompile Include="src\SceneReader.cpp" />
@@ -143,11 +144,12 @@
     <ClCompile Include="src\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\AbstractMenu.h" />
     <ClInclude Include="include\Bitmap.h" />
     <ClInclude Include="include\Button.h" />
     <ClInclude Include="include\Camera.h" />
     <ClInclude Include="include\gl_core_4_3.hpp" />
-    <ClInclude Include="include\Menu.h" />
+    <ClInclude Include="include\MainMenu.h" />
     <ClInclude Include="include\Model.h" />
     <ClInclude Include="include\ModelReader.h" />
     <ClInclude Include="include\scene.h" />
