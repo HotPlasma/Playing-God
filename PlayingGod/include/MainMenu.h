@@ -17,21 +17,16 @@ private:
 	Button m_OptionsButton;
 	Button m_ExitButton;
 
-	// Font for menu screen
-	sf::Font m_OldSchoolFont;
-
 	// Title text
 	sf::Text m_Title;
 
-	TextureLoader m_TexLoader; // Holds textures for buttons
-
-	sf::Vector2f m_MousePos; // Holds mouse position
-	//bool m_bClicked; // True if button has been clicked
-
+	enum State { None = 0, NewWorld = 1, LoadWorld = 2, ExitMenu = 3};
+	State WhichState;
 
 public:
 	Menu(int WindowWidth, int WindowHeight); // Constructor
 	int update(float fTimestep);
+	int ReturnButtonClicked();
 	void TakeMousePos(sf::Vector2f Pos); // Returns mouse pos 
 	void draw(sf::RenderTarget &target, RenderStates states) const;
 };

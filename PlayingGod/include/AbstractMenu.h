@@ -17,7 +17,7 @@ public:
 	sf::Sprite m_Background;
 	bool m_bClicked; // True if button has been clicked
 					 // Font for a screen
-	Font m_Font;
+	Font m_BlockFont;
 
 	TextureLoader m_TexLoader; // Holds textures for buttons
 

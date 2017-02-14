@@ -8,6 +8,7 @@
 #include "scene.h"
 #include "World.h"
 #include <MainMenu.h>
+#include <GenerationMenu.h>
 #include <iostream>
 
 #include <string>
@@ -16,7 +17,8 @@ using std::string;
 Scene *g_pScene; // Scene to be rendered on window
 GLFWwindow *g_pWindow; // Window
 
-Menu CreationMenu(1600,900); // Options Menu
+Menu MainMenu(1600,900); // Options Menu
+GenerationMenu NewWorldMenu(1600, 900);
 
 bool g_bGameWindowFocused; // True if main window is infocus
 
@@ -25,6 +27,7 @@ bool g_bGameWindowFocused; // True if main window is infocus
 #define NEW_WORLD_MENU 1
 #define LOAD_WORLD_MENU 2
 #define CLOSE_MENU 3
+
 
 
 sf::Clock Timer;
@@ -178,36 +181,87 @@ void mainLoop() {
 					{
 						MenuWindow.close(); // Allows window to close when 'X' is pressed
 					}
-					if (event.type == sf::Event::MouseMoved)
+					if (iState == MAIN_MENU)
 					{
-						CreationMenu.TakeMousePos(MenuWindow.mapPixelToCoords(Mouse::getPosition(MenuWindow)));
-					}
-					if (event.type == sf::Event::MouseButtonPressed)
-					{
-						if (event.key.code == sf::Mouse::Left)
+						if (event.type == sf::Event::MouseMoved)
 						{
-							CreationMenu.Click();
+							MainMenu.TakeMousePos(MenuWindow.mapPixelToCoords(Mouse::getPosition(MenuWindow)));
 						}
+						if (event.type == sf::Event::MouseButtonPressed)
+						{
+							if (event.key.code == sf::Mouse::Left)
+							{
+								MainMenu.Click();
+							}
+						}
+					
+							MenuWindow.draw(MainMenu);
 					}
-					MenuWindow.draw(CreationMenu);
+
+					if (iState == NEW_WORLD_MENU)
+					{
+						if (event.type == sf::Event::MouseMoved)
+						{
+							NewWorldMenu.TakeMousePos(MenuWindow.mapPixelToCoords(Mouse::getPosition(MenuWindow)));
+						}
+						if (event.type == sf::Event::MouseButtonPressed)
+						{
+							if (event.key.code == sf::Mouse::Left)
+							{
+								NewWorldMenu.Click();
+							}
+						}
+						if (event.type == sf::Event::TextEntered) 
+						{
+							if (event.KeyPressed == sf::Keyboard::BackSpace && NewWorldMenu.m_TextBox_WorldName->returnStringSize() != 0)
+							{
+								NewWorldMenu.m_TextBox_WorldName->ClearLastChar();
+							}
+							else if (event.text.unicode < 128)
+							{
+								NewWorldMenu.m_TextBox_WorldName->ProccessKeyRelease(event.key.code);
+							}
+						}
+
+
+						MenuWindow.draw(NewWorldMenu);
+					}
 					MenuWindow.display();
 				}
 				if (Timer.getElapsedTime().asSeconds() > 0.005)
 				{
 					if (iState == MAIN_MENU)
-						switch (CreationMenu.update(Timer.getElapsedTime().asSeconds()))
+					{
+						switch (MainMenu.update(Timer.getElapsedTime().asSeconds()))
 						{
 						case NEW_WORLD_MENU:
+							iState = NEW_WORLD_MENU;
 							break;
 
 						case LOAD_WORLD_MENU:
-							
+
 							break;
 
 						case CLOSE_MENU:
 							MenuWindow.close();
 							break;
 						}
+						
+					}
+					if (iState == NEW_WORLD_MENU)
+					{
+						switch (NewWorldMenu.update(Timer.getElapsedTime().asSeconds()))
+						{
+						case 1: // Create button clicked
+							
+							break;
+
+						case 2: // Cancel button clicked
+							iState = MAIN_MENU;
+							break;
+
+						}
+					}
 				}
 			}
 		}

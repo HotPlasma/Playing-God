@@ -16,11 +16,11 @@ Menu::Menu(int WindowWidth, int WindowHeight)
 			"MenuBackground2.png"
 	});
 
-	// Sets up font for heads up display
-	if (!m_OldSchoolFont.loadFromFile("assets\\fonts\\3x5.TTF"))
-	{
-		cout << "Error";
-	}
+	//// Sets up font for heads up display
+	//if (!m_BlockFont.loadFromFile("assets\\fonts\\3x5.TTF"))
+	//{
+	//	cout << "Error";
+	//}
 
 	
 		// Set up main menu background
@@ -28,7 +28,7 @@ Menu::Menu(int WindowWidth, int WindowHeight)
 		m_Background.setTexture(*m_TexLoader.getTextureIterator(0));
 	
 		// Sets up game title on main menu
-		m_Title.setFont(m_OldSchoolFont);
+		m_Title.setFont(m_BlockFont);
 		m_Title.setString("World Creation Menu");
 		m_Title.setCharacterSize(100);
 
@@ -73,25 +73,33 @@ int Menu::update(float fTimestep)
 {
 	// Returns value dependent on which button was clicked
 	
-		if (m_bClicked)
+		if (m_bClicked) // If clicked
 		{
-			if (m_NewWorldButton.isActive())
+			if (m_NewWorldButton.isActive()) // New World button clicked
 			{
-				return 1;
+				WhichState = NewWorld;
 			}
-			else if (m_LoadWorldButton.isActive())
+			else if (m_LoadWorldButton.isActive()) // Load world button clicked
 			{
-				return 2;
+				WhichState = LoadWorld;
 			}
-			else if (m_ExitButton.isActive())
+			else if (m_ExitButton.isActive()) // Exit button clicked
 			{
-				return 3;
+				WhichState = ExitMenu;
 			}
-			m_bClicked = false;
+			m_bClicked = false; // "Unclick" button
+			return WhichState; // Return which button was clicked
 		}
-		return 0;
+		return WhichState = None; // If no button clicked return none
 	
 }
+
+int Menu::ReturnButtonClicked()
+{
+	return WhichState;
+}
+
+
 
 //void Menu::Click()
 //{
