@@ -36,5 +36,5 @@ public:
 	int update(float fTimestep);
 	int ReturnButtonClicked();
 	void TakeMousePos(sf::Vector2f Pos); // Returns mouse pos 
-	void draw(sf::RenderTarget &target, RenderStates states) const;
+	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 };

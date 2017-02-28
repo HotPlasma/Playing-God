@@ -13,7 +13,7 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 			"CreateHover.png"
 	});
 
-	m_TextBox_WorldName = new TextBox(400, 300);
+	m_TextBox_WorldName = new TextBox(710, 70);
 
 	// Set up main menu background
 	m_Background.setPosition(0, 0);

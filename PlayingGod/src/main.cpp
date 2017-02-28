@@ -213,11 +213,14 @@ void mainLoop() {
 						}
 						if (event.type == sf::Event::TextEntered) 
 						{
-							if (event.KeyPressed == sf::Keyboard::BackSpace && NewWorldMenu.m_TextBox_WorldName->returnStringSize() != 0)
+							if (event.text.unicode == 8)
 							{
-								NewWorldMenu.m_TextBox_WorldName->ClearLastChar();
+								if (NewWorldMenu.m_TextBox_WorldName->returnStringSize() > 0)
+								{
+									NewWorldMenu.m_TextBox_WorldName->ClearLastChar();
+								}
 							}
-							else if (event.text.unicode < 128)
+							else if (event.text.unicode >= 32 && event.text.unicode <= 126)
 							{
 								NewWorldMenu.m_TextBox_WorldName->ProccessKeyRelease(event.key.code);
 							}

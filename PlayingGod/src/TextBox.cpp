@@ -29,7 +29,7 @@ TextBox::TextBox(int xPos, int yPos)
 
 	m_sText.clear(); // Clear string
 
-	m_sText = "DEFAULT";
+	m_sText = "";
 
 	m_TextInBox.setFont(m_BlockFont);
 	m_TextInBox.setString(m_sText);
