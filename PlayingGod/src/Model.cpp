@@ -128,7 +128,7 @@ void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 		0,0,1,0,
 		ModelPosition.x,ModelPosition.y,ModelPosition.z,1 };
 
-	// 
+	// Create Trasnform matrix for each model
 	M = transMatrix * rotMatrix * scaleMatrix;
 
 

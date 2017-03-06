@@ -11,7 +11,10 @@
 using std::string;
 using std::ifstream;
 
-World::World() { }
+World::World(sf::Vector2i windowSize)
+{
+	m_windowSize = windowSize;
+}
 
 void World::initScene()
 {
@@ -131,11 +134,10 @@ void World::initScene()
 
 }
 
-void World::GetMousePos(GLFWwindow *Gwindow, sf::Vector2i mousepos)
+void World::setMousePos(GLFWwindow *Gwindow, sf::Vector2i mousepos)
 {
 	Window = Gwindow;
 	MousePos = mousepos;
-
 }
 
 void World::linkMe(GLint vertShader, GLint fragShader)
@@ -209,7 +211,7 @@ void World::update(float t)
 	//std::cout << "X: " << FirstPersonView.GetCameraPos().x << " Y: " << FirstPersonView.GetCameraPos().y << " Z: " << FirstPersonView.GetCameraPos().z << std::endl;
 
 
-	glm::mat4 P = glm::perspective(60.0f, 1.0f, 1.f, 500.f); // Sets FOV and vision culls
+	glm::mat4 P = glm::perspective(60.0f, (float)m_windowSize.x / m_windowSize.y, 1.f, 500.f); // Sets FOV and vision culls
 
 	// Send data to shader for processing
 
@@ -245,7 +247,3 @@ void World::render()
 
 }
 
-void World::resize(int w, int h)
-{
-	gl::Viewport(0, 0, w, h);
-}

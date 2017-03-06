@@ -63,4 +63,5 @@ void Camera::ProcessUserInput(float yAngle, float zAngle)
 			CameraView.z -= ((float)cosf(-yAngle) * ViewVec.x - sinf(-yAngle) * ViewVec.z)* fraction;
 			CameraView.x += ((float)sinf(-yAngle) * ViewVec.x + cosf(-yAngle) * ViewVec.z) * fraction;
 		}
+
 }

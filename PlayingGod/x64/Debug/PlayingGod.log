@@ -1,2 +1,7 @@
-﻿  PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Debug\PlayingGod.exe
+﻿  main.cpp
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\main.cpp(67): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\main.cpp(105): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\main.cpp(106): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+c:\users\egor\desktop\projects\uni projects\year 3\computing project\playinggod\playinggod\src\main.cpp(157): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Debug\PlayingGod.exe
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Debug\PlayingGod.pdb (Partial PDB)

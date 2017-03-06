@@ -7,13 +7,31 @@
 #include <GLFW/glfw3.h>
 #include "scene.h"
 #include "World.h"
+#include <MainMenu.h>
+#include <GenerationMenu.h>
 #include <iostream>
 
 #include <string>
 using std::string;
 
-Scene *scene;
-GLFWwindow *window;
+Scene *g_pScene; // Scene to be rendered on window
+GLFWwindow *g_pWindow; // Window
+
+Menu MainMenu(1600,900); // Options Menu
+GenerationMenu NewWorldMenu(1600, 900);
+
+bool g_bGameWindowFocused; // True if main window is infocus
+
+// States of game
+#define MAIN_MENU 0
+#define NEW_WORLD_MENU 1
+#define LOAD_WORLD_MENU 2
+#define CLOSE_MENU 3
+
+
+
+sf::Clock Timer;
+int iState = 0;
 
 //////////////////////////////////////////////////////////
 ////  Key press callback /////////////////////////////////
@@ -25,15 +43,54 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 	//		scene->animate(!(scene->animating()));
 }
 
+static void focus_callback(GLFWwindow *pWindow, int iFocused)
+{
+	// If the callback is true
+	if (iFocused)
+	{
+		g_bGameWindowFocused = true; // Sets global boolean 'focused' to true
+	}
+	
+										   
+	else // Else the callback is false
+	{
+		g_bGameWindowFocused = false; // Sets global boolean 'focused' to false
+	}
+}
+
+// Get mouse position every frame
+static void cursor_callback(GLFWwindow *pWindow, double dX, double dY)
+{
+	// If window is focused
+	if (g_bGameWindowFocused)
+	{
+		g_pScene->setMousePos(g_pWindow, sf::Vector2i(dX, dY)); // Set mouse position
+	}
+}
+
+//////////////////////////////////////////////////////////
+//// Window resize callback //////////////////////////////
+//////////////////////////////////////////////////////////
+static void resize_callback(GLFWwindow *pWindow, int iWidth, int iHeight)
+{
+	// Resizes the scene to match the window
+	g_pScene->resize(iWidth, iHeight);
+}
+
+
 ////////////////////////////////////////////////////////
 //////  Create the scene and initialise ////////////////
 ////////////////////////////////////////////////////////
 void initializeGL() {
-	gl::ClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+	
+	gl::ClearColor(0.5f, 0.5f, 0.5f, 1.0f); // Clear window
 
-	scene = new World();
+	sf::Vector2i windowSize; 
+	glfwGetWindowSize(g_pWindow, &windowSize.x, &windowSize.y); // Establish window size
 
-	scene->initScene();
+	g_pScene = new World(windowSize); // The scene = World
+
+	g_pScene->initScene(); // Initiate scene
 }
 
 void glfwSetWindowPositionCenter(GLFWwindow* window) {
@@ -101,27 +158,136 @@ void glfwSetWindowPositionCenter(GLFWwindow* window) {
 	}
 }
 
-// Get mouse position every frame
-static void cursorPositionCallback(GLFWwindow *Window, double xPos, double yPos)
-{
-	//std::cout << "xPos: " << xPos << " " << "yPos: " << yPos << std::endl;
-	scene->GetMousePos(window, sf::Vector2i(xPos, yPos));
-}
+
 
 
 ////////////////////////////////////////////////////////
 /////// Main loop  /////////////////////////////////////
 ////////////////////////////////////////////////////////
 void mainLoop() {
-	while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE)) {
-		//GLUtils::checkForOpenGLError(__FILE__,__LINE__);
-		scene->update((float)glfwGetTime());
-		scene->render();
-		glfwSwapBuffers(window);
-		glfwPollEvents();
-		// Allows camera view manipulation using mouse
-		glfwSetCursorPos(window, 960, 540);
-		glfwSetCursorPosCallback(window, cursorPositionCallback);
+	while (!glfwWindowShouldClose(g_pWindow) && !glfwGetKey(g_pWindow, GLFW_KEY_ESCAPE)) {
+		// If button pressed open world creation menu (SFML_
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return))
+		{
+			g_bGameWindowFocused = false;
+			sf::RenderWindow MenuWindow(sf::VideoMode(1600, 900), "World Creation");
+			while (MenuWindow.isOpen())
+			{
+				sf::Event event;
+				while (MenuWindow.pollEvent(event))
+				{
+					// Closes window if close button clicked
+					if (event.type == sf::Event::Closed)
+					{
+						MenuWindow.close(); // Allows window to close when 'X' is pressed
+					}
+					if (iState == MAIN_MENU)
+					{
+						if (event.type == sf::Event::MouseMoved)
+						{
+							MainMenu.TakeMousePos(MenuWindow.mapPixelToCoords(Mouse::getPosition(MenuWindow)));
+						}
+						if (event.type == sf::Event::MouseButtonPressed)
+						{
+							if (event.key.code == sf::Mouse::Left)
+							{
+								MainMenu.Click();
+							}
+						}
+					
+							MenuWindow.draw(MainMenu);
+					}
+
+					if (iState == NEW_WORLD_MENU)
+					{
+						if (event.type == sf::Event::MouseMoved)
+						{
+							NewWorldMenu.TakeMousePos(MenuWindow.mapPixelToCoords(Mouse::getPosition(MenuWindow)));
+						}
+						if (event.type == sf::Event::MouseButtonPressed)
+						{
+							if (event.key.code == sf::Mouse::Left)
+							{
+								NewWorldMenu.Click();
+							}
+						}
+						if (event.type == sf::Event::TextEntered) 
+						{
+							if (event.text.unicode == 8)
+							{
+								if (NewWorldMenu.m_TextBox_WorldName->returnStringSize() > 0)
+								{
+									NewWorldMenu.m_TextBox_WorldName->ClearLastChar();
+								}
+							}
+							else if (event.text.unicode >= 32 && event.text.unicode <= 126)
+							{
+								NewWorldMenu.m_TextBox_WorldName->ProccessKeyRelease(event.key.code);
+							}
+						}
+
+
+						MenuWindow.draw(NewWorldMenu);
+					}
+					MenuWindow.display();
+				}
+				if (Timer.getElapsedTime().asSeconds() > 0.005)
+				{
+					if (iState == MAIN_MENU)
+					{
+						switch (MainMenu.update(Timer.getElapsedTime().asSeconds()))
+						{
+						case NEW_WORLD_MENU:
+							iState = NEW_WORLD_MENU;
+							break;
+
+						case LOAD_WORLD_MENU:
+
+							break;
+
+						case CLOSE_MENU:
+							MenuWindow.close();
+							break;
+						}
+						
+					}
+					if (iState == NEW_WORLD_MENU)
+					{
+						switch (NewWorldMenu.update(Timer.getElapsedTime().asSeconds()))
+						{
+						case 1: // Create button clicked
+							// TODO
+							break;
+
+						case 2: // Cancel button clicked
+							iState = MAIN_MENU;
+							break;
+
+						}
+					}
+				}
+			}
+		}
+		else
+		// Render, update and send data for 3D camera control while creation menu not open
+		{
+			
+			if (g_bGameWindowFocused)
+			{
+				glfwMakeContextCurrent(g_pWindow);
+				g_pScene->update((float)glfwGetTime());
+				g_pScene->render();
+			}
+			glfwSwapBuffers(g_pWindow);
+			glfwPollEvents();
+
+			// If window focused lock mouse to the middle of the screen
+			if (g_bGameWindowFocused)
+			{
+				glfwSetCursorPos(g_pWindow, g_pScene->getWindowSize().x*0.5, g_pScene->getWindowSize().y*0.5);
+			}
+			
+		}
 	}
 }
 
@@ -129,7 +295,7 @@ void mainLoop() {
 //// resize ///////////////////////////////////////////
 ///////////////////////////////////////////////////////
 void resizeGL(int w, int h) {
-	scene->resize(w, h);
+	g_pScene->resize(w, h);
 }
 
 
@@ -156,17 +322,26 @@ int main(int argc, char *argv[])
 
 	// Open the window
 	string title = "Playing God";
-	window = glfwCreateWindow(1920, 1080, title.c_str(), NULL, NULL);
-	if (!window) {
+	g_pWindow = glfwCreateWindow(1920, 1080, title.c_str(), NULL, NULL);
+	if (!g_pWindow) {
 		glfwTerminate();
 		exit(EXIT_FAILURE);
 	}
-	glfwMakeContextCurrent(window);
-	glfwSetWindowPositionCenter(window);
-	glfwSetKeyCallback(window, key_callback);
+
+	glfwMakeContextCurrent(g_pWindow);
+	g_bGameWindowFocused = true;
+
+	glfwSetWindowPositionCenter(g_pWindow);
+
+	glfwSetKeyCallback(g_pWindow, key_callback);
+	glfwSetWindowFocusCallback(g_pWindow, focus_callback);
+	glfwSetCursorPosCallback(g_pWindow, cursor_callback);
+	//glfwSetWindowPositionCenter(window);
+	glfwSetWindowSizeCallback(g_pWindow, resize_callback);
+	
 
 	// Hide mouse position 
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+	glfwSetInputMode(g_pWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
 	
 

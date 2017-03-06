@@ -23,13 +23,12 @@ private:
 	SceneReader world; // Reads .txt file in order to create world
 
 public:
-	World();
+	World(sf::Vector2i windowSize);
 	void initScene();
-	void GetMousePos(GLFWwindow *Gwindow, sf::Vector2i mousepos);
+	void setMousePos(GLFWwindow *pWindow, sf::Vector2i mousepos);
 	void update(float t);
 	void ModelUpdate(int index);
 	void render();
-	void resize(int, int);
 
 };
 #endif  
