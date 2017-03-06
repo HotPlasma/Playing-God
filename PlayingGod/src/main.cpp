@@ -256,7 +256,7 @@ void mainLoop() {
 						switch (NewWorldMenu.update(Timer.getElapsedTime().asSeconds()))
 						{
 						case 1: // Create button clicked
-							
+							// TODO
 							break;
 
 						case 2: // Cancel button clicked

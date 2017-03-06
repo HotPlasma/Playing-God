@@ -10,7 +10,9 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 			"Cancel.png",
 			"CancelHover.png",
 			"Create.png",
-			"CreateHover.png"
+			"CreateHover.png",
+			"DropBox.png",
+			"Extention.png"
 	});
 
 	m_TextBox_WorldName = new TextBox(710, 70);
@@ -41,16 +43,26 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 	m_WorldSize.setOrigin(TempRect.left + TempRect.width / 2.0f, TempRect.top + TempRect.height / 2.0f);
 	m_WorldSize.setPosition(sf::Vector2f(WindowWidth / 2.0f - 500, 300));
 
+	// Worldsize DropBox
+	m_WorldSizeOptions.SetProperties(460, 260, 5, &m_TexLoader, vector<string>{"Small", "Medium", "Large"});
+
+	//m_DropDownMenus.push_back(m_WorldSizeOptions);
+
 	//TEMPERATURE
 	// Sets up world size label on main menu
-	m_Temperature.setFont(m_BlockFont);
-	m_Temperature.setString("Temperature:");
-	m_Temperature.setCharacterSize(50);
+	m_Climate.setFont(m_BlockFont);
+	m_Climate.setString("Climate:");
+	m_Climate.setCharacterSize(50);
 
 	// Centre text
-	TempRect = m_Temperature.getLocalBounds();
-	m_Temperature.setOrigin(TempRect.left + TempRect.width / 2.0f, TempRect.top + TempRect.height / 2.0f);
-	m_Temperature.setPosition(sf::Vector2f(WindowWidth / 2.0f - 500, 400));
+	TempRect = m_Climate.getLocalBounds();
+	m_Climate.setOrigin(TempRect.left + TempRect.width / 2.0f, TempRect.top + TempRect.height / 2.0f);
+	m_Climate.setPosition(sf::Vector2f(WindowWidth / 2.0f - 500, 400));
+
+	// Climate DropBox
+	m_ClimateOptions.SetProperties(460, 360, 5, &m_TexLoader, vector<string>{"Cold", "Warm", "Hot"});
+
+	//m_DropDownMenus.push_back(m_ClimateOptions);
 
 	//MOUNTAINS
 	m_Mountainous.setFont(m_BlockFont);
@@ -63,6 +75,9 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 	m_Mountainous.setPosition(sf::Vector2f(WindowWidth / 2.0f - 500, 500));
 	// Sets up main menu buttons positions and starting textures
 
+	// Mountains DropBox
+	m_MountainousOptions.SetProperties(460, 460, 5, &m_TexLoader, vector<string>{"None", "Slightly", "Heavily"});
+
 	//CIVILISATION
 	m_Civilisation.setFont(m_BlockFont);
 	m_Civilisation.setString("Mountainous:");
@@ -74,6 +89,9 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 	m_Civilisation.setPosition(sf::Vector2f(WindowWidth / 2.0f + 200, 300));
 	// Sets up main menu buttons positions and starting textures
 
+	// Civilization DropBox
+	m_CivilisationOptions.SetProperties(1200, 260, 5, &m_TexLoader, vector<string>{"None", "Remains", "Mass Remains"});
+
 	//SKYBOX
 	m_SkyBox.setFont(m_BlockFont);
 	m_SkyBox.setString("Time of Day:");
@@ -84,26 +102,31 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 	m_SkyBox.setOrigin(TempRect.left + TempRect.width / 2.0f, TempRect.top + TempRect.height / 2.0f);
 	m_SkyBox.setPosition(sf::Vector2f(WindowWidth / 2.0f + 200, 400));
 
+	// Skybox DropBox
+	m_SkyBoxOptions.SetProperties(1200, 360, 5, &m_TexLoader, vector<string>{"Day", "Sun Set", "Night"});
+
 	//TREE DENSITY
-	m_TreeDensity.setFont(m_BlockFont);
-	m_TreeDensity.setString("Tree Density:");
-	m_TreeDensity.setCharacterSize(50);
+	m_FloraDensity.setFont(m_BlockFont);
+	m_FloraDensity.setString("Flora Density:");
+	m_FloraDensity.setCharacterSize(50);
 
 	// Centre text
-	TempRect = m_TreeDensity.getLocalBounds();
-	m_TreeDensity.setOrigin(TempRect.left + TempRect.width / 2.0f, TempRect.top + TempRect.height / 2.0f);
-	m_TreeDensity.setPosition(sf::Vector2f(WindowWidth / 2.0f + 200, 500));
+	TempRect = m_FloraDensity.getLocalBounds();
+	m_FloraDensity.setOrigin(TempRect.left + TempRect.width / 2.0f, TempRect.top + TempRect.height / 2.0f);
+	m_FloraDensity.setPosition(sf::Vector2f(WindowWidth / 2.0f + 200, 500));
 
-
+	// Flora Density DropBox
+	m_FloraDensityOptions.SetProperties(1200, 460, 5, &m_TexLoader, vector<string>{"None", "Low", "Medium", "High"});
 
 	m_Cancel.SetProperties( WindowWidth / 12 , WindowHeight / 1.2, 1, &m_TexLoader);
 
 	m_Create.SetProperties(WindowWidth / 1.5 , WindowHeight / 1.2, 3, &m_TexLoader);
 
-
-
 	m_bClicked = false;
-
+	m_bMenuOpen = false;
+	// Fill vector will all drop down boxes.
+	m_DropDownMenus.insert(m_DropDownMenus.end(), { m_MountainousOptions, m_ClimateOptions, m_WorldSizeOptions, m_FloraDensityOptions, m_SkyBoxOptions, m_CivilisationOptions });
+	/*	m_MiscOptions*/
 }
 
 void GenerationMenu::TakeMousePos(Vector2f Pos)
@@ -112,24 +135,39 @@ void GenerationMenu::TakeMousePos(Vector2f Pos)
 
 	m_Cancel.CheckHover(Pos);
 	m_Create.CheckHover(Pos);
-
+	for (int i = 0; i < m_DropDownMenus.size(); i++)
+	{
+		m_DropDownMenus.at(i).CheckHover(Pos);
+		if (m_DropDownMenus.at(i).isOpen())
+		{
+			m_DropDownMenus.at(i).CheckHoverDropDownOptions(Pos);
+		}
+	}
+	/*if (m_ClimateOptions.isOpen())
+	{
+		m_ClimateOptions.CheckHoverDropDownOptions(Pos);
+	}*/
 }
 
 void GenerationMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-
 	target.draw(m_Background);
 	target.draw(m_Cancel);
 	target.draw(m_Create);
 	target.draw(m_WorldName);
 	target.draw(m_WorldSize);
-	target.draw(m_Temperature);
+	target.draw(m_Climate);
 	target.draw(m_Mountainous);
 	target.draw(m_Misc);
 	target.draw(m_Civilisation);
 	target.draw(m_SkyBox);
-	target.draw(m_TreeDensity);
+	target.draw(m_FloraDensity);
 	target.draw(*m_TextBox_WorldName);
+	for (auto Menus : m_DropDownMenus)
+	{
+		target.draw(Menus);
+	}
+	
 }
 
 int GenerationMenu::update(float fTimestep)
@@ -145,7 +183,46 @@ int GenerationMenu::update(float fTimestep)
 		else if (m_Cancel.isActive())
 		{
 			WhichState = Create;
+			WorldGenerator.CreateNewWorld(m_DropDownMenus, m_TextBox_WorldName->m_sText);
 		}
+
+		for (int i = 0; i < m_DropDownMenus.size(); i++)
+		{
+			if (m_DropDownMenus.at(i).isActive())
+			{
+				if (!m_bMenuOpen)
+				{
+					m_DropDownMenus.at(i).ToggleOpen();
+					m_bMenuOpen = true;
+				}
+
+			}
+			else
+			{
+				m_DropDownMenus.at(i).CloseMenu();
+				m_bMenuOpen = false;
+			}
+
+			/*if (!m_DropDownMenus.at(i).isOpen())
+			{
+				for (auto Menus : m_DropDownMenus)
+				{
+					Menus.CloseMenu();
+				}
+			}*/
+		}
+			
+		//}
+		// Toggles World Size Drop Down Menu
+		//else if (m_WorldSizeOptions.isActive())
+		//{
+		//	m_WorldSizeOptions.ToggleOpen();
+		//}
+		//else if (m_ClimateOptions.isActive())
+		//{
+		//	m_ClimateOptions.ToggleOpen();
+		//}
+		
 		m_bClicked = false;
 		return WhichState;
 	}
