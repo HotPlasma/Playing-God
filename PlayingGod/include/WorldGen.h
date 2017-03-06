@@ -24,6 +24,7 @@ private:
 	void GenSky();
 	void GenMisc();
 	void GenPowercells();
+	void GenWorldFile();
 
 public:
 	WorldGen();
