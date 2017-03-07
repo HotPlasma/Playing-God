@@ -12,7 +12,10 @@ void WorldGen::CreateNewWorld(std::vector<DropDownMenu> WorldParameters, string 
 {
 	m_sWorldName = WorldName;
 	GenPortal(WorldParameters.at(2).OptionSelected()); // Create file, map and portal.
-	GenFloraDensity(WorldParameters.at(3).OptionSelected());
+	GenFloraDensity(WorldParameters.at(3).OptionSelected()); // Fill map with flora
+	GenCivilisation(WorldParameters.at(5).OptionSelected()); // Fill map with ruins of civilisation
+	GenMountains(WorldParameters.at(0).OptionSelected()); // Generate Mountains
+	GenClimate(WorldParameters.at(1).OptionSelected()); // Generate Ground tiles
 	GenWorldFile();
 }
 
@@ -40,7 +43,7 @@ void WorldGen::GenPortal(int WorldSize)
 	}
 
 	// Generate a random point within the map for the portal
-	glm::vec2 PortalPos(rand() % u_iWorldSize - 1, rand() % u_iWorldSize - 1); 
+	glm::vec2 PortalPos(rand() % u_iWorldSize, rand() % u_iWorldSize); 
 
 	// Create grid of # of specificed size
 	for (int i = 0; i < u_iWorldSize; i++)
@@ -59,41 +62,168 @@ void WorldGen::GenPortal(int WorldSize)
 	}
 }
 
-void WorldGen::GenFloraDensity(int FloraDensity)
+void WorldGen::GenClimate(int Climate)
 {
-	int iDensity;
+	int iClimate;
 
-	switch (FloraDensity)
+	switch (Climate)
 	{
-	case 0: // None
-		iDensity = 0;
+	case 0: // Cold
+		iClimate = 1;
 		break;
-	case 1: // Small
-		iDensity = 10;
+	case 1: // Warm
+		iClimate = 2;
 		break;
-	case 2: // Medium
-		iDensity = 5;
+	case 2: // Hot
+		iClimate = 3;
 		break;
-	case 3: // Large
-		iDensity = 3;
 	}
 
-	// Replace a ratio of # with flora tiles.
 	for (int i = 0; i < u_iWorldSize; i++)
 	{
 		for (int j = 0; j < u_iWorldSize; j++)
 		{
-			if (m_WorldList[i][j] == '#')
+			if (m_WorldList[i][j] == '#') // Only replace hashtags
 			{
-				int TreeChance = rand() % iDensity;
-				if (TreeChance == 0)
+				if (iClimate = 1);
 				{
-					m_WorldList[i][j] = 'T';
+					m_WorldList[i][j] = 'S';
+				}
+
+				if (iClimate = 2);
+				{
+					m_WorldList[i][j] = 'G';
+				}
+
+				if (iClimate = 3);
+				{
+					m_WorldList[i][j] = 'D';
+				}
+			}
+		}
+	}
+}
+
+void WorldGen::GenFloraDensity(int FloraDensity)
+{
+	int iFloraDensity;
+
+	switch (FloraDensity)
+	{
+	case 0: // None
+		iFloraDensity = 0;
+		break;
+	case 1: // Small
+		iFloraDensity = 10;
+		break;
+	case 2: // Medium
+		iFloraDensity = 5;
+		break;
+	case 3: // Large
+		iFloraDensity = 3;
+	}
+
+	if (iFloraDensity != 0) // Stops potential division by 0
+	{
+		// Replace a ratio of # with flora tiles.
+		for (int i = 0; i < u_iWorldSize; i++)
+		{
+			for (int j = 0; j < u_iWorldSize; j++)
+			{
+				if (m_WorldList[i][j] == '#') // Only replace hashtags
+				{
+					int iTreeChance = rand() % iFloraDensity;
+					if (iTreeChance == 0)
+					{
+						m_WorldList[i][j] = 'T';
+					}
 				}
 			}
 		}
 	}
 		
+}
+
+void WorldGen::GenMountains(int MountainsDensity)
+{
+	int iMountainDensity;
+
+	switch (MountainsDensity)
+	{
+	case 0: // None
+		iMountainDensity = 0;
+		break;
+	case 1: // Mountainous
+		iMountainDensity = 5;
+		break;
+	case 2: // Very Mountainous
+		iMountainDensity = 3;
+		break;
+	}
+
+	if (iMountainDensity != 0) // Stops potential division by 0
+	{
+		// Replace a ratio of # with flora tiles.
+		for (int i = 0; i < u_iWorldSize; i++)
+		{
+			for (int j = 0; j < u_iWorldSize; j++)
+			{
+				if (i + 1 < u_iWorldSize && j + 1 < u_iWorldSize)
+				{
+					if (m_WorldList[i][j] == '#' && m_WorldList[i + 1][j] == '#' && m_WorldList[i][j + 1] == '#' && m_WorldList[i + 1][j + 1] == '#') // Only replace hashtags
+					{
+
+						int iCivChance = rand() % iMountainDensity;
+						if (iCivChance == 0)
+						{
+							m_WorldList[i][j] = 'M';
+							m_WorldList[i + 1][j] = 'M';
+							m_WorldList[i][j + 1] = 'M';
+							m_WorldList[i + 1][j + 1] = 'M';
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+void WorldGen::GenCivilisation(int CivDensity)
+{
+	int iCivilisationDensity;
+
+	switch (CivDensity)
+	{
+	case 0: // None
+		iCivilisationDensity = 0;
+		break;
+	case 1: // Remains
+		iCivilisationDensity = 10;
+		break;
+	case 2: // Mass Remains
+		iCivilisationDensity = 5;
+		break;
+	}
+
+	if (iCivilisationDensity != 0) // Stops potential division by 0
+	{
+		// Replace a ratio of # with flora tiles.
+		for (int i = 0; i < u_iWorldSize; i++)
+		{
+			for (int j = 0; j < u_iWorldSize; j++)
+			{
+				if (m_WorldList[i][j] == '#') // Only replace hashtags
+				{
+					int iCivChance = rand() % iCivilisationDensity;
+					if (iCivChance == 0)
+					{
+						m_WorldList[i][j] = 'C';
+					}
+				}
+			}
+		}
+	}
+
 }
 
 void WorldGen::GenWorldFile()

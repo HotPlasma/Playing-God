@@ -164,7 +164,8 @@ void glfwSetWindowPositionCenter(GLFWwindow* window) {
 ////////////////////////////////////////////////////////
 /////// Main loop  /////////////////////////////////////
 ////////////////////////////////////////////////////////
-void mainLoop() {
+void mainLoop() {		
+
 	while (!glfwWindowShouldClose(g_pWindow) && !glfwGetKey(g_pWindow, GLFW_KEY_ESCAPE)) {
 		// If button pressed open world creation menu (SFML_
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return))

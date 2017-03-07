@@ -17,10 +17,10 @@ private:
 
 
 	void GenPortal(int WorldSize); // Creates the base world and portal. MUST BE RAN FIRST
-	void GenClimate();
+	void GenClimate(int Climate);
 	void GenFloraDensity(int FloraDensity); // Generates forests / plants
-	void GenMountains();
-	void GenCivilisation();
+	void GenMountains(int MountainsDensity);
+	void GenCivilisation(int CivDensity);
 	void GenSky();
 	void GenMisc();
 	void GenPowercells();

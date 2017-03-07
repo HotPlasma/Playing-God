@@ -80,7 +80,7 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 
 	//CIVILISATION
 	m_Civilisation.setFont(m_BlockFont);
-	m_Civilisation.setString("Mountainous:");
+	m_Civilisation.setString("Civilisation:");
 	m_Civilisation.setCharacterSize(50);
 
 	// Centre text
@@ -163,7 +163,7 @@ void GenerationMenu::draw(sf::RenderTarget &target, sf::RenderStates states) con
 	target.draw(m_SkyBox);
 	target.draw(m_FloraDensity);
 	target.draw(*m_TextBox_WorldName);
-	for (auto Menus : m_DropDownMenus)
+	for (DropDownMenu Menus : m_DropDownMenus)
 	{
 		target.draw(Menus);
 	}

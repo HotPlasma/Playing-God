@@ -1,16 +1,26 @@
 ﻿  WorldGen.cpp
 src\WorldGen.cpp(7): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-src\WorldGen.cpp(37): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(46): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(48): warning C4018: '<': signed/unsigned mismatch
+src\WorldGen.cpp(40): warning C4018: '<': signed/unsigned mismatch
+src\WorldGen.cpp(49): warning C4018: '<': signed/unsigned mismatch
+src\WorldGen.cpp(51): warning C4018: '<': signed/unsigned mismatch
 src\WorldGen.cpp(82): warning C4018: '<': signed/unsigned mismatch
 src\WorldGen.cpp(84): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(104): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(107): warning C4018: '<': signed/unsigned mismatch
+src\WorldGen.cpp(88): warning C4390: ';': empty controlled statement found; is this the intent?
+src\WorldGen.cpp(93): warning C4390: ';': empty controlled statement found; is this the intent?
+src\WorldGen.cpp(98): warning C4390: ';': empty controlled statement found; is this the intent?
+src\WorldGen.cpp(129): warning C4018: '<': signed/unsigned mismatch
+src\WorldGen.cpp(131): warning C4018: '<': signed/unsigned mismatch
+src\WorldGen.cpp(167): warning C4018: '<': signed/unsigned mismatch
+src\WorldGen.cpp(169): warning C4018: '<': signed/unsigned mismatch
+src\WorldGen.cpp(171): warning C4018: '<': signed/unsigned mismatch
+src\WorldGen.cpp(211): warning C4018: '<': signed/unsigned mismatch
+src\WorldGen.cpp(213): warning C4018: '<': signed/unsigned mismatch
+src\WorldGen.cpp(234): warning C4018: '<': signed/unsigned mismatch
+src\WorldGen.cpp(237): warning C4018: '<': signed/unsigned mismatch
   Generating code
-  43 of 1621 functions ( 2.7%) were compiled, the rest were copied from previous compilation.
+  33 of 1624 functions ( 2.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    11 functions had inline decision re-evaluated but remain unchanged
+    10 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Release\PlayingGod.exe
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Release\PlayingGod.pdb (Full PDB)

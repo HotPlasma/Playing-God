@@ -1,30 +1,70 @@
-# # # T # # # # # T # T # T # # T # # # # # # T T # T # # # 
-# T # # T T # # T # T # # # # # T # # # # # T T T # # T # T 
-# # # # T T T # # # T # T T # # # T # # # T T T T T # # # # 
-# # T # # T # # # T # T T T # # T # # T # T # # T # T # # # 
-T # # # T T T # T T T T # # # T # # # # # # T # T T # # # T 
-# # # # # # T # T T # T # T # T # # T # T # # # # # # # # T 
-# T T # # # # # # # # T # T # # # # # # T # T # # # T # # # 
-# # # T T # # # # T # # # # # T T # # # # # T # # # # # # T 
-# # # # # # T # T T # # # # # # T T T # T # # # # T # T # # 
-# # # T # T T T # T T T T # T # # T # T T T # # # # T # T # 
-# T # T # # T # T # T T T T # # # # # T T T # T T T # # # # 
-# T T # T T T T # # T # T # # # # # T T # T # # T # T T # # 
-# T # # T T # T # T # # T # T T # # # # T # # # # T T T # # 
-T # # # T T # # T # # # T T T # T # # # # # T # T T # T # # 
-T # # # # T # # T # # # # # T T # T # T # # T # T # # # # # 
-# # # T # T T # # T # # # # # # # # # T # T # # # T T # # # 
-# T T # T # # T # T # # T # # T T T # T T # # T T # T # # # 
-# T T P T # # # T # # # # # # T # T # T # # # T T # # T # T 
-T # T T T T # # # T # T # T T # # T # T # T # # # # # T # T 
-# T T # # # # # T # # # T T T T # # T # # # T T # # # T T # 
-# T # # # # T # T T # # T # T T # # T T T T # # T # T # # # 
-# # # T # # # T # # # T # T # # # # # # # # T # # # # T # # 
-# # T # # # # # # T T # T # T T # # T # T # T # T # T # # # 
-# T T # # # T # # T # # # # T # # # # # # # T # # # # # # T 
-T # # # T # # # # # # # # T T # # T T # # # T T # # T # T # 
-# T # T # # # # T T T # T # T # # T # # # T # # T T T # # T 
-T T # T # # # T T # T # # T # # # # # # # T T # # T # # # # 
-# # T # # T # # # # # T # T # # # # T # # # T # # T T # # # 
-# # # # # # # # T T # T # # # T T # # # # # T # # T # # # # 
-T # # # # T # T # # # # # # # # # # T T # T # # # # # T # # 
+# # # # # # # M M # 
+# # T # # # # M M # 
+C # M M # C # T # T 
+M M M M # # T # # C 
+M M # # # T T # # # 
+# C T P # # C C # C 
+# # T T # # # M M # 
+# # # C # # C M M # 
+# T # T # # # # # # 
+# # C # # # # T C # 
+T # T M M T # # # T # T T # M M # T T # # # M M M M # # # T 
+# # T M M M M C T T M M M M M M C # T # T T M M M M # T M M 
+M M T # # M M T # # M M M M T # # # C C T # C # T # # T M M 
+M M # T # # # T T T T T # # C # T T # # # # # # T T T # # C 
+# T # T # # T # # T M M # T # T # T T # # T C # T # # # T # 
+T M M # T T T T # T M M T # T # C # # # # # T T T T # # # T 
+# M M C T # # # T # # # C # C # T T # T C # # T T # # T # # 
+# T T # C # # T M M # # # # # C # M M C T # T # # T # # # T 
+# T T # T # T # M M # C # # T # # M M T # # # # # T # # C # 
+# # # C # # T T T # T T # # # T C # T # # # # # T # T C # T 
+# T # T T # C # # T # T # T # # # # C # T # # # T C M M C T 
+T # # # # # T T T T # # # # C T T # T # # # T # # T M M # # 
+# # T T # T T # # # # T T # T # T T T C # M M T # T # T # C 
+T # # # # C # M M T T # # T T T C T T # # M M T C T T T T T 
+# T # T C # T M M # # T # # # # # C T # T T # C # # # T M M 
+# M M # T T T # # T T T T # T T T # # T # # # P T # T C M M 
+T M M T T # # T # C T # # C # # C # # # # C M M # T # # # # 
+T # M M T T # C # T T # T # T C T # # # C # M M # T T T # # 
+# # M M T # # T # C C # # T T C # # C T # # T T # T # T # T 
+# # T # # T T M M T T # # # # # # C # T # T T # T T # C C T 
+# T C # # T # M M C T M M T # C # T # # T T T # # # # # # # 
+# # # # # # C T T # # M M T T # M M # # C # # C T T # M M # 
+# # # M M T T T T T M M T # T T M M # C T M M # T # # M M # 
+# T C M M # # T # C M M T # # # T T T T # M M # # # # # # # 
+T # T T # T C # T T # T # C M M C # # # # T T # # # # T T # 
+T T T # M M T T T # M M T # M M T T T T # # # C M M # M M # 
+T # # T M M # # T T M M C # T # T # # C # # # # M M # M M # 
+C # # # # T # # # C # # T T T # T T # # C # T T # T # # T T 
+T # C # # T # C T # T C T T T # # # # T # # # # M M # C T T 
+# T T T T # # T # # # # # T # # T # T C T # T # M M C # C # 
+D M M D D D D D C D M M D D D D D D T D D D D D D D D C D D 
+D M M D D D M M C D M M D T C D D D D D D D M M D D D D T D 
+D T D D T D M M T D D D D C D D C D C D M M M M D D D D C D 
+M M D D M M M M D D D D T C D D D D D D M M D D D M M D D C 
+M M D T M M M M D D C D C D T D D C D D D D D D T M M D C D 
+D D D C D D M M D T D D D D T M M T D D D T M M C D D D D D 
+T D D D P D M M D D T D C M M M M D D D D D M M C M M D C D 
+T M M D C M M D T D D D D M M D D T M M T M M D D M M D D D 
+D M M D D M M M M D T D D D D D D T M M D M M D D D D D M M 
+M M C T C M M M M D D D D T T C D M M D D D D D D D M M M M 
+M M D D D M M T D D D T D C D C D M M T D T D T T D M M D C 
+D M M D D D D T D C D D D D C D M M D D C D D D T D D D D D 
+D M M M M D D M M D D M M D D D M M D D D D T D D D D D D D 
+D D D M M T D M M D D M M D D D D D D T D D D D T M M C T D 
+D D C D D D C D D D D D D T D D D C D D T C T D D M M D D C 
+D T D D D C D D C D M M D D D D M M M M D D D D D D D D T D 
+D D C D D T C T D D M M D D D D M M M M D D D D T D D D D D 
+D D D M M D D D D D D T D D D T D D D D D C D D T D T D T D 
+D D D M M D T T T C D D M M C D C D D T D D D M M D D D T D 
+D D D D D D D T M M D D M M D C D D C D D D T M M D C D T D 
+D D C D D C D T M M C C D D D T D D D D T T M M D D D D D D 
+D M M D D D D C C D D D D M M D D D T T T D M M D D D D D C 
+T M M C D D D D T D D D D M M D C D D D D T D D T M M T D C 
+D C D D D D D D T C C T D D D D C D D D D C D D D M M C D D 
+D D D D C D D C D T C D D D C D D D D C C D M M D D M M D D 
+D D D D T M M C M M D D D D D D D D D D D D M M T D M M D C 
+D D D D C M M D M M D D D T D T C T D D D D M M D D D C D D 
+D M M D D C T D M M D D D D M M T D D D D D M M D C D D D C 
+D M M D D T D D M M D D D D M M D D D C D C D M M D T D C D 
+D D D D T D T D D D D T T D D D D D T D C D D M M D T D D D 
