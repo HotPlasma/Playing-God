@@ -92,7 +92,7 @@ void Model::buffer()
 void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 {
 
-	glm::mat4 xRotMatrix = { cos(m_rotation.x),0,-sin(m_rotation.x),0,
+	/*glm::mat4 xRotMatrix = { cos(m_rotation.x),0,-sin(m_rotation.x),0,
 		0,1,0,0,
 		sin(m_rotation.x),0,cos(m_rotation.x),0,
 		0,0,0,1 };
@@ -107,8 +107,13 @@ void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 		sin(m_rotation.z),0,cos(m_rotation.z),0,
 		0,0,0,1 };
 
-	glm::mat4 rotMatrix = xRotMatrix * yRotMatrix * zRotMatrix;
 
+	glm::mat4 rotMatrix = xRotMatrix * yRotMatrix * zRotMatrix;*/
+
+	glm::mat4 rotMatrix = glm::mat4(1.0f);
+	rotMatrix = glm::rotate(rotMatrix, m_rotation.x, glm::vec3(1, 0, 0));
+	rotMatrix = glm::rotate(rotMatrix, m_rotation.y, glm::vec3(0, 1, 0));
+	rotMatrix = glm::rotate(rotMatrix, m_rotation.z, glm::vec3(0, 0, 1));
 
 	glm::mat4 scaleMatrix = { m_scale.x,0,0,0,
 		0,m_scale.y,0,0,

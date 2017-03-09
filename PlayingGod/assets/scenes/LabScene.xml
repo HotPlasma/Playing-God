@@ -40,7 +40,7 @@
     <OBJLocation>assets/models/laboratory/SuperComputer.obj</OBJLocation>
     <TexLocation>assets/textures/laboratory/SC.bmp</TexLocation>
     <Translation>30 -6 25</Translation>
-    <Rotation>0 90 0</Rotation>
+    <Rotation>0 -90 0</Rotation>
     <Scale>1 1 1</Scale>
     <Material>1</Material>
     <Collectable>false</Collectable>
