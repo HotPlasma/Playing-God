@@ -3,122 +3,116 @@
 
 Model::Model()
 {
-	M = { 1,0,0,0,
+	m_M = { 1,0,0,0,
 		0,1,0,0,
 		0,0,1,0,
 		0,0,0,1 };
 }
 
-Model::Model(string FileLocation, string TextureLocation, glm::vec3 Position, float Rotation, glm::vec3 Scale, int MaterialID)
+Model::Model(string sFileLocation, string sTextureLocation, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, int iMaterialID)
 {
 	// Constucts a model with the given variables
-	sFileName = FileLocation;
-	sTexture = TextureLocation;
-	ModelPosition = Position;
-	ModelRotation = Rotation;
-	ModelScale = Scale;
-	ModelMaterial = MaterialID;
+	m_sFileName = sFileLocation;
+	m_sTexture = sTextureLocation;
+	m_position = position;
+	m_rotation = rotation;
+	m_scale = scale;
+	m_iMaterial = iMaterialID;
 
-	M = { 1,0,0,0,
+	m_M = {
+		1,0,0,0,
 		0,1,0,0,
 		0,0,1,0,
-		0,0,0,1 };
+		0,0,0,1
+	};
 }
-
-string Model::GetFileLocation()
+void Model::setCollectable()
 {
-	return sFileName;
+	m_bCollectable = true;
 }
 
-GLuint Model::GetTextureLocation()
+void Model::setCollected(bool bCollected)
 {
-	return m_textureID;
+	m_bCollected = bCollected;
 }
 
-glm::vec3 Model::GetPosition()
+void Model::setName(string sNewName)
 {
-	return ModelPosition;
+	m_sName = sNewName;
 }
 
-float Model::GetRotation()
+void Model::setFileLocation(string sNewLocation)
 {
-	return ModelRotation;
+	m_sFileName = sNewLocation;
 }
 
-glm::vec3 Model::GetScale()
+void  Model::setTextureLocation(string sNewLocation)
 {
-	return ModelScale;
+	m_sTexture = sNewLocation;
 }
 
-int Model::GetMaterial()
+void  Model::setPosition(glm::vec3 newPosition)
 {
-	return ModelMaterial;
+	m_position = newPosition;
 }
 
-
-
-void Model::SetFileLocation(string NewLocation)
+void  Model::setRotation(glm::vec3 newRotation)
 {
-	sFileName = NewLocation;
+	m_rotation = newRotation;
 }
 
-void  Model::SetTextureLocation(string NewLocation)
+void  Model::setScale(glm::vec3 newScale)
 {
-	sTexture = NewLocation;
+	m_scale = newScale;
 }
 
-void  Model::SetPosition(glm::vec3 NewPosition)
+void Model::setTexture(GLuint textureID)
 {
-	ModelPosition = NewPosition;
+	m_textureID = textureID;
 }
 
-void  Model::SetRotation(float NewRotation)
+void Model::setMaterial(int iMaterial)
 {
-	ModelRotation = NewRotation;
+	m_iMaterial = iMaterial;
 }
 
-void  Model::SetScale(glm::vec3 NewScale)
-{
-	ModelScale = NewScale;
-}
-
-void Model::SetTexture(GLuint TextureID)
-{
-	m_textureID = TextureID;
-}
-
-void Model::SetMaterial(int Material)
-{
-	ModelMaterial = Material;
-}
 
 void Model::LoadModel(string Model)
 {
-	m_modelReader = new ModelReader(Model);
+	m_pModelReader = new ModelReader(Model);
 }
 
-void Model::Buffer()
+void Model::buffer()
 {
-	gl::BindVertexArray(vaoHandle);
-	gl::BindTexture(gl::TEXTURE_2D, gTexture->object());
+	gl::BindVertexArray(m_vaoHandle);
+	gl::BindTexture(gl::TEXTURE_2D, m_pTexture->object());
 	
 }
 
 void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 {
 
-	// Create rotation matrix for each model
-
-	glm::mat4 rotMatrix = { cos(glm::radians(ModelRotation)),0,sin(glm::radians(ModelRotation)),0,
+	glm::mat4 xRotMatrix = { cos(m_rotation.x),0,-sin(m_rotation.x),0,
 		0,1,0,0,
-		-sin(glm::radians(ModelRotation)),0,cos(glm::radians(ModelRotation)),0,
+		sin(m_rotation.x),0,cos(m_rotation.x),0,
 		0,0,0,1 };
 
+	glm::mat4 yRotMatrix = { cos(m_rotation.y),0,sin(m_rotation.y),0,
+		0,1,0,0,
+		-sin(m_rotation.y),0,cos(m_rotation.y),0,
+		0,0,0,1 };
 
-	// Create scale matrix for each model
-	glm::mat4 scaleMatrix = { ModelScale.x,0,0,0,
-		0,ModelScale.y,0,0,
-		0,0,ModelScale.z,0,
+	glm::mat4 zRotMatrix = { cos(m_rotation.z),0,-sin(m_rotation.z),0,
+		0,1,0,0,
+		sin(m_rotation.z),0,cos(m_rotation.z),0,
+		0,0,0,1 };
+
+	glm::mat4 rotMatrix = xRotMatrix * yRotMatrix * zRotMatrix;
+
+
+	glm::mat4 scaleMatrix = { m_scale.x,0,0,0,
+		0,m_scale.y,0,0,
+		0,0,m_scale.z,0,
 		0,0,0,1 };
 
 	// Create transform matrix for each model
@@ -126,19 +120,19 @@ void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 	glm::mat4 transMatrix = { 1,0,0,0,
 		0,1,0,0,
 		0,0,1,0,
-		ModelPosition.x,ModelPosition.y,ModelPosition.z,1 };
+		m_position.x,m_position.y,m_position.z,1 };
 
 	// Create Trasnform matrix for each model
-	M = transMatrix * rotMatrix * scaleMatrix;
+	m_M = transMatrix * rotMatrix * scaleMatrix;
 
 
-	positionData = m_modelReader->GetVertices();
-	uvData = m_modelReader->GetTextureCoordinates();
+	positionData = m_pModelReader->GetVertices();
+	uvData = m_pModelReader->GetTextureCoordinates();
 
 
-	gl::GenBuffers(2, vboHandles);
-	GLuint positionBufferHandle = vboHandles[0];
-	GLuint uvBufferHandle = vboHandles[1];
+	gl::GenBuffers(2, m_vboHandles);
+	GLuint positionBufferHandle = m_vboHandles[0];
+	GLuint uvBufferHandle = m_vboHandles[1];
 
 
 	gl::BindBuffer(gl::ARRAY_BUFFER, positionBufferHandle);
@@ -150,8 +144,8 @@ void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 
 
 	// Create and set-up the vertex array object
-	gl::GenVertexArrays(1, &vaoHandle);
-	gl::BindVertexArray(vaoHandle);
+	gl::GenVertexArrays(1, &m_vaoHandle);
+	gl::BindVertexArray(m_vaoHandle);
 
 	gl::EnableVertexAttribArray(0);  // Vertex position
 	gl::EnableVertexAttribArray(1);  // Vertex color
@@ -163,15 +157,15 @@ void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 	gl::BindBuffer(gl::ARRAY_BUFFER, uvBufferHandle);
 	gl::VertexAttribPointer(1, 2, gl::FLOAT, FALSE, 0, (GLubyte *)NULL);
 
-	gl::BindVertexArray(vaoHandle);
+	gl::BindVertexArray(m_vaoHandle);
 
-	bmp = Bitmap::bitmapFromFile(sTexture);
-	bmp.flipVertically();
-	gTexture = new Texture(bmp);
+	m_bmp = Bitmap::bitmapFromFile(m_sTexture);
+	m_bmp.flipVertically();
+	m_pTexture = new Texture(m_bmp);
 	//Set texture
 	gl::ActiveTexture(gl::TEXTURE0);
-	gl::BindTexture(gl::TEXTURE_2D, gTexture->object());
-	GLint loc = gl::GetUniformLocation(programHandle, "tex");
+	gl::BindTexture(gl::TEXTURE_2D, m_pTexture->object());
+	GLint loc = gl::GetUniformLocation(m_programHandle, "tex");
 
 	gl::Uniform1f(loc, 1);
 

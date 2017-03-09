@@ -1,26 +1,18 @@
-﻿  WorldGen.cpp
-src\WorldGen.cpp(7): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-src\WorldGen.cpp(40): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(49): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(51): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(82): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(84): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(88): warning C4390: ';': empty controlled statement found; is this the intent?
-src\WorldGen.cpp(93): warning C4390: ';': empty controlled statement found; is this the intent?
-src\WorldGen.cpp(98): warning C4390: ';': empty controlled statement found; is this the intent?
-src\WorldGen.cpp(129): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(131): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(167): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(169): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(171): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(211): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(213): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(234): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(237): warning C4018: '<': signed/unsigned mismatch
+﻿  Model.cpp
+  SceneReader.cpp
+  Texture.cpp
+  World.cpp
+src\World.cpp(244): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+  main.cpp
+src\main.cpp(67): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+src\main.cpp(105): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+src\main.cpp(106): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+src\main.cpp(157): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Generating code
-  33 of 1624 functions ( 2.0%) were compiled, the rest were copied from previous compilation.
+  43 of 1877 functions ( 2.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    10 functions had inline decision re-evaluated but remain unchanged
+    9 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Release\PlayingGod.exe
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Release\PlayingGod.pdb (Full PDB)

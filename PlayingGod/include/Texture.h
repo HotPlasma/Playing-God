@@ -26,7 +26,7 @@
     /**
      Represents an OpenGL texture
      */
-    class Texture {
+class Texture {
     public:
         /**
          Creates a texture from a bitmap.

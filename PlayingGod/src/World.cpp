@@ -124,7 +124,7 @@ void World::initScene()
 
 	linkMe(vertShader, fragShader);
 
-	world = SceneReader("assets/scenes/Scene.txt");
+	world = SceneReader("assets/scenes/LabScene.xml");
 
 
 	for (int i = 0; i < world.ModelList.size(); i++)
@@ -227,7 +227,7 @@ void World::update(float t)
 void World::ModelUpdate(int index)
 {
 	GLuint modelMatrixID = gl::GetUniformLocation(programHandle, "mModel");
-	gl::UniformMatrix4fv(modelMatrixID, 1, gl::FALSE_, glm::value_ptr(world.ModelList.at(index).M));
+	gl::UniformMatrix4fv(modelMatrixID, 1, gl::FALSE_, glm::value_ptr(world.ModelList.at(index).m_M));
 }
 
 void World::render()
@@ -239,7 +239,7 @@ void World::render()
 	// Render all models in current scene
 	for (int i = 0; i < world.ModelList.size(); i++)
 	{
-		world.ModelList.at(i).Buffer();
+		world.ModelList.at(i).buffer();
 		ModelUpdate(i);
 		gl::DrawArrays(gl::TRIANGLES, 0, world.ModelList.at(i).positionData.size());
 		
