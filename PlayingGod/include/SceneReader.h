@@ -16,6 +16,7 @@ public:
 
 private:
 	vector<GLuint> m_textureID; // Vector of all the textures for models
+//	vector<string> m_
 	Texture *gTexture;
 	void ReadSceneFile(string filename); // Function to proccess textfile
 };

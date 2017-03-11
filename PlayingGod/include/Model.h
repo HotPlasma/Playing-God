@@ -23,7 +23,7 @@ private:
 	bool m_bCollected = false; // has the collectable been collected?
 
 	GLuint m_textureID; // ID of the texture
-	ModelReader* m_pModelReader; // Model Reader for the render the model
+	
 
 	GLuint m_programHandle;
 	Texture *m_pTexture;
@@ -62,6 +62,8 @@ public:
 
 	vector<float> positionData;
 	vector<float> uvData;
+
+	ModelReader* m_pModelReader; // Model Reader for the render the model
 
 	glm::mat4 m_M;
 

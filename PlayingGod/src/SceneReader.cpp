@@ -108,9 +108,18 @@ void SceneReader::ReadSceneFile(string sFilename)
 			}
 		}
 	}
-
+	// Load in models
 	for (int i = 0; i < ModelList.size(); i++)
 	{
-		ModelList[i].LoadModel(ModelList[i].getFileLocation()); // Load in all models to be ready for drawing
+		if (i > 0) // Avoid checking none existant memory
+		{
+			// If model is has the same name as previous model reuse model and dont load it in again
+			if (ModelList.at(i).getName().compare(ModelList.at(i - 1).getName()) == 0);
+			{
+				ModelList.at(i).m_pModelReader = ModelList.at(i - 1).m_pModelReader;
+			}
+		}
+
+		ModelList[i].LoadModel(ModelList[i].getFileLocation()); // Load in models to be ready for drawing
 	}
 }
