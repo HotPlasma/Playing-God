@@ -27,7 +27,7 @@ private:
 
 	GLuint m_programHandle;
 	Texture *m_pTexture;
-	Bitmap m_bmp = Bitmap::bitmapFromFile("assets/textures/Default.bmp");;
+	
 
 	GLuint m_vboHandles[2];
 	GLuint m_vbo;
@@ -64,6 +64,7 @@ public:
 	vector<float> uvData;
 
 	ModelReader* m_pModelReader; // Model Reader for the render the model
+	Bitmap m_bmp = Bitmap::bitmapFromFile("assets/textures/Default.bmp"); // Texture for model. Has a default texture to avoid hard crash if texture fails to load.
 
 	glm::mat4 m_M;
 

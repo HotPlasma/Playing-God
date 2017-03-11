@@ -80,6 +80,16 @@ void Model::setMaterial(int iMaterial)
 void Model::LoadModel(string Model)
 {
 	m_pModelReader = new ModelReader(Model);
+
+	m_bmp = Bitmap::bitmapFromFile(m_sTexture);
+	m_bmp.flipVertically();
+	m_pTexture = new Texture(m_bmp);
+	//Set texture
+	gl::ActiveTexture(gl::TEXTURE0);
+	gl::BindTexture(gl::TEXTURE_2D, m_pTexture->object());
+	GLint loc = gl::GetUniformLocation(m_programHandle, "tex");
+
+	gl::Uniform1f(loc, 1);
 }
 
 void Model::buffer()
@@ -164,15 +174,7 @@ void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
 
 	gl::BindVertexArray(m_vaoHandle);
 
-	m_bmp = Bitmap::bitmapFromFile(m_sTexture);
-	m_bmp.flipVertically();
-	m_pTexture = new Texture(m_bmp);
-	//Set texture
-	gl::ActiveTexture(gl::TEXTURE0);
-	gl::BindTexture(gl::TEXTURE_2D, m_pTexture->object());
-	GLint loc = gl::GetUniformLocation(m_programHandle, "tex");
-
-	gl::Uniform1f(loc, 1);
+	
 
 
 }

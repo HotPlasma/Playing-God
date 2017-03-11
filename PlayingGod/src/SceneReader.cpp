@@ -47,8 +47,8 @@ void SceneReader::ReadSceneFile(string sFilename)
 						{
 							iss >> sData;
 							m_textureID.resize(m_textureID.size() + 1); // Make the textureID vector 1 bigger
-																		// Set texture to end of vector
-																		//	tl->LoadBMP(data, m_textureID[m_textureID.size() - 1], true); 
+																		
+																		
 
 							temp.setTextureLocation(sData);
 						}
@@ -116,7 +116,8 @@ void SceneReader::ReadSceneFile(string sFilename)
 			// If model is has the same name as previous model reuse model and dont load it in again
 			if (ModelList.at(i).getName().compare(ModelList.at(i - 1).getName()) == 0);
 			{
-				ModelList.at(i).m_pModelReader = ModelList.at(i - 1).m_pModelReader;
+				ModelList.at(i).m_pModelReader = ModelList.at(i - 1).m_pModelReader; // Set model to previous model
+				ModelList.at(i).m_bmp = ModelList.at(i - 1).m_bmp; // Set texture to previous texture
 			}
 		}
 
