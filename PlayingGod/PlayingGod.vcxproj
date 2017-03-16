@@ -147,6 +147,7 @@
     <ClCompile Include="src\World.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\WorldGen.cpp" />
+    <ClCompile Include="src\WorldReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AbstractMenu.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="include\PreHeader.h" />
     <ClInclude Include="include\Texture.h" />
     <ClInclude Include="include\WorldGen.h" />
+    <ClInclude Include="include\WorldReader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\shader.frag" />

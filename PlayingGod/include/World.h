@@ -16,7 +16,7 @@ private:
 	GLuint programHandle; // Program context
 	glm::mat4 M; // Allows manipulation of each models position, rotation and scale
 	void linkMe(GLint vertShader, GLint fragShader); // Connects shaders
-	Texture *gTexture; // Holds texture
+	tex::Texture *gTexture; // Holds texture
 	Camera FirstPersonView; // Camera which user can control
 	GLFWwindow *Window; // The window
 	sf::Vector2i MousePos; // Holds mouse cursor position

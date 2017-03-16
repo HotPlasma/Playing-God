@@ -26,7 +26,7 @@ private:
 	
 
 	GLuint m_programHandle;
-	Texture *m_pTexture;
+	tex::Texture *m_pTexture;
 	
 
 	GLuint m_vboHandles[2];

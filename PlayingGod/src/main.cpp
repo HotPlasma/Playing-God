@@ -9,6 +9,7 @@
 #include "World.h"
 #include <MainMenu.h>
 #include <GenerationMenu.h>
+#include <WorldReader.h>
 #include <iostream>
 
 #include <string>
@@ -19,7 +20,7 @@ GLFWwindow *g_pWindow; // Window
 
 Menu MainMenu(1600,900); // Options Menu
 GenerationMenu NewWorldMenu(1600, 900);
-
+WorldReader CurrentWorld;
 bool g_bGameWindowFocused; // True if main window is infocus
 
 // States of game
@@ -243,7 +244,11 @@ void mainLoop() {
 							break;
 
 						case LOAD_WORLD_MENU:
-
+							CurrentWorld = WorldReader("assets/scenes/Worlds/test.txt");
+							for (int i = 0; i < CurrentWorld.ModelList.size(); i++)
+							{
+								CurrentWorld.ModelList[i].DrawModel(true, true);
+							}
 							break;
 
 						case CLOSE_MENU:
@@ -257,7 +262,12 @@ void mainLoop() {
 						switch (NewWorldMenu.update(Timer.getElapsedTime().asSeconds()))
 						{
 						case 1: // Create button clicked
-							// TODO
+							
+						/*	CurrentWorld.ReadWorldFile(NewWorldMenu.m_TextBox_WorldName->m_sText);
+							for (int i = 0; i < CurrentWorld.ModelList.size(); i++)
+							{
+								CurrentWorld.ModelList[i].DrawModel(true, true);
+							}*/
 							break;
 
 						case 2: // Cancel button clicked

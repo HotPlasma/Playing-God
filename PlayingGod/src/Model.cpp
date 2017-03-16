@@ -83,7 +83,7 @@ void Model::LoadModel(string Model)
 
 	m_bmp = Bitmap::bitmapFromFile(m_sTexture);
 	m_bmp.flipVertically();
-	m_pTexture = new Texture(m_bmp);
+	m_pTexture = new tex::Texture(m_bmp);
 	//Set texture
 	gl::ActiveTexture(gl::TEXTURE0);
 	gl::BindTexture(gl::TEXTURE_2D, m_pTexture->object());

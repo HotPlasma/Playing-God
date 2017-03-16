@@ -6,6 +6,7 @@ WorldGen::WorldGen()
 {
 	srand(time(NULL)); // Seed random function with time
 	m_sToken = "";
+	m_iSelectedSkyBox = 0;
 }
 
 void WorldGen::CreateNewWorld(std::vector<DropDownMenu> WorldParameters, string WorldName)
@@ -16,6 +17,7 @@ void WorldGen::CreateNewWorld(std::vector<DropDownMenu> WorldParameters, string 
 	GenCivilisation(WorldParameters.at(5).OptionSelected()); // Fill map with ruins of civilisation
 	GenMountains(WorldParameters.at(0).OptionSelected()); // Generate Mountains
 	GenClimate(WorldParameters.at(1).OptionSelected()); // Generate Ground tiles
+	GenSky(WorldParameters.at(4).OptionSelected()); // Generate SkyBox tiles
 	GenWorldFile();
 }
 
@@ -226,6 +228,23 @@ void WorldGen::GenCivilisation(int CivDensity)
 
 }
 
+void WorldGen::GenSky(int Sky)
+{
+
+	switch (Sky)
+	{
+	case 0: // None
+		m_iSelectedSkyBox = 0;
+		break;
+	case 1: // Remains
+		m_iSelectedSkyBox = 1;
+		break;
+	case 2: // Mass Remains
+		m_iSelectedSkyBox = 2;
+		break;
+	}
+}
+
 void WorldGen::GenWorldFile()
 {
 	// Creates a file and writes to it
@@ -237,11 +256,48 @@ void WorldGen::GenWorldFile()
 		for (int j = 0; j < u_iWorldSize; j++)
 		{
 			char str[20];
-			sprintf_s(str, "%c ", m_WorldList[i][j]);
+			sprintf_s(str, "%c", m_WorldList[i][j]);
 			m_WorldFile << str;
 		}
 		m_WorldFile << std::endl;
 	}
 
+	m_WorldFile << "Sky: " << m_iSelectedSkyBox;
+
 	m_WorldFile.close();
+
+	//tinyxml2::XMLDeclaration * decl = new tinyxml2::XMLDeclaration("1.0", "", "");
+
+	//tinyxml2::XMLNode * pWorld = doc.NewElement("WorldMap");
+	//doc.InsertFirstChild(pWorld);
+
+	//tinyxml2::XMLElement * pElement = doc.NewElement("TileLayout");
+	//
+	//char str[256];
+	//
+	//string MapLine;
+	//for (int i = 0; i < u_iWorldSize; i++)
+	//{
+	//	//m_WorldList[i].resize(u_iWorldSize);
+	//	for (int j = 0; j < u_iWorldSize; j++)
+	//	{
+	//		tinyxml2::XMLElement * pListElement = doc.NewElement("Tile");
+	//		sprintf_s(str, "%c", m_WorldList[i][j]);
+	//		pListElement->SetText(str);
+	//		pWorld->InsertEndChild(pListElement);
+	//	}
+	//}
+
+	// 
+	//pElement = doc.NewElement("Climate");
+	//pElement->SetText(0.5f);
+	//pWorld->InsertEndChild(pElement);
+
+	//pElement = doc.NewElement("SkyBox");
+	//pElement->SetText(0.5f);
+
+	//pWorld->InsertEndChild(pElement);
+	//
+	//tinyxml2::XMLError eResult = doc.SaveFile(("assets/scenes/Worlds/" + m_sWorldName + ".xml").c_str());
+
 }
