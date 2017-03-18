@@ -244,11 +244,18 @@ void mainLoop() {
 							break;
 
 						case LOAD_WORLD_MENU:
-							CurrentWorld = WorldReader("assets/scenes/Worlds/test.txt");
-							for (int i = 0; i < CurrentWorld.ModelList.size(); i++)
+							//CurrentWorld = WorldReader("assets/scenes/Worlds/test.txt");
+							/*for (int i = 0; i < CurrentWorld.ModelList.size(); i++)
 							{
+
 								CurrentWorld.ModelList[i].DrawModel(true, true);
-							}
+							}*/
+							//g_pScene->update((float)glfwGetTime());
+							glfwMakeContextCurrent(g_pWindow);
+							g_pScene->LoadMap("assets/scenes/Worlds/test.txt", false);
+							MenuWindow.close();
+							
+							//g_pScene->render();
 							break;
 
 						case CLOSE_MENU:
@@ -287,6 +294,7 @@ void mainLoop() {
 			{
 				glfwMakeContextCurrent(g_pWindow);
 				g_pScene->update((float)glfwGetTime());
+				//g_pScene->renderWorld(CurrentWorld);
 				g_pScene->render();
 			}
 			glfwSwapBuffers(g_pWindow);
@@ -339,6 +347,8 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
+
+
 	glfwMakeContextCurrent(g_pWindow);
 	g_bGameWindowFocused = true;
 
@@ -367,6 +377,8 @@ int main(int argc, char *argv[])
 
 	// Initialization
 	initializeGL();
+
+	
 
 	// Enter the main loop
 	mainLoop();

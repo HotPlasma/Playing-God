@@ -1,6 +1,7 @@
 #ifndef SCENE_H
 #define SCENE_H
 #include <GLFW/glfw3.h>
+#include <WorldReader.h>
 
 // Abstract class in order to set up world
 class Scene
@@ -22,6 +23,7 @@ public:
     // Draw Scene
     virtual void render() = 0;
 
+	virtual void LoadMap(string FileLocation, bool isXML) = 0;
 
 	// Aloow screen to be resized without causing rendering issues
 	void resize(int w, int h)

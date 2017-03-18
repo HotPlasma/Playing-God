@@ -124,13 +124,12 @@ void World::initScene()
 
 	linkMe(vertShader, fragShader);
 
-	world = SceneReader("assets/scenes/LabScene.xml");
-
-
-	for (int i = 0; i < world.ModelList.size(); i++)
-	{
-		world.ModelList[i].DrawModel(true, true);
-	}
+	LoadMap("assets/scenes/LabScene.xml", true);
+	//LoadMap("assets/scenes/Worlds/test.txt", false);
+	//for (int i = 0; i < world.ModelList.size(); i++)
+	//{
+	//	world.ModelList[i].DrawModel(true, true);
+	//}
 
 }
 
@@ -197,7 +196,7 @@ void World::update(float t)
 
 
 	 // Allows first person view changing with mouse movement
-	sf::Vector2i WindowOrigin(1920 / 2, 1080 / 2); // Middle of the screen
+	sf::Vector2i WindowOrigin(getWindowSize().x / 2, getWindowSize().y / 2); // Middle of the screen
 
 	float yAngle = (WindowOrigin - MousePos).x / 1000.0f;
 	float zAngle = (WindowOrigin - MousePos).y / 1000.0f;
@@ -227,23 +226,55 @@ void World::update(float t)
 void World::ModelUpdate(int index)
 {
 	GLuint modelMatrixID = gl::GetUniformLocation(programHandle, "mModel");
-	gl::UniformMatrix4fv(modelMatrixID, 1, gl::FALSE_, glm::value_ptr(world.ModelList.at(index).m_M));
+	gl::UniformMatrix4fv(modelMatrixID, 1, gl::FALSE_, glm::value_ptr(CurrentWorld.ModelList.at(index).m_M));
 }
+
+
 
 void World::render()
 {
 	// Check depth and clear last frame
 	gl::Clear(gl::COLOR_BUFFER_BIT | gl::DEPTH_BUFFER_BIT);
 
-	
-	// Render all models in current scene
-	for (int i = 0; i < world.ModelList.size(); i++)
+	//cout << world.ModelList.size();
+	for (int i = 0; i < LabScene.ModelList.size(); i++)
 	{
-		world.ModelList.at(i).buffer();
-		ModelUpdate(i);
-		gl::DrawArrays(gl::TRIANGLES, 0, world.ModelList.at(i).positionData.size());
-		
+		LabScene.ModelList.at(i).buffer();
+		GLuint modelMatrixID = gl::GetUniformLocation(programHandle, "mModel");
+		gl::UniformMatrix4fv(modelMatrixID, 1, gl::FALSE_, glm::value_ptr(LabScene.ModelList.at(i).m_M));
+		gl::DrawArrays(gl::TRIANGLES, 0, LabScene.ModelList.at(i).positionData.size());
+	}
+
+	// Render all models in current scene
+	for (int j = 0; j < CurrentWorld.ModelList.size(); j++)
+	{
+		CurrentWorld.ModelList.at(j).buffer();
+		ModelUpdate(j);
+		gl::DrawArrays(gl::TRIANGLES, 0, CurrentWorld.ModelList.at(j).positionData.size());
 	}
 
 }
+
+void World::LoadMap(string FileLocation, bool isXML)
+{
+	if (isXML)
+	{
+		LabScene = SceneReader(FileLocation);
+		for (int i = 0; i < LabScene.ModelList.size(); i++)
+		{
+			LabScene.ModelList[i].DrawModel(true, true);
+		}
+	}
+	else
+	{
+		CurrentWorld = WorldReader(FileLocation);
+
+		for (int i = 0; i < CurrentWorld.ModelList.size(); i++)
+		{
+			CurrentWorld.ModelList[i].DrawModel(true, true);
+		}
+	}
+}
+
+
 

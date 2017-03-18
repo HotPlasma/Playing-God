@@ -8,6 +8,7 @@
 #include "scene.h"
 #include "Camera.h"
 #include "SceneReader.h"
+#include "WorldReader.h"
 
 class World : public Scene
 {
@@ -20,7 +21,8 @@ private:
 	Camera FirstPersonView; // Camera which user can control
 	GLFWwindow *Window; // The window
 	sf::Vector2i MousePos; // Holds mouse cursor position
-	SceneReader world; // Reads .txt file in order to create world
+	SceneReader LabScene; // Reads .txt file in order to create world
+	WorldReader CurrentWorld;
 
 public:
 	World(sf::Vector2i windowSize);
@@ -29,6 +31,6 @@ public:
 	void update(float t);
 	void ModelUpdate(int index);
 	void render();
-
+	void LoadMap(string FileLocation, bool isXML);
 };
 #endif  

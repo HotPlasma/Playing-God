@@ -10,6 +10,7 @@ public:
 	WorldReader();
 	WorldReader(std::vector<std::vector<char>> World);
 	WorldReader(std::string WorldFileName);
+	vector<GLuint> m_textureID;
 	std::vector<Model> ModelList;
 	GLuint m_programHandle;
 	tex::Texture *m_pTexture;
