@@ -52,8 +52,8 @@ void WorldReader::ReadWorldFile(string FileName)
 
 void WorldReader::LoadModels()
 {
-	unsigned const int u_kiTileSize = 50; // Size of each tile
-	unsigned const int u_kWorldOffset = 0; // Offset for position world will be rendered
+	 const float u_kiTileSize = 50; // Size of each tile
+	 const float u_kWorldOffset = 150; // Offset for position world will be rendered
 
 	Model temp;
 
@@ -66,11 +66,11 @@ void WorldReader::LoadModels()
 			default:
 				ModelList.resize(ModelList.size() + 1);
 				ModelList.at(i * m_WorldList.size() + j).setName("Plane");
-				ModelList.at(i * m_WorldList.size() + j).setFileLocation("assets/models/WorldTiles/Plane.obj");
+				ModelList.at(i * m_WorldList.size() + j).setFileLocation("assets/models/WorldTiles/Plane2.obj");
 						         
 				m_textureID.resize(m_textureID.size() + 1);
 				ModelList.at(i * m_WorldList.size() + j).setTextureLocation("assets/textures/WorldTiles/Grassy.bmp");
-				ModelList.at(i * m_WorldList.size() + j).setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize),-2,(j+u_kiTileSize))); //Make the gametile empty
+				ModelList.at(i * m_WorldList.size() + j).setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize),-5,(j*u_kiTileSize))); //Make the gametile empty
 				ModelList.at(i * m_WorldList.size() + j).setRotation(glm::vec3(0, 0, 0));
 				ModelList.at(i * m_WorldList.size() + j).setScale(glm::vec3(1, 1, 1));
 				ModelList.at(i * m_WorldList.size() + j).setMaterial(1);
@@ -94,23 +94,26 @@ void WorldReader::LoadModels()
 
 				//gl::Uniform1f(loc, 1);
 				break;
-			case 'w':
+			case 'P': // Portal
 
 				break;
-			case 'd':
+			case 'S': // Sand
 				
 				break;
-			case 'u':
+			case 'G': // Generic ground
 				
 				break;
-			case 'l':
+			case 'D': // Desert
 				
 				break;
-			case 'r':
+			case 'T': // Flora
 				
 				break;
-			case 't':
+			case 'M': // Mountain
 				
+				break;
+			case 'C': // Civilisation
+
 				break;
 			}
 		}
@@ -118,23 +121,27 @@ void WorldReader::LoadModels()
 
 	for (int i = 0; i < ModelList.size(); i++)
 	{
-		//if (i > 0) // Avoid checking none existant memory
-		//{
-		//	// If model is has the same name as previous model reuse model and dont load it in again
-		//	if (ModelList.at(i).getName().compare(ModelList.at(i - 1).getName()) == 0)
-		//	{
-		//		ModelList.at(i).m_pModelReader = ModelList.at(i - 1).m_pModelReader; // Set model to previous model
-		//		ModelList.at(i).m_bmp = ModelList.at(i - 1).m_bmp; // Set texture to previous texture
-		//	}
-		//	else
-		//	{
-		//		ModelList[i].LoadModel(ModelList[i].getFileLocation()); // Load in models to be ready for drawing
-		//	}
-		//}
-		//else
-		//{
+		if (i > 0) // Avoid checking none existant memory
+		{
+			// If model is has the same name as previous model reuse model and dont load it in again
+			if (ModelList.at(i).getName().compare(ModelList.at(i - 1).getName()) == 0)
+			{
+				ModelList.at(i).m_pModelReader = ModelList.at(i - 1).m_pModelReader; // Set model to previous model
+				ModelList.at(i).m_bmp = ModelList.at(i - 1).m_bmp; // Set texture to previous texture
+				ModelList.at(i).LoadTexture(ModelList.at(i - 1).getTextureLocation());
+				/*ModelList.at(i).positionData = ModelList.at(i - 1).positionData;
+				ModelList.at(i).uvData = ModelList.at(i - 1).uvData;
+				ModelList.at(i).m_M = ModelList.at(i - 1).m_M;*/
+			}
+			else
+			{
+				ModelList[i].LoadModel(ModelList[i].getFileLocation()); // Load in models to be ready for drawing
+			}
+		}
+		else
+		{
 			ModelList[i].LoadModel(ModelList[i].getFileLocation()); // Load in models to be ready for drawing
-		//}
+		}
 	}
 }
 

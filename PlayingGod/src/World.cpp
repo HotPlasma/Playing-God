@@ -145,7 +145,8 @@ void World::linkMe(GLint vertShader, GLint fragShader)
 
 	// Create the program object
 	programHandle = gl::CreateProgram();
-	if (0 == programHandle) {
+	if (0 == programHandle) 
+	{
 		fprintf(stderr, "Error creating program object.\n");
 		exit(1);
 	}
@@ -161,8 +162,8 @@ void World::linkMe(GLint vertShader, GLint fragShader)
 	// Check for successful linking
 	GLint status;
 	gl::GetProgramiv(programHandle, gl::LINK_STATUS, &status);
-	if (FALSE == status) {
-
+	if (FALSE == status) 
+	{
 		fprintf(stderr, "Failed to link shader program!\n");
 
 		GLint logLen;
@@ -170,16 +171,14 @@ void World::linkMe(GLint vertShader, GLint fragShader)
 
 		if (logLen > 0) {
 			char * log = (char *)malloc(logLen);
-
 			GLsizei written;
 			gl::GetProgramInfoLog(programHandle, logLen, &written, log);
-
 			fprintf(stderr, "Program log: \n%s", log);
-
 			free(log);
 		}
 	}
-	else {
+	else 
+	{
 		gl::UseProgram(programHandle);
 	}
 

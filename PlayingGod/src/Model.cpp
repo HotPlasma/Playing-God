@@ -92,6 +92,19 @@ void Model::LoadModel(string Model)
 	gl::Uniform1f(loc, 1);
 }
 
+void Model::LoadTexture(GLuint Texture)
+{
+	m_bmp = Bitmap::bitmapFromFile(m_sTexture);
+	m_bmp.flipVertically();
+	m_pTexture = new tex::Texture(m_bmp);
+	//Set texture
+	gl::ActiveTexture(gl::TEXTURE0);
+	gl::BindTexture(gl::TEXTURE_2D, m_pTexture->object());
+	GLint loc = gl::GetUniformLocation(m_programHandle, "tex");
+
+	gl::Uniform1f(loc, 1);
+}
+
 void Model::buffer()
 {
 	gl::BindVertexArray(m_vaoHandle);

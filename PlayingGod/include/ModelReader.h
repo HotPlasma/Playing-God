@@ -14,7 +14,7 @@ class ModelReader
 
 		vector<float> m_vertices;					// v
 		vector<float> m_vertexNormals;				// vn
-		vector<float> m_vertexTextureCoordinates;	// vt only U V
+		vector<float> m_vertexTextureCoordinates;	// vt only UV
 
 		vector<unsigned int> m_faceVertexIndices;
 		vector<unsigned int> m_faceTextureIndices;

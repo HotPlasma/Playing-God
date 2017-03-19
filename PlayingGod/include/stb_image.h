@@ -287,7 +287,7 @@
 	// The output of the JPEG decoder is slightly different from versions where
 	// SIMD support was introduced (that is, for versions before 1.49). The
 	// difference is only +-1 in the 8-bit RGB channels, and only on a small
-	// fraction of pixels. You can force the pre-1.49 behavior by defining
+	// fMovementSpeed of pixels. You can force the pre-1.49 behavior by defining
 	// STBI_JPEG_OLD, but this will disable some of the SIMD decoding path
 	// and hence cost some performance.
 	//

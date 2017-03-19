@@ -69,6 +69,7 @@ public:
 	glm::mat4 m_M;
 
 	void LoadModel(string Model); // Loads in the model to be rendered
+	void LoadTexture(GLuint Texture);
 	void DrawModel(bool drawWithNormals, bool drawWithTexture); // Draws model
 
 
