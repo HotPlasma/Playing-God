@@ -39,7 +39,7 @@ void World::initScene()
 
 	Cube = new CubeMap(1, vec3(10000,0,0), "FullMoon/Moon");
 
-	if (!m_theme.loadFromFile("assets/sound/backgroundmusic.wav"));
+	if (!m_ThemeSong.loadFromFile("assets/sound/backgroundmusic.wav"));
 	{
 		sf::err() << "Failed to load music\n";
 	}
@@ -131,7 +131,7 @@ void World::update(float t)
 	// Repeat music once it ends
 	if (m_Sound.getStatus() != sf::Sound::Playing)
 	{
-		m_Sound.setBuffer(m_theme);
+		m_Sound.setBuffer(m_ThemeSong);
 		m_Sound.setVolume(40);
 		m_Sound.play();
 	}
@@ -208,7 +208,7 @@ void World::LoadMap(string FileLocation, bool isXML)
 		LabScene = SceneReader(FileLocation);
 		for (int i = 0; i < LabScene.ModelList.size(); i++)
 		{
-			LabScene.ModelList[i].DrawModel(true, true);
+			LabScene.ModelList[i].DrawModel();
 		}
 	}
 	else
@@ -218,7 +218,7 @@ void World::LoadMap(string FileLocation, bool isXML)
 
 		for (int i = 0; i < CurrentWorld.ModelList.size(); i++)
 		{
-			CurrentWorld.ModelList[i].DrawModel(true, true);
+			CurrentWorld.ModelList[i].DrawModel();
 			Cube = CurrentWorld.m_SkyBox;
 		}
 	}

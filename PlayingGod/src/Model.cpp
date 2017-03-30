@@ -117,7 +117,7 @@ void Model::buffer()
 	
 }
 
-void Model::DrawModel(bool drawWithNormals, bool drawWithTexture)
+void Model::DrawModel()
 {
 
 	/*glm::mat4 xRotMatrix = { cos(m_rotation.x),0,-sin(m_rotation.x),0,

@@ -20,14 +20,30 @@
 class SceneReader
 {
 public:
-	// Reads in a .txt file and creates models from the data
+	////////////////////////////////////////////////////////////
+	/// \brief Default constructor
+	///
+	/// Allows creation of a SceneReader 
+	///
+	////////////////////////////////////////////////////////////
 	SceneReader();
-	SceneReader(string filename); // Takes a file name and loads in a scene
-	vector<Model> ModelList; // Vector of models which makes up the scene
+	////////////////////////////////////////////////////////////
+	/// \brief Overloaded constructer which contructs scene from a xml file
+	///
+	/// \param filename Location of xml scene file.
+	///
+	////////////////////////////////////////////////////////////
+	SceneReader(string filename);
+	vector<Model> ModelList; ///< Vector of models which makes up the scene
 
 private:
-	vector<GLuint> m_textureID; // Vector of all the textures for models
-//	vector<string> m_
-	tex::Texture *gTexture;
+	vector<GLuint> m_textureID; ///< Vector of all the textures for models
+	tex::Texture *gTexture; ///< Pointer to a texture
+	////////////////////////////////////////////////////////////
+	/// \brief Reads a .xml file and converts this into a scene to be rendered
+	///
+	/// \param filename Location of xml scene file.
+	///
+	////////////////////////////////////////////////////////////
 	void ReadSceneFile(string filename); // Function to proccess textfile
 };

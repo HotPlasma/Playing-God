@@ -21,22 +21,64 @@
 class WorldReader
 {
 public:
-	std::vector<std::vector<char>> m_WorldList;
-	//GLSLProgram m_SkyBox;
+	////////////////////////////////////////////////////////////
+	/// \brief Default contructor for a WorldReader
+	////////////////////////////////////////////////////////////
 	WorldReader();
+	////////////////////////////////////////////////////////////
+	/// \brief Overloaded constructer reads a 2D vector of characters as a world
+	///
+	/// \param World 2D vector of characters which represents the world tile system
+	///
+	////////////////////////////////////////////////////////////
 	WorldReader(std::vector<std::vector<char>> World);
+
+	////////////////////////////////////////////////////////////
+	/// \brief Overloaded constructer reads a world file (.cfg) to create a world
+	///
+	/// \param WorldFileName A .cfg file containing a grid of characters
+	///
+	////////////////////////////////////////////////////////////
 	WorldReader(std::string WorldFileName);
-	int m_iSkybox;
-	int m_iClimate;
-	int m_iWorldSize;
-	glm::vec3 m_PortalLocation;
-	vector<GLuint> m_textureID;
-	std::vector<Model> ModelList;
-	GLuint m_programHandle;
-	tex::Texture *m_pTexture;
-	Bitmap m_bmp = Bitmap::bitmapFromFile("assets/textures/Default.bmp");
+	
+	////////////////////////////////////////////////////////////
+	/// \brief Reads a world file (.cfg) to create a world
+	///
+	/// \param FileName A .cfg file containing a grid of characters
+	///
+	////////////////////////////////////////////////////////////
 	void ReadWorldFile(string FileName);
+
+	////////////////////////////////////////////////////////////
+	/// \brief Reads a world file (.cfg) to create a world
+	///
+	/// \param FileName A .cfg file containing a grid of characters
+	///
+	////////////////////////////////////////////////////////////
 	void LoadModels();
+
+	////////////////////////////////////////////////////////////
+	/// \brief Creates a flat plane with with dependent textures based on other parameters
+	///
+	/// \param xPos X position of tile
+	/// \param yPos Y position of tile
+	/// \param TexturedPlane Plane with the correct texture
+	/// \param WorldOffset A arbatry world offset value
+	/// \param TileSize The size of a tile in the world
+	///
+	////////////////////////////////////////////////////////////
 	void SetFlatPlane(int xPos, int yPos, Model TexturedPlane, float WorldOffset, float TileSize);
-	CubeMap *m_SkyBox;
+
+	std::vector<std::vector<char>> m_WorldList; ///< 2D vector of characters which represent the world
+	int m_iSkybox; ///< integer which represents which skybox is requires
+	int m_iClimate; ///< integer which represents climate of the world
+	int m_iWorldSize; ///< integer which resents how large the world is
+	glm::vec3 m_PortalLocation; ///< vector3 of where the portal is located. Used for portal linking.
+	vector<GLuint> m_textureID; ///< vector if textures used in the scene
+	std::vector<Model> ModelList; ///< Vector of models used in the scene
+	GLuint m_programHandle; ///< Program handle for world
+	tex::Texture *m_pTexture; ///< Pointer to a texture
+	Bitmap m_bmp = Bitmap::bitmapFromFile("assets/textures/Default.bmp"); ///< bmp used to set textures for models. Loads a default texture if no texture assigned
+	CubeMap *m_SkyBox; ///< CubeMap for the Skybox
+	
 };
