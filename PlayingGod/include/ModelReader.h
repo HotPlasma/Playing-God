@@ -150,3 +150,14 @@ class ModelReader
 
 };
 
+////////////////////////////////////////////////////////////
+/// \class ModelReader
+///
+/// The purpose of this class is to read a .obj file and 
+/// get its verticies, normals and texture UV coordinates.
+/// This data can then be used by other classes to render the
+/// models within the world.
+/// 
+/// To initilise a ModelLoader all that needs to be done is
+/// to run the constructor with a filename which is a path to a .obj
+////////////////////////////////////////////////////////////

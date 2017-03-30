@@ -92,7 +92,7 @@ public:
 };
 
 ////////////////////////////////////////////////////////////
-/// \class Loading Menu
+/// \class LoadingMenu
 ///
 ///	This menu allows the user to enter the name of a existing
 /// world file to be loaded for exploration. It uses a textbox similar
@@ -101,9 +101,4 @@ public:
 /// 
 /// To be instantiated the class needs a width and height to dictate the 
 /// size of the menu.
-/// 
-///
-/// 
-/// 
-///
 ////////////////////////////////////////////////////////////

@@ -147,7 +147,7 @@ public:
 };
 
 ////////////////////////////////////////////////////////////
-/// \class DropDowm
+/// \class DropDownMenu
 ///	
 /// Allows creation of drop down menus which any number of options
 /// contained within. Clicking this button like object will cause
@@ -155,9 +155,4 @@ public:
 /// 
 /// The class is able to distiguish which option was selected and
 /// return a value based on that option for other classes to use.
-/// 
-/// 
-/// 
-/// 
-/// 
 ////////////////////////////////////////////////////////////

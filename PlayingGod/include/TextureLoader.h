@@ -51,3 +51,19 @@ class TextureLoader
 };
 
 #endif
+
+////////////////////////////////////////////////////////////
+/// \class TextureLoader
+///
+/// TextureLoaders purpose is to stop textures from being having
+/// to be loaded in multiple times. Due to its design all textures
+/// are loaded into a textureloader and all that is required to use
+/// a texture is to reference its index value.
+/// 
+/// In this project the textures which it loads are used within 
+/// the menu classes. It makes loading the textures for them
+/// far more efficent.
+/// 
+/// To initilise a texture loader the default constructor needs
+/// to be run. 
+////////////////////////////////////////////////////////////

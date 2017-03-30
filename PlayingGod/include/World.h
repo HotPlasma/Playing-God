@@ -59,7 +59,7 @@ private:
 
 public:
 	////////////////////////////////////////////////////////////
-	/// \brief Create a world and set up projection to be the size of the windoe
+	/// \brief Create a world and set up projection to be the size of the window
 	///
 	/// \param windowSize Vector2i the size of the window
 	////////////////////////////////////////////////////////////
@@ -98,3 +98,19 @@ public:
 	bool m_bWorldLoaded = false; ///< bool which equals true if a world is loaded
 };
 #endif  
+
+////////////////////////////////////////////////////////////
+/// \class World
+///
+/// This could be considered the game class of this project.
+/// It pulls together many classes and ensures they work together
+/// to generate the project.
+/// 
+/// This class sets up the camera and allows movement, creates the
+/// lab and allows the creation and deletion of worlds. Renders 
+/// everything using shaders and ensures it stays updated.
+/// 
+/// To set up this class a scene pointer should be created which
+/// runs initScene() once and update + render every frame.
+/// 
+////////////////////////////////////////////////////////////

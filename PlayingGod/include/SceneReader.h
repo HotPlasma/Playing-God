@@ -47,3 +47,18 @@ private:
 	////////////////////////////////////////////////////////////
 	void ReadSceneFile(string filename); // Function to proccess textfile
 };
+
+////////////////////////////////////////////////////////////
+/// \class SceneReader
+///
+/// SceneReader reads a .XML file and creates a list of Model
+/// class objects to be drawn elsewhere. It's purpose is for 
+/// drawing scene which are not procedurally generatic or in other
+/// words static. 
+/// 
+/// In this project it is used to create the labratory in which
+/// the player starts.
+/// 
+/// To initilise a SceneReader the constructor takes a path
+/// to a .XML file as a string.
+////////////////////////////////////////////////////////////

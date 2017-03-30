@@ -78,7 +78,7 @@ public:
 ////////////////////////////////////////////////////////////
 /// \class Camera
 ///
-/// Class Designed to hold my camera positions and navigate it on user input.
+/// Class designed to hold my camera positions and navigate it on user input.
 /// This class similates a 1st person camera by using trigonometry to 
 /// create a mobile view. Arrow keys move the camera and mouse movements
 /// navigate the view.

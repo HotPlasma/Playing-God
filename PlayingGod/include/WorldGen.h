@@ -94,7 +94,21 @@ public:
 	////////////////////////////////////////////////////////////
 	void CreateNewWorld(std::vector<DropDownMenu> WorldParameters, string WorldName);
 
-
-public:
-
 };
+
+////////////////////////////////////////////////////////////
+/// \class WorldGen
+///
+/// This class generates a .cfg file of a world which can then
+/// be read by the WorldReader class in order to create a world.
+/// Data from the GenerationMenu class is used in order to create
+/// a world using the given parameters.
+/// 
+/// Handles the generation of a portal, climate, flora, mountains,
+/// civilisation and skybox into a 2D vector
+/// and then will finally create the file.
+/// 
+/// To initiate the creation of a world a WorldGen default constructor
+/// object should be created then the CreateNewWorld function should
+/// be ran with the dropdown menus and a world name as the parameters.
+////////////////////////////////////////////////////////////

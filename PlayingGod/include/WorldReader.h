@@ -82,3 +82,18 @@ public:
 	CubeMap *m_SkyBox; ///< CubeMap for the Skybox
 	
 };
+
+////////////////////////////////////////////////////////////
+/// \class WorldReader
+///
+/// The WorldReader class takes either 2D vector of characters 
+/// or a .cfg file location as a overloaded constructor parameter
+/// and from that creates a renderable list of Models which make 
+/// up the world.  
+/// 
+/// Each of the different world parameters is creates work slightly 
+/// e.g. Mountains must take 4x4 space and therefore are the size
+/// of a 4x4 tile and centred in the middle of all 4 tiles. Also multiple
+/// flora items will be generated or a flora tile, but the amount is random.
+/// 
+////////////////////////////////////////////////////////////

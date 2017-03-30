@@ -227,3 +227,22 @@ public:
 
 };
 
+////////////////////////////////////////////////////////////
+/// \class Model
+///
+/// Model is a class which stores all the required attributes of 
+/// a model in order to store them efficently. It also ensures 
+/// that all its models are ready to be drawn by running their
+/// .obj through the ModelReader and their texture through the 
+/// bitmap class. 
+/// 
+/// To create a model it would a .obj file location, a .bmp texture location,
+/// a scale, position and rotation. Everything else is optional but can 
+/// be required for cirtain functionality e.g. collectable bool set if the
+/// item is a collectable. 
+///
+/// The most effective use of this class is to create a vector 
+/// of models and therefore be able to manage all the models
+/// easily and efficently.
+/// 
+////////////////////////////////////////////////////////////
