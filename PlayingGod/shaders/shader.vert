@@ -12,11 +12,11 @@ out vec2 texCoord;
 // Create explorable scene using MVP 
 
 
-uniform mat4 mModel;        // Matrix to convert to world 
+uniform mat4 M;        // Matrix to convert to world 
    // Coordinate system
-uniform mat4 mView;         // Matrix to convert into 
+uniform mat4 V;         // Matrix to convert into 
    // Camera coordinate system
-uniform mat4 mProjection;   // Matrix to convert to 
+uniform mat4 P;   // Matrix to convert to 
    // Normalised screen 
    // Coordinates
 
@@ -28,5 +28,5 @@ void main()
 texCoord = fragTexCoord;
 
 //Transform from local to world to camera to NDCs
-gl_Position = mProjection * mView * mModel * vertPosition;
+gl_Position = P * V * M * vertPosition;
 }

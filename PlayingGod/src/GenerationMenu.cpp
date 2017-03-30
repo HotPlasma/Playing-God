@@ -122,6 +122,15 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 
 	m_Create.SetProperties(WindowWidth / 1.5 , WindowHeight / 1.2, 3, &m_TexLoader);
 
+	// Text to appear while loading
+	m_LoadingText.setFont(m_BlockFont);
+	m_LoadingText.setString("Creating large worlds takes time. Please be patient...");
+	m_LoadingText.setCharacterSize(50);
+	TempRect = m_LoadingText.getLocalBounds();
+	m_LoadingText.setOrigin(TempRect.left + TempRect.width / 2.0f, TempRect.top + TempRect.height / 2.0f);
+	m_LoadingText.setPosition(sf::Vector2f(WindowWidth / 2.0f, 680));
+	m_LoadingText.setFillColor(sf::Color::Yellow);
+
 	m_bClicked = false;
 	m_bMenuOpen = false;
 	// Fill vector will all drop down boxes.
@@ -151,6 +160,7 @@ void GenerationMenu::TakeMousePos(Vector2f Pos)
 
 void GenerationMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
+	
 	target.draw(m_Background);
 	target.draw(m_Cancel);
 	target.draw(m_Create);
@@ -158,11 +168,11 @@ void GenerationMenu::draw(sf::RenderTarget &target, sf::RenderStates states) con
 	target.draw(m_WorldSize);
 	target.draw(m_Climate);
 	target.draw(m_Mountainous);
-	target.draw(m_Misc);
 	target.draw(m_Civilisation);
 	target.draw(m_SkyBox);
 	target.draw(m_FloraDensity);
 	target.draw(*m_TextBox_WorldName);
+	target.draw(m_LoadingText);
 	for (DropDownMenu Menus : m_DropDownMenus)
 	{
 		target.draw(Menus);
@@ -173,7 +183,6 @@ void GenerationMenu::draw(sf::RenderTarget &target, sf::RenderStates states) con
 int GenerationMenu::update(float fTimestep)
 {
 	// Returns value dependent on which button was clicked
-
 	if (m_bClicked)
 	{
 		if (m_Create.isActive())
@@ -183,7 +192,6 @@ int GenerationMenu::update(float fTimestep)
 		else if (m_Cancel.isActive())
 		{
 			WhichState = Create;
-			WorldGenerator.CreateNewWorld(m_DropDownMenus, m_TextBox_WorldName->m_sText);
 		}
 
 		for (int i = 0; i < m_DropDownMenus.size(); i++)

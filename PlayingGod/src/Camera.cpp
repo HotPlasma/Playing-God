@@ -6,6 +6,12 @@ Camera::Camera()
 	// Sets Pos and View to default values
 	CameraPos = glm::vec3(1.0f, 1.0f, 1.0);
 	CameraView = glm::vec3(0.0f, 1.0f, 0.0f);
+	if (!m_FootStep.loadFromFile("assets/sound/footstep.wav"));
+	{
+		sf::err() << "Failed to load music\n";
+	}
+
+	m_Sound.setBuffer(m_FootStep);
 }
 
 glm::vec3 Camera::GetCameraPos()
@@ -16,6 +22,16 @@ glm::vec3 Camera::GetCameraPos()
 glm::vec3 Camera::GetCameraView()
 {
 	return CameraView;
+}
+
+void Camera::setCameraPos(glm::vec3 NewCameraPos)
+{
+	CameraPos = NewCameraPos;
+}
+
+void Camera::setCameraView(glm::vec3 NewCameraView)
+{
+	CameraView = NewCameraView;
 }
 
 void Camera::ProcessUserInput(float yAngle, float zAngle) 
@@ -46,6 +62,7 @@ void Camera::ProcessUserInput(float yAngle, float zAngle)
 			CameraPos.z += ((float)sinf(-yAngle) * ViewVec.x + cosf(-yAngle) * ViewVec.z) * fMovementSpeed;
 			CameraView.x += ((float)cosf(-yAngle) * ViewVec.x - sinf(-yAngle) * ViewVec.z) * fMovementSpeed;
 			CameraView.z += ((float)sinf(-yAngle) * ViewVec.x + cosf(-yAngle) * ViewVec.z) * fMovementSpeed;
+			PlayFootstepsSound();
 		}
 		// Backwards movement
 		 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
@@ -54,6 +71,7 @@ void Camera::ProcessUserInput(float yAngle, float zAngle)
 			 CameraPos.z -= ((float)sinf(-yAngle) * ViewVec.x + cosf(-yAngle) * ViewVec.z) * fMovementSpeed;
 			 CameraView.x -= ((float)cosf(-yAngle) * ViewVec.x - sinf(-yAngle) * ViewVec.z) * fMovementSpeed;
 			 CameraView.z -= ((float)sinf(-yAngle) * ViewVec.x + cosf(-yAngle) * ViewVec.z) * fMovementSpeed;
+			 PlayFootstepsSound();
 		}
 	
 		 // Strafing right movement
@@ -63,6 +81,7 @@ void Camera::ProcessUserInput(float yAngle, float zAngle)
 			CameraPos.x -= ((float)sinf(-yAngle) * ViewVec.x + cosf(-yAngle) * ViewVec.z) * fMovementSpeed;
 			CameraView.z += ((float)cosf(-yAngle) * ViewVec.x - sinf(-yAngle) * ViewVec.z) * fMovementSpeed;
 			CameraView.x -= ((float)sinf(-yAngle) * ViewVec.x + cosf(-yAngle) * ViewVec.z) * fMovementSpeed;
+			PlayFootstepsSound();
 		}
 
 		// Strafing left movement
@@ -72,6 +91,16 @@ void Camera::ProcessUserInput(float yAngle, float zAngle)
 			CameraPos.x += ((float)sinf(-yAngle) * ViewVec.x + cosf(-yAngle) * ViewVec.z) * fMovementSpeed;
 			CameraView.z -= ((float)cosf(-yAngle) * ViewVec.x - sinf(-yAngle) * ViewVec.z) * fMovementSpeed;
 			CameraView.x += ((float)sinf(-yAngle) * ViewVec.x + cosf(-yAngle) * ViewVec.z) * fMovementSpeed;
+			PlayFootstepsSound();
 		}
 
+}
+
+void Camera::PlayFootstepsSound()
+{
+	if (m_Sound.getStatus() != sf::Sound::Playing)
+	{
+		m_Sound.setBuffer(m_FootStep);
+		m_Sound.play();
+	}
 }

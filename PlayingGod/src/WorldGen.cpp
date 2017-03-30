@@ -7,6 +7,7 @@ WorldGen::WorldGen()
 	srand(time(NULL)); // Seed random function with time
 	m_sToken = "";
 	m_iSelectedSkyBox = 0;
+	m_iSelectedClimate = 0;
 }
 
 void WorldGen::CreateNewWorld(std::vector<DropDownMenu> WorldParameters, string WorldName)
@@ -27,13 +28,13 @@ void WorldGen::GenPortal(int WorldSize)
 	switch (WorldSize)
 	{
 	case 0: // Small
-		u_iWorldSize = 10;
+		u_iWorldSize = 7;
 		break;
 	case 1: // Medium
-		u_iWorldSize = 20;
+		u_iWorldSize = 12;
 		break;
 	case 2: // Large
-		u_iWorldSize = 30;
+		u_iWorldSize = 15;
 		break;
 	}
 
@@ -66,44 +67,44 @@ void WorldGen::GenPortal(int WorldSize)
 
 void WorldGen::GenClimate(int Climate)
 {
-	int iClimate;
+	
 
 	switch (Climate)
 	{
 	case 0: // Cold
-		iClimate = 1;
+		m_iSelectedClimate = 1;
 		break;
 	case 1: // Warm
-		iClimate = 2;
+		m_iSelectedClimate = 2;
 		break;
 	case 2: // Hot
-		iClimate = 3;
+		m_iSelectedClimate = 3;
 		break;
 	}
 
-	for (int i = 0; i < u_iWorldSize; i++)
-	{
-		for (int j = 0; j < u_iWorldSize; j++)
-		{
-			if (m_WorldList[i][j] == '#') // Only replace hashtags
-			{
-				if (iClimate = 1);
-				{
-					m_WorldList[i][j] = 'S';
-				}
+	//for (int i = 0; i < u_iWorldSize; i++)
+	//{
+	//	for (int j = 0; j < u_iWorldSize; j++)
+	//	{
+	//		if (m_WorldList[i][j] == '#') // Only replace hashtags
+	//		{
+	//			if (iClimate = 1);
+	//			{
+	//				m_WorldList[i][j] = 'S';
+	//			}
 
-				if (iClimate = 2);
-				{
-					m_WorldList[i][j] = 'G';
-				}
+	//			if (iClimate = 2);
+	//			{
+	//				m_WorldList[i][j] = 'G';
+	//			}
 
-				if (iClimate = 3);
-				{
-					m_WorldList[i][j] = 'D';
-				}
-			}
-		}
-	}
+	//			if (iClimate = 3);
+	//			{
+	//				m_WorldList[i][j] = 'D';
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 void WorldGen::GenFloraDensity(int FloraDensity)
@@ -234,13 +235,13 @@ void WorldGen::GenSky(int Sky)
 	switch (Sky)
 	{
 	case 0: // None
-		m_iSelectedSkyBox = 0;
-		break;
-	case 1: // Remains
 		m_iSelectedSkyBox = 1;
 		break;
-	case 2: // Mass Remains
+	case 1: // Remains
 		m_iSelectedSkyBox = 2;
+		break;
+	case 2: // Mass Remains
+		m_iSelectedSkyBox = 3;
 		break;
 	}
 }
@@ -249,6 +250,8 @@ void WorldGen::GenWorldFile()
 {
 	// Creates a file and writes to it
 	m_WorldFile.open(("assets/scenes/Worlds/" + m_sWorldName + ".txt").c_str(), ios_base::app);
+
+	m_WorldFile << u_iWorldSize << endl;
 
 	for (int i = 0; i < u_iWorldSize; i++)
 	{
@@ -262,7 +265,9 @@ void WorldGen::GenWorldFile()
 		m_WorldFile << std::endl;
 	}
 
-	m_WorldFile << "Sky: " << m_iSelectedSkyBox;
+	m_WorldFile << "Sky: " << m_iSelectedSkyBox << endl;
+
+	m_WorldFile << "Ground: " << m_iSelectedClimate << endl;
 
 	m_WorldFile.close();
 

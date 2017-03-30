@@ -1,3 +1,14 @@
+////////////////////////////////////////////////////////////
+//
+// Playing God (3D Procedural World Generation) - Created by Jegor Kharlamov
+// Created for Personal Final Year Project Year 3 at De Montfort University - Games Programming Course
+//
+// Playing God is a 3D world exploration game where the player can operate 
+// a computer which generates new worlds based on selected parameters and creates a portal to them.
+// The player can then travel through the portal to explore the worlds and search
+// for powercells around the procedurally generated maps.
+//
+////////////////////////////////////////////////////////////
 #ifndef SCENE_H
 #define SCENE_H
 #include <GLFW/glfw3.h>
@@ -10,7 +21,7 @@ public:
 	Scene() : m_animate(true) { }
 	
 	sf::Vector2i m_windowSize; // Dimensions of window
-  
+
     // Load in all texture and initilise shaders
     virtual void initScene() = 0;
 

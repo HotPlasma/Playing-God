@@ -6,14 +6,15 @@ Button::Button()
 	
 }
 
-Button::Button(float fX, float fY, int iTextureID, TextureLoader* texLoader2)
+Button::Button(float fX, float fY, int iTextureID, TextureLoader* TexLoader)
 {
-	SetProperties(fX, fY, iTextureID, texLoader2);
+	SetProperties(fX, fY, iTextureID, TexLoader); // Create button
 }
 
-void Button::SetProperties(float fX, float fY, int iTextureID, TextureLoader* texLoader2)
+void Button::SetProperties(float fX, float fY, int iTextureID, TextureLoader* TexLoader)
 {
-	m_TexLoader = texLoader2;
+	// Set all required properties for a button
+	m_TexLoader = TexLoader;
 	m_Sprite.setPosition(fX, fY);
 	m_Sprite.setTexture(*m_TexLoader->getTextureIterator(iTextureID));
 	m_iCurrentTexID = iTextureID;
@@ -22,7 +23,7 @@ void Button::SetProperties(float fX, float fY, int iTextureID, TextureLoader* te
 
 void Button::ChangeTexture(int iNewTextureID)
 {
-	m_Sprite.setTexture(*m_TexLoader->getTextureIterator(iNewTextureID));
+	m_Sprite.setTexture(*m_TexLoader->getTextureIterator(iNewTextureID)); // Change texture to given iterator
 }
 
 void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
@@ -32,7 +33,7 @@ void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 void Button::CheckHover(Vector2f MousePos)
 {
-	// Mouse is pointing at button
+	// Mouse is hovering over button
 	if (MousePos.x > m_Sprite.getPosition().x && MousePos.x < m_Sprite.getPosition().x + m_Sprite.getGlobalBounds().width &&
 		MousePos.y > m_Sprite.getPosition().y && MousePos.y < m_Sprite.getPosition().y + m_Sprite.getGlobalBounds().height)
 	{

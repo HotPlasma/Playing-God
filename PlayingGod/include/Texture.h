@@ -43,7 +43,7 @@ namespace tex
 		 @param wrapMode GL_REPEAT, GL_MIRRORED_REPEAT, GL_CLAMP_TO_EDGE, or GL_CLAMP_TO_BORDER
 		 */
 		Texture(const Bitmap& bitmap,
-			GLint minMagFiler = gl::LINEAR,
+			GLint minMagFiler = gl::LINEAR ,
 			GLint wrapMode = gl::CLAMP_TO_EDGE);
 
 		/**

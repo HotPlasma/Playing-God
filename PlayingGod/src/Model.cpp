@@ -94,6 +94,7 @@ void Model::LoadModel(string Model)
 
 void Model::LoadTexture(GLuint Texture)
 {
+	
 	m_bmp = Bitmap::bitmapFromFile(m_sTexture);
 	m_bmp.flipVertically();
 	m_pTexture = new tex::Texture(m_bmp);
@@ -102,7 +103,11 @@ void Model::LoadTexture(GLuint Texture)
 	gl::BindTexture(gl::TEXTURE_2D, m_pTexture->object());
 	GLint loc = gl::GetUniformLocation(m_programHandle, "tex");
 
+	gl::GenerateMipmap(loc);
+
 	gl::Uniform1f(loc, 1);
+
+	
 }
 
 void Model::buffer()

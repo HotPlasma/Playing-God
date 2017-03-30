@@ -1,3 +1,14 @@
+////////////////////////////////////////////////////////////
+//
+// Playing God (3D Procedural World Generation) - Created by Jegor Kharlamov
+// Created for Personal Final Year Project Year 3 at De Montfort University - Games Programming Course
+//
+// Playing God is a 3D world exploration game where the player can operate 
+// a computer which generates new worlds based on selected parameters and creates a portal to them.
+// The player can then travel through the portal to explore the worlds and search
+// for powercells around the procedurally generated maps.
+//
+////////////////////////////////////////////////////////////
 #pragma once
 
 #include <PreHeader.h>
@@ -16,6 +27,7 @@ private:
 	string m_sLine;
 	string m_sToken;
 	unsigned int m_iSelectedSkyBox;
+	unsigned int m_iSelectedClimate;
 	unsigned int u_iWorldSize;
 
 

@@ -9,14 +9,14 @@ DropDownMenu::DropDownMenu()
 	m_iOptionSelected = 0; // Assign default value
 }
 
-DropDownMenu::DropDownMenu(float fX, float fY, int iTextureID, TextureLoader * texLoader2, vector<string> Options)
+DropDownMenu::DropDownMenu(float fX, float fY, int iTextureID, TextureLoader * TexLoader, vector<string> Options)
 {
-	SetProperties(fX, fY, iTextureID, texLoader2, Options);
+	SetProperties(fX, fY, iTextureID, TexLoader, Options);
 }
 
-void DropDownMenu::SetProperties(float fX, float fY, int iTextureID, TextureLoader * texLoader2, vector<string> Options)
+void DropDownMenu::SetProperties(float fX, float fY, int iTextureID, TextureLoader * TexLoader, vector<string> Options)
 {
-	m_TexLoader = texLoader2;
+	m_TexLoader = TexLoader;
 	m_Sprite.setPosition(fX, fY);
 	m_Sprite.setTexture(*m_TexLoader->getTextureIterator(iTextureID));
 	m_iCurrentTexID = iTextureID;

@@ -25,7 +25,7 @@
   </Object>
 
   <Object>
-    <Name>Portal</Name>
+    <Name>Archway</Name>
     <OBJLocation>assets/models/laboratory/Archway.obj</OBJLocation>
     <TexLocation>assets/textures/laboratory/Archway.bmp</TexLocation>
     <Translation>80 -5 70</Translation>
@@ -45,5 +45,17 @@
     <Material>1</Material>
     <Collectable>false</Collectable>
   </Object>
+
+  <Object>
+    <Name>Portal</Name>
+    <OBJLocation>assets/models/Portal.obj</OBJLocation>
+    <TexLocation>assets/textures/Portal.bmp</TexLocation>
+    <Translation>80.3 -5 69.6</Translation>
+    <Rotation>0 0 0</Rotation>
+    <Scale>1 1 1</Scale>
+    <Material>1</Material>
+    <Collectable>false</Collectable>
+  </Object>
+
   
 </Scene>

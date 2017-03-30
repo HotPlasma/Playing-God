@@ -42,10 +42,10 @@ TextBox::TextBox(int xPos, int yPos)
 
 }
 
-void TextBox::ProccessKeyRelease(sf::Keyboard::Key code)
+void TextBox::ProcessKeyRelease(sf::Keyboard::Key code)
 {
-	m_sText.push_back(char(code));
-	m_TextInBox.setString(m_sText);
+	m_sText.push_back(toupper(char(code))); // Add uppercase letter to string
+	m_TextInBox.setString(m_sText); // Update visible text box
 }
 
 int TextBox::returnStringSize()

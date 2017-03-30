@@ -9,6 +9,8 @@
 #include "World.h"
 #include <MainMenu.h>
 #include <GenerationMenu.h>
+#include <LoadingMenu.h>
+#include <WorldGen.h>
 #include <WorldReader.h>
 #include <iostream>
 
@@ -20,6 +22,8 @@ GLFWwindow *g_pWindow; // Window
 
 Menu MainMenu(1600,900); // Options Menu
 GenerationMenu NewWorldMenu(1600, 900);
+LoadingMenu WorldLoadingMenu(1600, 900);
+WorldGen WorldGenerator;
 WorldReader CurrentWorld;
 bool g_bGameWindowFocused; // True if main window is infocus
 
@@ -29,7 +33,7 @@ bool g_bGameWindowFocused; // True if main window is infocus
 #define LOAD_WORLD_MENU 2
 #define CLOSE_MENU 3
 
-
+string test;
 
 sf::Clock Timer;
 int iState = 0;
@@ -94,7 +98,8 @@ void initializeGL() {
 	g_pScene->initScene(); // Initiate scene
 }
 
-void glfwSetWindowPositionCenter(GLFWwindow* window) {
+void glfwSetWindowPositionCenter(GLFWwindow* window)
+{
 	// Get windows height and width
 	int WindowX, WindowY;
 	glfwGetWindowPos(window, &WindowX, &WindowY);
@@ -113,7 +118,8 @@ void glfwSetWindowPositionCenter(GLFWwindow* window) {
 	int CombinedMonitorsLength;
 	GLFWmonitor **MonitorList = glfwGetMonitors(&CombinedMonitorsLength);
 
-	if (MonitorList == NULL) {
+	if (MonitorList == NULL) 
+	{
 		// No monitors detected
 		return;
 	}
@@ -122,7 +128,8 @@ void glfwSetWindowPositionCenter(GLFWwindow* window) {
 	GLFWmonitor *WindowOwner = NULL;
 	int WindowOwnerX, WindowOwnerY, WindowOwnerWidth, WindowOwnerHeight;
 
-	for (int i = 0; i < CombinedMonitorsLength; i++) {
+	for (int i = 0; i < CombinedMonitorsLength; i++) 
+	{
 		// Get the monitor position
 		int MonitorX, MonitorY;
 		glfwGetMonitorPos(MonitorList[i], &MonitorX, &MonitorY);
@@ -131,18 +138,21 @@ void glfwSetWindowPositionCenter(GLFWwindow* window) {
 		int MonitorWidth, MonitorHeight;
 		GLFWvidmode *monitor_vidmode = (GLFWvidmode*)glfwGetVideoMode(MonitorList[i]);
 
-		if (monitor_vidmode == NULL) {
+		if (monitor_vidmode == NULL) 
+		{
 			// Video mode is required for width and height, so skip this monitor
 			continue;
 
 		}
-		else {
+		else 
+		{
 			MonitorWidth = monitor_vidmode->width;
 			MonitorHeight = monitor_vidmode->height;
 		}
 
 		// Set the WindowOwner to this monitor if the center of the window is within its bounding box
-		if ((WindowX > MonitorX && WindowX < (MonitorX + MonitorWidth)) && (WindowY > MonitorY && WindowY < (MonitorY + MonitorHeight))) {
+		if ((WindowX > MonitorX && WindowX < (MonitorX + MonitorWidth)) && (WindowY > MonitorY && WindowY < (MonitorY + MonitorHeight))) 
+		{
 			WindowOwner = MonitorList[i];
 
 			WindowOwnerX = MonitorX;
@@ -153,7 +163,8 @@ void glfwSetWindowPositionCenter(GLFWwindow* window) {
 		}
 	}
 
-	if (WindowOwner != NULL) {
+	if (WindowOwner != NULL) 
+	{
 		// Set the window position to the center of the monitor which launched the exe
 		glfwSetWindowPos(window, WindowOwnerX + (WindowOwnerWidth * 0.5) - Width, WindowOwnerY + (WindowOwnerHeight * 0.5) - Height);
 	}
@@ -213,7 +224,7 @@ void mainLoop() {
 								NewWorldMenu.Click();
 							}
 						}
-						if (event.type == sf::Event::TextEntered) 
+						if (event.type == sf::Event::TextEntered)
 						{
 							if (event.text.unicode == 8)
 							{
@@ -224,13 +235,43 @@ void mainLoop() {
 							}
 							else if (event.text.unicode >= 32 && event.text.unicode <= 126)
 							{
-								NewWorldMenu.m_TextBox_WorldName->ProccessKeyRelease(event.key.code);
+								NewWorldMenu.m_TextBox_WorldName->ProcessKeyRelease(event.key.code);
 							}
 						}
-
-
 						MenuWindow.draw(NewWorldMenu);
 					}
+						if (iState == LOAD_WORLD_MENU)
+						{
+							if (event.type == sf::Event::MouseMoved)
+							{
+								WorldLoadingMenu.TakeMousePos(MenuWindow.mapPixelToCoords(Mouse::getPosition(MenuWindow)));
+							}
+							if (event.type == sf::Event::MouseButtonPressed)
+							{
+								if (event.key.code == sf::Mouse::Left)
+								{
+									WorldLoadingMenu.Click();
+								}
+							}
+							if (event.type == sf::Event::TextEntered)
+							{
+								if (event.text.unicode == 8)
+								{
+									if (WorldLoadingMenu.m_TextBox_WorldName->returnStringSize() > 0)
+									{
+										WorldLoadingMenu.m_TextBox_WorldName->ClearLastChar();
+									}
+								}
+								else if (event.text.unicode >= 32 && event.text.unicode <= 126)
+								{
+									WorldLoadingMenu.m_TextBox_WorldName->ProcessKeyRelease(event.key.code);
+								}
+							}
+
+							MenuWindow.draw(WorldLoadingMenu);
+					}
+
+
 					MenuWindow.display();
 				}
 				if (Timer.getElapsedTime().asSeconds() > 0.005)
@@ -251,11 +292,11 @@ void mainLoop() {
 								CurrentWorld.ModelList[i].DrawModel(true, true);
 							}*/
 							//g_pScene->update((float)glfwGetTime());
-							glfwMakeContextCurrent(g_pWindow);
-							g_pScene->LoadMap("assets/scenes/Worlds/test.txt", false);
-							MenuWindow.close();
-							
-							//g_pScene->render();
+							//glfwMakeContextCurrent(g_pWindow);
+							//g_pScene->LoadMap("assets/scenes/Worlds/z.txt", false);
+							////g_pScene->m_bLabPortalReady = true;
+							//MenuWindow.close();
+							iState = LOAD_WORLD_MENU;
 							break;
 
 						case CLOSE_MENU:
@@ -265,22 +306,37 @@ void mainLoop() {
 						
 					}
 					if (iState == NEW_WORLD_MENU)
+						
 					{
 						switch (NewWorldMenu.update(Timer.getElapsedTime().asSeconds()))
 						{
 						case 1: // Create button clicked
-							
-						/*	CurrentWorld.ReadWorldFile(NewWorldMenu.m_TextBox_WorldName->m_sText);
-							for (int i = 0; i < CurrentWorld.ModelList.size(); i++)
-							{
-								CurrentWorld.ModelList[i].DrawModel(true, true);
-							}*/
+							glfwMakeContextCurrent(g_pWindow);
+							WorldGenerator.CreateNewWorld(NewWorldMenu.m_DropDownMenus, NewWorldMenu.m_TextBox_WorldName->m_sText);
+							g_pScene->LoadMap("assets/scenes/Worlds/" + NewWorldMenu.m_TextBox_WorldName->m_sText + ".txt", false);
+							//g_pScene->m_bLabPortalReady = true;
+							MenuWindow.close();
 							break;
 
 						case 2: // Cancel button clicked
 							iState = MAIN_MENU;
 							break;
+						}
+					}
+					if (iState == LOAD_WORLD_MENU)
+					{
+						switch (WorldLoadingMenu.update(Timer.getElapsedTime().asSeconds()))
+						{
+						case 1: // Create button clicked
+							glfwMakeContextCurrent(g_pWindow);
+							//WorldGenerator.CreateNewWorld(WorldLoadingMenu.m_DropDownMenus, NewWorldMenu.m_TextBox_WorldName->m_sText);
+							g_pScene->LoadMap("assets/scenes/Worlds/" + WorldLoadingMenu.m_TextBox_WorldName->m_sText + ".txt", false);
+							MenuWindow.close();
+							break;
 
+						case 2: // Cancel button clicked
+							iState = MAIN_MENU;
+							break;
 						}
 					}
 				}

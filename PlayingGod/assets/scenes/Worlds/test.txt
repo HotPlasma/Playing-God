@@ -1,10 +1,24 @@
-a a a a a a a a a a
-a a a a a a a a a a
-a a a a a a a a a a
-a a a a a a a a a a
-a a a a a a a a a a
-a a a a a a a a a a
-a a a a a a a a a a
-a a a a a a a a a a
-a a a a a a a a a a
-a a a a a a a a a a
+10
+#T#T###T#C
+##########
+###C##T###
+C###C#####
+T#C#######
+##T##C###T
+C#T#TT#T##
+CT##MMT#T#
+T###MM#TC#
+T####T#TC#
+Sky: 1
+Ground: 2
+DDDDDDDDDD
+DDDDDDDDDD
+DDDDDDDDDD
+DDDDDDDDDD
+DDDDDDDDDD
+DDDDDDDDDD
+DDDDDDDDDD
+DDDDDPDDDD
+DDDDDDDDDD
+DDDDDDDDDD
+Sky: 0
