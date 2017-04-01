@@ -9,7 +9,6 @@ SceneReader::SceneReader()
 SceneReader::SceneReader(string filename)
 {
 	ReadSceneFile(filename); // Send file to be read
-	//tl = new TextureLoader(); // Create a new textureloader
 }
 
 void SceneReader::ReadSceneFile(string sFilename)
@@ -107,16 +106,6 @@ void SceneReader::ReadSceneFile(string sFilename)
 	// Load in models
 	for (int i = 0; i < ModelList.size(); i++)
 	{
-		//if (i > 0) // Avoid checking none existant memory
-		//{
-		//	// If model is has the same name as previous model reuse model and dont load it in again
-		//	if (ModelList.at(i).getName().compare(ModelList.at(i - 1).getName()) == 0)
-		//	{
-		//		ModelList.at(i).m_pModelReader = ModelList.at(i - 1).m_pModelReader; // Set model to previous model
-		//		ModelList.at(i).m_bmp = ModelList.at(i - 1).m_bmp; // Set texture to previous texture
-		//	}
-		//}
-
 		ModelList[i].LoadModel(ModelList[i].getFileLocation()); // Load in models to be ready for drawing
 	}
 }

@@ -81,30 +81,6 @@ void WorldGen::GenClimate(int Climate)
 		m_iSelectedClimate = 3;
 		break;
 	}
-
-	//for (int i = 0; i < u_iWorldSize; i++)
-	//{
-	//	for (int j = 0; j < u_iWorldSize; j++)
-	//	{
-	//		if (m_WorldList[i][j] == '#') // Only replace hashtags
-	//		{
-	//			if (iClimate = 1);
-	//			{
-	//				m_WorldList[i][j] = 'S';
-	//			}
-
-	//			if (iClimate = 2);
-	//			{
-	//				m_WorldList[i][j] = 'G';
-	//			}
-
-	//			if (iClimate = 3);
-	//			{
-	//				m_WorldList[i][j] = 'D';
-	//			}
-	//		}
-	//	}
-	//}
 }
 
 void WorldGen::GenFloraDensity(int FloraDensity)
@@ -249,7 +225,7 @@ void WorldGen::GenSky(int Sky)
 void WorldGen::GenWorldFile()
 {
 	// Creates a file and writes to it
-	m_WorldFile.open(("assets/scenes/Worlds/" + m_sWorldName + ".txt").c_str(), ios_base::app);
+	m_WorldFile.open(("assets/scenes/Worlds/" + m_sWorldName + ".cfg").c_str(), ios_base::app);
 
 	m_WorldFile << u_iWorldSize << endl;
 

@@ -96,7 +96,6 @@ CubeMap::CubeMap(float size, glm::vec3 position, std::string FileLocations)
 	gl::TexParameterf(gl::TEXTURE_CUBE_MAP, gl::TEXTURE_WRAP_T, gl::CLAMP_TO_EDGE);
 	gl::TexParameterf(gl::TEXTURE_CUBE_MAP, gl::TEXTURE_WRAP_R, gl::CLAMP_TO_EDGE);
 
-	//gl::BindTexture(gl::TEXTURE_CUBE_MAP, 0);
 	gl::BindTexture(texID, 0);
 
 }
@@ -107,7 +106,5 @@ CubeMap::CubeMap(float size, glm::vec3 position, std::string FileLocations)
 void CubeMap::render()
 {
 	gl::BindVertexArray(cubeVAOHandle);
-	//gl::BindTexture(gl::TEXTURE_CUBE_MAP, texID);
 	gl::DrawElements(gl::TRIANGLES, 6 * faces, gl::UNSIGNED_INT, ((GLubyte *)NULL + (0)));
-	//gl::DrawArrays(gl::TRIANGLES, 6, faces);
 }

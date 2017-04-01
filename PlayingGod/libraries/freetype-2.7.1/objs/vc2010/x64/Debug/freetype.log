@@ -1,0 +1,63 @@
+﻿  autofit.c
+  bdf.c
+  cff.c
+  ftbase.c
+  ftbitmap.c
+  ftcache.c
+  ftfstype.c
+  ftgasp.c
+  ftglyph.c
+  ftgzip.c
+  ftinit.c
+  ftlzw.c
+  ftstroke.c
+  ftsystem.c
+  smooth.c
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\base\ftobjs.c(4883): warning C4702: unreachable code
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\base\ftobjs.c(4884): warning C4702: unreachable code
+  ftbbox.c
+  ftfntfmt.c
+  ftmm.c
+  ftpfr.c
+  ftsynth.c
+  fttype1.c
+  ftwinfnt.c
+  ftlcdfil.c
+  ftgxval.c
+  ftotval.c
+  ftpatent.c
+  pcf.c
+  pfr.c
+  psaux.c
+  pshinter.c
+  psmodule.c
+  raster.c
+  sfnt.c
+  truetype.c
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\pcf\pcfread.c(1300): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data (compiling source file ..\..\..\src\pcf\pcf.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\pcf\pcfread.c(1306): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data (compiling source file ..\..\..\src\pcf\pcf.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\pcf\pcfread.c(1286): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data (compiling source file ..\..\..\src\pcf\pcf.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\psaux\t1decode.c(1347): warning C4267: '=': conversion from 'size_t' to 'FT_Int', possible loss of data (compiling source file ..\..\..\src\psaux\psaux.c)
+  type1.c
+  type1cid.c
+  type42.c
+  winfnt.c
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\sfnt\ttsbit.c(1452): warning C4100: 'metrics_only': unreferenced formal parameter (compiling source file ..\..\..\src\sfnt\sfnt.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\truetype\ttgload.c(1708): warning C4312: 'type cast': conversion from 'unsigned long' to 'void *' of greater size (compiling source file ..\..\..\src\truetype\truetype.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\truetype\ttgload.c(1712): warning C4312: 'type cast': conversion from 'unsigned long' to 'void *' of greater size (compiling source file ..\..\..\src\truetype\truetype.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\truetype\ttgload.c(1721): warning C4312: 'type cast': conversion from 'unsigned long' to 'void *' of greater size (compiling source file ..\..\..\src\truetype\truetype.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\truetype\ttgload.c(1727): warning C4312: 'type cast': conversion from 'unsigned long' to 'void *' of greater size (compiling source file ..\..\..\src\truetype\truetype.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\type1\t1load.c(1528): warning C4244: '=': conversion from '__int64' to 'FT_Int', possible loss of data (compiling source file ..\..\..\src\type1\type1.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\type1\t1load.c(1689): warning C4244: '=': conversion from '__int64' to 'FT_Int', possible loss of data (compiling source file ..\..\..\src\type1\type1.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\type42\t42parse.c(821): warning C4244: '=': conversion from '__int64' to 'FT_Int', possible loss of data (compiling source file ..\..\..\src\type42\type42.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\type1\t1driver.c(269): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data (compiling source file ..\..\..\src\type1\type1.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\type1\t1driver.c(289): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data (compiling source file ..\..\..\src\type1\type1.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\type1\t1driver.c(321): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data (compiling source file ..\..\..\src\type1\type1.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\type1\t1driver.c(351): warning C4267: '=': conversion from 'size_t' to 'FT_UInt', possible loss of data (compiling source file ..\..\..\src\type1\type1.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\type1\t1driver.c(558): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data (compiling source file ..\..\..\src\type1\type1.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\type1\t1driver.c(564): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data (compiling source file ..\..\..\src\type1\type1.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\type1\t1driver.c(570): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data (compiling source file ..\..\..\src\type1\type1.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\type1\t1driver.c(576): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data (compiling source file ..\..\..\src\type1\type1.c)
+h:\desktop\projects\uni projects\year 3\games programming\gameengine\libraries\freetype-2.7.1\src\type1\t1driver.c(582): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data (compiling source file ..\..\..\src\type1\type1.c)
+  ftdebug.c
+  freetype.vcxproj -> H:\Desktop\Projects\Uni Projects\Year 3\Games Programming\GameEngine\libraries\freetype-2.7.1\builds\windows\vc2010\.\..\..\..\objs\vc2010\x64\freetype271d.lib

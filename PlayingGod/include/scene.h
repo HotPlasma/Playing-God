@@ -13,6 +13,7 @@
 #define SCENE_H
 #include <GLFW/glfw3.h>
 #include <WorldReader.h>
+#include <Freetype.h>
 
 // Abstract class in order to set up world
 class Scene
@@ -22,8 +23,10 @@ public:
 	
 	sf::Vector2i m_windowSize; // Dimensions of window
 
+	bool m_bCloseToComputer;
+
     // Load in all texture and initilise shaders
-    virtual void initScene() = 0;
+    virtual void initScene(Freetype* Overlay) = 0;
 
 	virtual void setMousePos(GLFWwindow *Gwindow, sf::Vector2i mousepos) = 0;
 

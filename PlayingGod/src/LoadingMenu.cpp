@@ -40,7 +40,6 @@ void LoadingMenu::TakeMousePos(Vector2f Pos)
 	// Changes buttons sprites if hovered over
 	m_Cancel.CheckHover(Pos);
 	m_Load.CheckHover(Pos);
-	
 }
 
 void LoadingMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const

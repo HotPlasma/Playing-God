@@ -27,10 +27,16 @@ void World::SetMatices(GLSLProgram * shader, mat4 model , mat4 view, mat4 projec
 World::World(sf::Vector2i windowSize)
 {
 	m_windowSize = windowSize;
+	
 }
 
-void World::initScene()
+void World::initScene(Freetype* Overlay)
 {
+	HUD = Overlay; // Get the Heads up display for the scene
+
+	m_uiPowerCellsCollected = 0;
+	m_bCloseToComputer = false;
+
 	linkShaders();
 	// Stops rendered models from being transparent
 	gl::Enable(gl::DEPTH_TEST);
@@ -41,17 +47,31 @@ void World::initScene()
 
 	if (!m_ThemeSong.loadFromFile("assets/sound/backgroundmusic.wav"));
 	{
-		sf::err() << "Failed to load music\n";
+		
 	}
 
 	if (!m_Hello.loadFromFile("assets/sound/HelloExplorer.wav"));
 	{
-		sf::err() << "Failed to load music\n";
+		
+	}
+
+	if (!m_PortalIntro.loadFromFile("assets/sound/Portal.wav"));
+	{
+
+	}
+
+	if (!m_PowercellsIntro.loadFromFile("assets/sound/PowerCells.wav"));
+	{
+
+	}
+
+	if (!m_CollectableSound.loadFromFile("assets/sound/ItemCollect.wav"));
+	{
+
 	}
 
 	m_Sound.setBuffer(m_Hello); // Introductory voice lines
 	m_Sound.play();
-	
 }
 
 void World::setMousePos(GLFWwindow *Gwindow, sf::Vector2i mousepos)
@@ -77,6 +97,11 @@ void World::linkShaders()
 		m_WorldShader.link();
 		m_WorldShader.validate();
 		
+		// Shader which allows first person camera and textured objects
+		m_FreeType.compileShader("Shaders/freetype.vert");
+		m_FreeType.compileShader("Shaders/freetype.frag");
+		m_FreeType.link();
+		m_FreeType.validate();
 
 		
 	}
@@ -102,6 +127,17 @@ void World::update(float t)
 
 	glm::vec3 DistanceToWorldPortal = FirstPersonView.GetCameraPos() - CurrentWorld.m_PortalLocation;
 
+	glm::vec3 DistanceToComputer = FirstPersonView.GetCameraPos() - LabScene.ModelList.at(3).getPosition();
+
+	if (sqrtf(powf(DistanceToComputer.x, 2.0f) + powf(DistanceToComputer.z, 2.0f)) < 30) // If close to computer
+	{
+		m_bCloseToComputer = true;
+	}
+	else
+	{
+		m_bCloseToComputer = false;
+	}
+
 	if (m_bWorldLoaded) // If word is loaded activate portal
 	{
 
@@ -110,6 +146,8 @@ void World::update(float t)
 		{
 			FirstPersonView.setCameraPos(vec3(CurrentWorld.m_PortalLocation.x - 3, 0, CurrentWorld.m_PortalLocation.z));
 			FirstPersonView.setCameraView(vec3(CurrentWorld.m_PortalLocation.x - 1.0f, 1.0f, CurrentWorld.m_PortalLocation.z - 1.0f));
+			m_Sound.setBuffer(m_PowercellsIntro); // Introductory voice lines
+			m_Sound.play();
 		}
 
 		// Portal collision and trasportation for world
@@ -121,6 +159,7 @@ void World::update(float t)
 		}
 	}
 	
+
 	 V = glm::lookAt(glm::vec3(FirstPersonView.GetCameraPos().x, FirstPersonView.GetCameraPos().y, FirstPersonView.GetCameraPos().z), // Camera position
 		glm::vec3(FirstPersonView.GetCameraView().x, FirstPersonView.GetCameraView().y, FirstPersonView.GetCameraView().z), // Looking at
 		glm::vec3(0, 1, 0)); // Up
@@ -140,7 +179,7 @@ void World::update(float t)
 	FirstPersonView.ProcessUserInput(yAngle, zAngle); // Send mouse position data to be processed in order to move camera
 
 
-	// Send data to shader for processing
+	// Allows collectables to be picked up
 	for (int i = 0; i < CurrentWorld.ModelList.size(); i++)
 	{
 		if (CurrentWorld.ModelList.at(i).isCollectable()) // check if collectable
@@ -152,6 +191,9 @@ void World::update(float t)
 				if (sqrtf(powf(distance.x, 2.0f) + powf(distance.z, 2.0f)) < 5) // If collision with a collectable mark it as collected and stop drawing it
 				{
 					CurrentWorld.ModelList.at(i).setCollected(true);
+					m_uiPowerCellsCollected++; //Increment collectable counter for HUD
+					m_Sound.setBuffer(m_CollectableSound);
+					m_Sound.play();
 				}
 			}
 		}
@@ -199,6 +241,16 @@ void World::render()
 	SetMatices(&m_SkyBox, Cube->M, V, P);
 	Cube->render();
 	
+	m_FreeType.use();
+	m_FreeType.setUniform("projection", glm::ortho(0.0f,1920.0f,0.f,1080.f));
+	HUD->RenderText(m_FreeType.getHandle(), "PowerCells Collected: ", 100.f, 1000.f, 1.0f, glm::vec3(0.f, 0.f, 0.f));
+	HUD->RenderText(m_FreeType.getHandle(), to_string(m_uiPowerCellsCollected), 355, 1000.f, 1.0f, glm::vec3(0.3, 0.7f, 0.9f));
+
+	if (m_bCloseToComputer)
+	{
+		HUD->RenderText(m_FreeType.getHandle(), "Press E to use computer", 960.f, 560.f, 1.0f, glm::vec3(0.3, 0.7f, 0.9f));
+	}
+	
 }
 
 void World::LoadMap(string FileLocation, bool isXML)
@@ -221,5 +273,8 @@ void World::LoadMap(string FileLocation, bool isXML)
 			CurrentWorld.ModelList[i].DrawModel();
 			Cube = CurrentWorld.m_SkyBox;
 		}
+
+		m_Sound.setBuffer(m_PortalIntro); // Introductory voice lines
+		m_Sound.play();
 	}
 }

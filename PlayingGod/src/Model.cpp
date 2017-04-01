@@ -119,25 +119,7 @@ void Model::buffer()
 
 void Model::DrawModel()
 {
-
-	/*glm::mat4 xRotMatrix = { cos(m_rotation.x),0,-sin(m_rotation.x),0,
-		0,1,0,0,
-		sin(m_rotation.x),0,cos(m_rotation.x),0,
-		0,0,0,1 };
-
-	glm::mat4 yRotMatrix = { cos(m_rotation.y),0,sin(m_rotation.y),0,
-		0,1,0,0,
-		-sin(m_rotation.y),0,cos(m_rotation.y),0,
-		0,0,0,1 };
-
-	glm::mat4 zRotMatrix = { cos(m_rotation.z),0,-sin(m_rotation.z),0,
-		0,1,0,0,
-		sin(m_rotation.z),0,cos(m_rotation.z),0,
-		0,0,0,1 };
-
-
-	glm::mat4 rotMatrix = xRotMatrix * yRotMatrix * zRotMatrix;*/
-
+	// Rotate model by its rotation vector
 	glm::mat4 rotMatrix = glm::mat4(1.0f);
 	rotMatrix = glm::rotate(rotMatrix, m_rotation.x, glm::vec3(1, 0, 0));
 	rotMatrix = glm::rotate(rotMatrix, m_rotation.y, glm::vec3(0, 1, 0));
@@ -155,10 +137,10 @@ void Model::DrawModel()
 		0,0,1,0,
 		m_position.x,m_position.y,m_position.z,1 };
 
-	// Create Trasnform matrix for each model
+	// Final model transform
 	m_M = transMatrix * rotMatrix * scaleMatrix;
 
-
+	// Get verticies and UV coords for model
 	positionData = m_pModelReader->GetVertices();
 	uvData = m_pModelReader->GetTextureCoordinates();
 
@@ -167,7 +149,7 @@ void Model::DrawModel()
 	GLuint positionBufferHandle = m_vboHandles[0];
 	GLuint uvBufferHandle = m_vboHandles[1];
 
-
+	// Set up OpenGL buffers and fill with verticies and UV coordinates
 	gl::BindBuffer(gl::ARRAY_BUFFER, positionBufferHandle);
 	gl::BufferData(gl::ARRAY_BUFFER, positionData.size() * sizeof(float), positionData.data(), gl::STATIC_DRAW);
 

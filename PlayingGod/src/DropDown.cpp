@@ -54,13 +54,11 @@ void DropDownMenu::CheckHover(Vector2f MousePos)
 	if (MousePos.x > m_Sprite.getPosition().x && MousePos.x < m_Sprite.getPosition().x + m_Sprite.getGlobalBounds().width &&
 		MousePos.y > m_Sprite.getPosition().y && MousePos.y < m_Sprite.getPosition().y + m_Sprite.getGlobalBounds().height)
 	{
-		//ChangeTexture(m_iCurrentTexID + 1); // Change texture to highlighted texture
 		m_bActive = true;
 	}
 	// Mouse is not pointing at button
 	else
 	{
-		//ChangeTexture(m_iCurrentTexID);
 		m_bActive = false;
 	}
 }

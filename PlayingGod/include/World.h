@@ -23,12 +23,16 @@
 #include "glslprogram.h"
 #include "CubeMap.h"
 #include <SFML\Audio.hpp>
+#include <Freetype.h>
 
 class World : public Scene
 {
 private:
 	GLSLProgram m_WorldShader; ///< GLSL shader for rendering everything but the skybox
 	GLSLProgram m_SkyBox; ///< GLSL shader for rendering the skybox
+	GLSLProgram m_FreeType;
+	Freetype* HUD; ///< The Heads Up Display which 2D and drawn infront of the world
+	unsigned int m_uiPowerCellsCollected; ///< Collectable counter
 	GLuint programHandle; ///< GLuint Program context
 	glm::mat4 M; ///<  Allows manipulation of each models position, rotation and scale
 	Camera FirstPersonView; ///< Camera class which user can control
@@ -40,6 +44,9 @@ private:
 	glm::mat4 V, P; ///< View and Perspective glm::mat4s
 	sf::SoundBuffer m_ThemeSong; ///< Theme music
 	sf::SoundBuffer m_Hello; ///< Intro voice line
+	sf::SoundBuffer m_PortalIntro; ///< Discription of how to use portal
+	sf::SoundBuffer m_PowercellsIntro; ///< Reveals objective to find powercells
+	sf::SoundBuffer m_CollectableSound;
 	sf::Sound m_Sound; ///< The sound for the game
 
 	////////////////////////////////////////////////////////////
@@ -68,7 +75,7 @@ public:
 	////////////////////////////////////////////////////////////
 	/// \brief Initiate the scene. Sets up variables, enable depth-test, load in soundfx
 	////////////////////////////////////////////////////////////
-	void initScene();
+	void initScene(Freetype* Overlay);
 	
 	////////////////////////////////////////////////////////////
 	/// \brief Set local mouse position to given coordinates based on a GLFW window

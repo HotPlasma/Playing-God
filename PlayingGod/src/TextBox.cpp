@@ -2,21 +2,7 @@
 
 TextBox::TextBox()
 {
-	//// Load in font
-	//if (!m_BlockFont.loadFromFile("assets\\fonts\\3x5.TTF"))
-	//{
-	//	std::cout << "Error";
-	//}
 
-	//m_sText.clear(); // Clear string
-
-	//m_TextInBox.setFont(m_BlockFont);
-	//m_TextInBox.setString(m_sText);
-	//m_TextInBox.setCharacterSize(50);
-
-	//// Centre text
-	//sf::FloatRect TempRect = m_TextInBox.getLocalBounds();
-	//m_TextInBox.setOrigin(TempRect.left + TempRect.width / 2.0f, TempRect.top + TempRect.height / 2.0f);
 }
 
 TextBox::TextBox(int xPos, int yPos)

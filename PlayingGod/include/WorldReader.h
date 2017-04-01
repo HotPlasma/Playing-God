@@ -75,6 +75,7 @@ public:
 	int m_iWorldSize; ///< integer which resents how large the world is
 	glm::vec3 m_PortalLocation; ///< vector3 of where the portal is located. Used for portal linking.
 	vector<GLuint> m_textureID; ///< vector if textures used in the scene
+	vector<string> PreviousModels;
 	std::vector<Model> ModelList; ///< Vector of models used in the scene
 	GLuint m_programHandle; ///< Program handle for world
 	tex::Texture *m_pTexture; ///< Pointer to a texture

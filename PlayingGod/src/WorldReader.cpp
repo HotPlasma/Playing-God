@@ -125,24 +125,12 @@ void WorldReader::LoadModels()
 		 }
 	 }
 
-	for (int i = 0; i < m_WorldList.size(); i++)//For every Row
+	for (int i = 0; i < m_WorldList.size(); i++) //For every Row
 	{
-		for (int j = 0; j < m_WorldList[i].size(); j++)//For every bit
+		for (int j = 0; j < m_WorldList[i].size(); j++) //For every bit
 		{
 			switch (m_WorldList[i][j])
 			{
-			default:
-				ModelList.resize(ModelList.size() + 1);
-				ModelList.at(i * m_WorldList.size() + j).setName("Grassy Plane");
-				ModelList.at(i * m_WorldList.size() + j).setFileLocation("assets/models/WorldTiles/Plane.obj");
-						         
-				m_textureID.resize(m_textureID.size() + 1);
-				ModelList.at(i * m_WorldList.size() + j).setTextureLocation("assets/textures/WorldTiles/Grassy.bmp");
-				ModelList.at(i * m_WorldList.size() + j).setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize),-5,(j*u_kiTileSize))); //Make the gametile empty
-				ModelList.at(i * m_WorldList.size() + j).setRotation(glm::vec3(0, 0, 0));
-				ModelList.at(i * m_WorldList.size() + j).setScale(glm::vec3(1, 1, 1));
-				ModelList.at(i * m_WorldList.size() + j).setMaterial(1);
-				break;
 			case 'P': // Portal
 				// Portal archway
 				ModelList.resize(ModelList.size() + 1);
@@ -173,8 +161,7 @@ void WorldReader::LoadModels()
 				break;
 
 			case '#': // Ground Tile
-				/*SetFlatPlane(i, j, Plane, u_kWorldOffset, u_kiTileSize);*/
-				iPowerCellChance = rand() % 20 + 1; // Chance for powercell to spawn
+				iPowerCellChance = rand() % 100 + 1; // Chance for powercell to spawn
 
 				if (iPowerCellChance == 1)
 				{
@@ -185,22 +172,6 @@ void WorldReader::LoadModels()
 					m_textureID.resize(m_textureID.size() + 1);
 					ModelList.at(ModelList.size() - 1).setTextureLocation("assets/textures/Powercell.bmp");
 
-					//if (ModelList.at(ModelList.size() - 1).getPosition().y >= -2)
-					//{
-					//	vec3 m_Collectablespeed = glm::vec3(0, -0.03, 0);
-					//}
-
-					//else if (ModelList.at(ModelList.size() - 1).getPosition().y <= -4)
-					//{
-					//	vec3 m_Collectablespeed = glm::vec3(0, 0.03, 0);
-					//}
-
-					////Set positions & rotations
-					//ModelList.at(i).setPosition(ModelList.at(ModelList.size() - 1).getPosition() + m_Collectablespeed);
-					//ModelList.at(i).setRotation(glm::vec3(0, ModelList.at(ModelList.size() - 1).getRotation().y + 5, ModelList.at(ModelList.size() - 1).getRotation().z));
-					//// Get distance between player and collectable
-
-
 					ModelList.at(ModelList.size() - 1).setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize), -5, (j*u_kiTileSize))); //Make the gametile empty
 					ModelList.at(ModelList.size() - 1).setRotation(glm::vec3(0, 0, 0));
 					ModelList.at(ModelList.size() - 1).setScale(glm::vec3(1, 1, 1));
@@ -209,18 +180,6 @@ void WorldReader::LoadModels()
 				}
 				
 				break;
-			case 'D': // Desert
-				//ModelList.resize(ModelList.size() + 1);
-				//ModelList.at(i * m_WorldList.size() + j).setName("Sandy Plane");
-				//ModelList.at(i * m_WorldList.size() + j).setFileLocation("assets/models/WorldTiles/Plane.obj");
-
-				//m_textureID.resize(m_textureID.size() + 1);
-				//ModelList.at(i * m_WorldList.size() + j).setTextureLocation("assets/textures/WorldTiles/Sandy.bmp");
-				//ModelList.at(i * m_WorldList.size() + j).setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize), -5, (j*u_kiTileSize))); //Make the gametile empty
-				//ModelList.at(i * m_WorldList.size() + j).setRotation(glm::vec3(0, 0, 0));
-				//ModelList.at(i * m_WorldList.size() + j).setScale(glm::vec3(1, 1, 1));
-				//ModelList.at(i * m_WorldList.size() + j).setMaterial(1);
-				break;
 			case 'T': // Flora
 				iNumTrees = rand() % 4 + 1;
 
@@ -228,7 +187,6 @@ void WorldReader::LoadModels()
 				{
 					if (m_iClimate == 1 || m_iClimate == 3)
 					{
-					//	srand(time(NULL));
 						iTreeType = rand() % 4 + 1;
 
 						if (iTreeType == 1)
@@ -331,8 +289,6 @@ void WorldReader::LoadModels()
 					{
 						iMountainType = rand() % 4 + 1;
 
-						//cout << iMountainType << endl;
-
 						if (iMountainType == 1)
 						{
 							ModelList.resize(ModelList.size() + 1);
@@ -390,7 +346,7 @@ void WorldReader::LoadModels()
 				break;
 			case 'C': // Civilisation
 				iCivType = rand() % 6 + 1;
-				//cout << iCivType << endl;
+
 				if (iCivType == 1)
 				{
 					ModelList.resize(ModelList.size() + 1);
@@ -468,41 +424,6 @@ void WorldReader::LoadModels()
 			}
 		}
 	}
-	//for (int i = 0; i < m_WorldList.size(); i++)//For every Row
-	//{
-	//	for (int j = 0; j < m_WorldList[i].size(); j++)//For every bit
-	//	{
-	//		if (m_WorldList[i][j] != 'M')
-	//		{
-	//			//ModelList.resize(ModelList.size() + 1);
-	//			Plane.setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize), -5, (j*u_kiTileSize)));
-	//			Plane.setRotation(glm::vec3(0, 0, 0));
-	//			Plane.setScale(glm::vec3(1, 1, 1));
-	//			Plane.setMaterial(1);
-	//			ModelList.push_back(Plane);
-
-	//		}
-	//	}
-	//}
-
-	
-	
-	//Cube->render();
-	//Model SkyBox;
-	//SkyBox.setFileLocation("assets/models/WorldTiles/Cube.obj");
-	//// Load in skybox
-	//if (m_kSkybox == 1)
-	//{
-	//	SkyBox.setName("Day Time");
-	//	SkyBox.setTextureLocation("assets/textures/WorldTiles/DaySky.bmp");
-	//	//SkyBox.setPosition(glm::vec3(u_kWorldOffset + (u_kiTileSize * (m_iWorldSize / 2), -20, u_kiTileSize * (m_iWorldSize / 2))));
-	//	SkyBox.setPosition(glm::vec3(u_kWorldOffset + (u_kiTileSize * (m_iWorldSize / 2)), -5, (u_kiTileSize * (m_iWorldSize / 2))));
-	//	SkyBox.setRotation(glm::vec3(0, 0, 0));
-	//	SkyBox.setScale(glm::vec3(1, 1, 1));
-	//	SkyBox.setMaterial(1);
-	//}
-
-	//ModelList.push_back(SkyBox);
 
 	for (int i = 0; i < ModelList.size(); i++)
 	{
@@ -514,9 +435,6 @@ void WorldReader::LoadModels()
 				ModelList.at(i).m_pModelReader = ModelList.at(i - 1).m_pModelReader; // Set model to previous model
 				ModelList.at(i).m_bmp = ModelList.at(i - 1).m_bmp; // Set texture to previous texture
 				ModelList.at(i).LoadTexture(ModelList.at(i - 1).getTextureLocation());
-				/*ModelList.at(i).positionData = ModelList.at(i - 1).positionData;
-				ModelList.at(i).uvData = ModelList.at(i - 1).uvData;
-				ModelList.at(i).m_M = ModelList.at(i - 1).m_M;*/
 			}
 			else
 			{
@@ -526,9 +444,9 @@ void WorldReader::LoadModels()
 		else
 		{
 			ModelList[i].LoadModel(ModelList[i].getFileLocation()); // Load in models to be ready for drawing
-			//cout << 'test';
 		}
 	}
+
 }
 
 void WorldReader::SetFlatPlane(int xPos, int yPos, Model TexturedPlane, float WorldOffset, float TileSize)

@@ -27,6 +27,18 @@
     <None Include="shaders\shader.vert">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="shaders\skybox.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\skybox.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\freetype.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\freetype.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="assets\scenes\Scene.txt">
@@ -108,6 +120,9 @@
     <ClCompile Include="src\Bitmap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Freetype.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AbstractMenu.h">
@@ -174,6 +189,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\World.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Freetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

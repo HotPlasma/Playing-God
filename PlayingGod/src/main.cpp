@@ -13,6 +13,7 @@
 #include <WorldGen.h>
 #include <WorldReader.h>
 #include <iostream>
+#include <Freetype.h>
 
 #include <string>
 using std::string;
@@ -25,6 +26,11 @@ GenerationMenu NewWorldMenu(1600, 900);
 LoadingMenu WorldLoadingMenu(1600, 900);
 WorldGen WorldGenerator;
 WorldReader CurrentWorld;
+
+Freetype HeadsUpDisplay;
+
+
+
 bool g_bGameWindowFocused; // True if main window is infocus
 
 // States of game
@@ -38,33 +44,23 @@ string test;
 sf::Clock Timer;
 int iState = 0;
 
-//////////////////////////////////////////////////////////
-////  Key press callback /////////////////////////////////
-//////////////////////////////////////////////////////////
-static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-	//if (key == GLFW_KEY_SPACE && action == GLFW_RELEASE)
-	//	if (scene)
-	//		scene->animate(!(scene->animating()));
-}
 
-static void focus_callback(GLFWwindow *pWindow, int iFocused)
+static void focus_callback(GLFWwindow *pWindow, int iFocused) // Checks if screen is being focused
 {
 	// If the callback is true
 	if (iFocused)
 	{
 		g_bGameWindowFocused = true; // Sets global boolean 'focused' to true
 	}
-	
-										   
+			   
 	else // Else the callback is false
 	{
 		g_bGameWindowFocused = false; // Sets global boolean 'focused' to false
 	}
 }
 
-// Get mouse position every frame
-static void cursor_callback(GLFWwindow *pWindow, double dX, double dY)
+
+static void cursor_callback(GLFWwindow *pWindow, double dX, double dY) // Get mouse position every frame
 {
 	// If window is focused
 	if (g_bGameWindowFocused)
@@ -87,15 +83,22 @@ static void resize_callback(GLFWwindow *pWindow, int iWidth, int iHeight)
 //////  Create the scene and initialise ////////////////
 ////////////////////////////////////////////////////////
 void initializeGL() {
-	
+
 	gl::ClearColor(0.5f, 0.5f, 0.5f, 1.0f); // Clear window
 
-	sf::Vector2i windowSize; 
+	sf::Vector2i windowSize;
 	glfwGetWindowSize(g_pWindow, &windowSize.x, &windowSize.y); // Establish window size
 
 	g_pScene = new World(windowSize); // The scene = World
 
-	g_pScene->initScene(); // Initiate scene
+	// Set up render for heads up display
+	gl::Enable(gl::BLEND);
+	gl::BlendFunc(gl::SRC_ALPHA, gl::ONE_MINUS_SRC_ALPHA);
+	HeadsUpDisplay.loadCharacters();
+	HeadsUpDisplay.setupBuffers();
+
+	g_pScene->initScene(&HeadsUpDisplay); // Initiate scene
+
 }
 
 void glfwSetWindowPositionCenter(GLFWwindow* window)
@@ -180,7 +183,7 @@ void mainLoop() {
 
 	while (!glfwWindowShouldClose(g_pWindow) && !glfwGetKey(g_pWindow, GLFW_KEY_ESCAPE)) {
 		// If button pressed open world creation menu (SFML_
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E) && g_pScene->m_bCloseToComputer) // If close to computer and 'E' key pressed open menu
 		{
 			g_bGameWindowFocused = false;
 			sf::RenderWindow MenuWindow(sf::VideoMode(1600, 900), "World Creation");
@@ -285,17 +288,6 @@ void mainLoop() {
 							break;
 
 						case LOAD_WORLD_MENU:
-							//CurrentWorld = WorldReader("assets/scenes/Worlds/test.txt");
-							/*for (int i = 0; i < CurrentWorld.ModelList.size(); i++)
-							{
-
-								CurrentWorld.ModelList[i].DrawModel(true, true);
-							}*/
-							//g_pScene->update((float)glfwGetTime());
-							//glfwMakeContextCurrent(g_pWindow);
-							//g_pScene->LoadMap("assets/scenes/Worlds/z.txt", false);
-							////g_pScene->m_bLabPortalReady = true;
-							//MenuWindow.close();
 							iState = LOAD_WORLD_MENU;
 							break;
 
@@ -313,8 +305,7 @@ void mainLoop() {
 						case 1: // Create button clicked
 							glfwMakeContextCurrent(g_pWindow);
 							WorldGenerator.CreateNewWorld(NewWorldMenu.m_DropDownMenus, NewWorldMenu.m_TextBox_WorldName->m_sText);
-							g_pScene->LoadMap("assets/scenes/Worlds/" + NewWorldMenu.m_TextBox_WorldName->m_sText + ".txt", false);
-							//g_pScene->m_bLabPortalReady = true;
+							g_pScene->LoadMap("assets/scenes/Worlds/" + NewWorldMenu.m_TextBox_WorldName->m_sText + ".cfg", false);
 							MenuWindow.close();
 							break;
 
@@ -327,10 +318,9 @@ void mainLoop() {
 					{
 						switch (WorldLoadingMenu.update(Timer.getElapsedTime().asSeconds()))
 						{
-						case 1: // Create button clicked
+						case 1: // Load button clicked
 							glfwMakeContextCurrent(g_pWindow);
-							//WorldGenerator.CreateNewWorld(WorldLoadingMenu.m_DropDownMenus, NewWorldMenu.m_TextBox_WorldName->m_sText);
-							g_pScene->LoadMap("assets/scenes/Worlds/" + WorldLoadingMenu.m_TextBox_WorldName->m_sText + ".txt", false);
+							g_pScene->LoadMap("assets/scenes/Worlds/" + WorldLoadingMenu.m_TextBox_WorldName->m_sText + ".cfg", false);
 							MenuWindow.close();
 							break;
 
@@ -346,11 +336,10 @@ void mainLoop() {
 		// Render, update and send data for 3D camera control while creation menu not open
 		{
 			
-			if (g_bGameWindowFocused)
+			if (g_bGameWindowFocused) // If window focused... update + render
 			{
 				glfwMakeContextCurrent(g_pWindow);
 				g_pScene->update((float)glfwGetTime());
-				//g_pScene->renderWorld(CurrentWorld);
 				g_pScene->render();
 			}
 			glfwSwapBuffers(g_pWindow);
@@ -403,14 +392,12 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-
-
 	glfwMakeContextCurrent(g_pWindow);
 	g_bGameWindowFocused = true;
 
 	glfwSetWindowPositionCenter(g_pWindow);
 
-	glfwSetKeyCallback(g_pWindow, key_callback);
+//	glfwSetKeyCallback(g_pWindow, key_callback);
 	glfwSetWindowFocusCallback(g_pWindow, focus_callback);
 	glfwSetCursorPosCallback(g_pWindow, cursor_callback);
 	//glfwSetWindowPositionCenter(window);
@@ -433,8 +420,6 @@ int main(int argc, char *argv[])
 
 	// Initialization
 	initializeGL();
-
-	
 
 	// Enter the main loop
 	mainLoop();

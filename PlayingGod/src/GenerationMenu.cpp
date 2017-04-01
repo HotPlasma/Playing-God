@@ -62,8 +62,6 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 	// Climate DropBox
 	m_ClimateOptions.SetProperties(460, 360, 5, &m_TexLoader, vector<string>{"Cold", "Warm", "Hot"});
 
-	//m_DropDownMenus.push_back(m_ClimateOptions);
-
 	//MOUNTAINS
 	m_Mountainous.setFont(m_BlockFont);
 	m_Mountainous.setString("Mountainous:");
@@ -90,7 +88,7 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 	// Sets up main menu buttons positions and starting textures
 
 	// Civilization DropBox
-	m_CivilisationOptions.SetProperties(1200, 260, 5, &m_TexLoader, vector<string>{"None", "Remains", "Mass Remains"});
+	m_CivilisationOptions.SetProperties(1200, 260, 5, &m_TexLoader, vector<string>{"None", "Some", "Many"});
 
 	//SKYBOX
 	m_SkyBox.setFont(m_BlockFont);
@@ -135,7 +133,6 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 	m_bMenuOpen = false;
 	// Fill vector will all drop down boxes.
 	m_DropDownMenus.insert(m_DropDownMenus.end(), { m_MountainousOptions, m_ClimateOptions, m_WorldSizeOptions, m_FloraDensityOptions, m_SkyBoxOptions, m_CivilisationOptions });
-	/*	m_MiscOptions*/
 }
 
 void GenerationMenu::TakeMousePos(Vector2f Pos)
@@ -152,10 +149,6 @@ void GenerationMenu::TakeMousePos(Vector2f Pos)
 			m_DropDownMenus.at(i).CheckHoverDropDownOptions(Pos);
 		}
 	}
-	/*if (m_ClimateOptions.isOpen())
-	{
-		m_ClimateOptions.CheckHoverDropDownOptions(Pos);
-	}*/
 }
 
 void GenerationMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
@@ -173,7 +166,7 @@ void GenerationMenu::draw(sf::RenderTarget &target, sf::RenderStates states) con
 	target.draw(m_FloraDensity);
 	target.draw(*m_TextBox_WorldName);
 	target.draw(m_LoadingText);
-	for (DropDownMenu Menus : m_DropDownMenus)
+	for (DropDownMenu Menus : m_DropDownMenus) // Draw all menus within dropdownmenus vector
 	{
 		target.draw(Menus);
 	}
@@ -193,7 +186,6 @@ int GenerationMenu::update(float fTimestep)
 		{
 			WhichState = Create;
 		}
-
 		for (int i = 0; i < m_DropDownMenus.size(); i++)
 		{
 			if (m_DropDownMenus.at(i).isActive())
@@ -203,34 +195,13 @@ int GenerationMenu::update(float fTimestep)
 					m_DropDownMenus.at(i).ToggleOpen();
 					m_bMenuOpen = true;
 				}
-
 			}
 			else
 			{
 				m_DropDownMenus.at(i).CloseMenu();
 				m_bMenuOpen = false;
 			}
-
-			/*if (!m_DropDownMenus.at(i).isOpen())
-			{
-				for (auto Menus : m_DropDownMenus)
-				{
-					Menus.CloseMenu();
-				}
-			}*/
-		}
-			
-		//}
-		// Toggles World Size Drop Down Menu
-		//else if (m_WorldSizeOptions.isActive())
-		//{
-		//	m_WorldSizeOptions.ToggleOpen();
-		//}
-		//else if (m_ClimateOptions.isActive())
-		//{
-		//	m_ClimateOptions.ToggleOpen();
-		//}
-		
+		}	
 		m_bClicked = false;
 		return WhichState;
 	}

@@ -16,13 +16,6 @@ Menu::Menu(int WindowWidth, int WindowHeight)
 			"MenuBackground2.png"
 	});
 
-	//// Sets up font for heads up display
-	//if (!m_BlockFont.loadFromFile("assets\\fonts\\3x5.TTF"))
-	//{
-	//	cout << "Error";
-	//}
-
-	
 		// Set up main menu background
 		m_Background.setPosition(0, 0);
 		m_Background.setTexture(*m_TexLoader.getTextureIterator(0));
@@ -99,9 +92,3 @@ int Menu::ReturnButtonClicked()
 	return WhichState;
 }
 
-
-
-//void Menu::Click()
-//{
-//	m_bClicked = true;
-//};
