@@ -26,6 +26,7 @@ void DropDownMenu::SetProperties(float fX, float fY, int iTextureID, TextureLoad
 
 	m_CurrentlySelected.setFont(m_BlockFont);
 	m_CurrentlySelected.setString(Options.at(0));
+	m_CurrentlySelected.setFillColor(sf::Color::Green);
 	m_CurrentlySelected.setCharacterSize(50);
 	m_CurrentlySelected.setPosition(fX + 55, fY + 5 + offset);
 
@@ -35,6 +36,7 @@ void DropDownMenu::SetProperties(float fX, float fY, int iTextureID, TextureLoad
 		m_Extention.resize(m_Extention.size() + 1);
 		m_DropDownOptions.at(i).setFont(m_BlockFont);
 		m_DropDownOptions.at(i).setString(Options.at(i));
+		m_DropDownOptions.at(i).setFillColor(sf::Color::Green);
 		m_DropDownOptions.at(i).setCharacterSize(50);
 		m_DropDownOptions.at(i).setPosition(fX + 55, fY + 60 + offset);
 		m_Extention.at(i).setTexture(*m_TexLoader->getTextureIterator(iTextureID + 1));

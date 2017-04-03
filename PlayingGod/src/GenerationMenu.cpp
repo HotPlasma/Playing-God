@@ -12,7 +12,8 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 			"Create.png",
 			"CreateHover.png",
 			"DropBox.png",
-			"Extention.png"
+			"Extention.png",
+			"TextBox.png"
 	});
 
 	m_TextBox_WorldName = new TextBox(710, 70);
@@ -20,6 +21,9 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 	// Set up main menu background
 	m_Background.setPosition(0, 0);
 	m_Background.setTexture(*m_TexLoader.getTextureIterator(0));
+
+	m_TextBoxBorder.setTexture(*m_TexLoader.getTextureIterator(7));
+	m_TextBoxBorder.setPosition(695, 65);
 
 	//WORLD NAME
 	// Sets up world name label on main menu
@@ -153,8 +157,8 @@ void GenerationMenu::TakeMousePos(Vector2f Pos)
 
 void GenerationMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-	
 	target.draw(m_Background);
+	target.draw(m_TextBoxBorder);
 	target.draw(m_Cancel);
 	target.draw(m_Create);
 	target.draw(m_WorldName);

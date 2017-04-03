@@ -194,6 +194,8 @@ void World::update(float t)
 					m_uiPowerCellsCollected++; //Increment collectable counter for HUD
 					m_Sound.setBuffer(m_CollectableSound);
 					m_Sound.play();
+					m_ToastTimer.restart();
+				
 				}
 			}
 		}
@@ -248,8 +250,14 @@ void World::render()
 
 	if (m_bCloseToComputer)
 	{
-		HUD->RenderText(m_FreeType.getHandle(), "Press E to use computer", 960.f, 560.f, 1.0f, glm::vec3(0.3, 0.7f, 0.9f));
+		HUD->RenderText(m_FreeType.getHandle(), "Press E to use computer", 860.f, 560.f, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 	}
+
+	if (m_ToastTimer.getElapsedTime().asSeconds() < 2.f)
+	{
+		HUD->RenderText(m_FreeType.getHandle(), "Collectable Collected", 860.f, 560.f, 1.0f, glm::vec3(0.3, 0.7f, 0.9f));
+	}
+	
 	
 }
 

@@ -39,8 +39,6 @@ bool g_bGameWindowFocused; // True if main window is infocus
 #define LOAD_WORLD_MENU 2
 #define CLOSE_MENU 3
 
-string test;
-
 sf::Clock Timer;
 int iState = 0;
 

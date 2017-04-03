@@ -41,14 +41,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="assets\scenes\Scene.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="assets\scenes\ScenePrototype.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
     <Xml Include="assets\scenes\LabScene.xml">
       <Filter>Resource Files</Filter>
     </Xml>

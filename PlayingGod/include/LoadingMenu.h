@@ -25,6 +25,9 @@ private:
 	////////////////////////////////////////////////////////////
 	// Member data
 	////////////////////////////////////////////////////////////
+
+	Sprite m_TextBoxBorder; ///< Border for text for visual appeal
+
 	// Buttons on menu screen
 	Button m_Cancel;///< Button for returning to main menu
 	Button m_Load; ///< Button for loading currently typed in world

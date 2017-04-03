@@ -63,3 +63,15 @@ public:
 	////////////////////////////////////////////////////////////
 	void RenderText(GLuint ProgramHandle , std::string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
 };
+
+////////////////////////////////////////////////////////////
+/// \class FreeType
+///
+/// FreeType is used for creating a heads up display by changing
+/// a font into images to put onto a transparent plane.
+/// 
+/// loadCharacters() and setupBuffers() should be run first
+/// followed by RenderText which should be given the shaders program
+/// handle, the text you wish to be drawn, an x and y position,
+/// a scale for the text and a colour for the font.
+////////////////////////////////////////////////////////////

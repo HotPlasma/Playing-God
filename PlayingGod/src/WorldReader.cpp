@@ -445,6 +445,7 @@ void WorldReader::LoadModels()
 		{
 			ModelList[i].LoadModel(ModelList[i].getFileLocation()); // Load in models to be ready for drawing
 		}
+		cout << "Loading: " << ((i + 1) * 100) / ModelList.size() << "%" << endl; // Loading cout
 	}
 
 }

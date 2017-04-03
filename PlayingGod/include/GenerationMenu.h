@@ -27,6 +27,8 @@ private:
 	// Member data
 	////////////////////////////////////////////////////////////
 
+	sf::Sprite m_TextBoxBorder; ///< Border for text for visual appeal
+
 	// Buttons on menu screen
 	Button m_Cancel; ///< Button for returning to main menu
 	Button m_Create; ///< Button for creating world

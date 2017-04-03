@@ -48,6 +48,7 @@ private:
 	sf::SoundBuffer m_PowercellsIntro; ///< Reveals objective to find powercells
 	sf::SoundBuffer m_CollectableSound;
 	sf::Sound m_Sound; ///< The sound for the game
+	sf::Clock m_ToastTimer; ///< Timer for how long a message should be displayed
 
 	////////////////////////////////////////////////////////////
 	/// \brief Used to set the marticies and uniform variables for shaders

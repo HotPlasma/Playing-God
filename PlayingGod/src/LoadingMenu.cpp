@@ -10,8 +10,12 @@ LoadingMenu::LoadingMenu(int WindowWidth, int WindowHeight)
 			"Cancel.png",
 			"CancelHover.png",
 			"Load.png",
-			"LoadHover.png"
+			"LoadHover.png",
+			"TextBox.png"
 	});
+
+	m_TextBoxBorder.setTexture(*m_TexLoader.getTextureIterator(5));
+	m_TextBoxBorder.setPosition(575, 400);
 
 	// Set up main menu background
 	m_Background.setPosition(0, 0);
@@ -27,7 +31,7 @@ LoadingMenu::LoadingMenu(int WindowWidth, int WindowHeight)
 	m_Instructions.setOrigin(TempRect.left + TempRect.width / 2.0f, TempRect.top + TempRect.height / 2.0f);
 	m_Instructions.setPosition(sf::Vector2f(WindowWidth / 2.0f , WindowHeight / 9.0f));
 
-	m_TextBox_WorldName = new TextBox(m_Instructions.getPosition().x - 200, WindowHeight / 2.0f);
+	m_TextBox_WorldName = new TextBox(590, 405);
 
 	m_Cancel.SetProperties(WindowWidth / 12, WindowHeight / 1.2, 1, &m_TexLoader);
 
@@ -45,6 +49,7 @@ void LoadingMenu::TakeMousePos(Vector2f Pos)
 void LoadingMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
 	target.draw(m_Background);
+	target.draw(m_TextBoxBorder);
 	target.draw(m_Cancel);
 	target.draw(m_Load);
 	target.draw(m_Instructions);

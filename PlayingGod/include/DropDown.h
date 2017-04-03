@@ -24,7 +24,7 @@ private:
 	sf::Sprite m_Sprite; ///< sf::Sprite which represents the dropdown box
 	vector<sf::Sprite> m_Extention; ///< vector of sf::sprites which are extentions for the dropdown box options
 	int m_iCurrentTexID; ///< int which represents assigned texture for drop down box
-	TextureLoader* m_TexLoader;
+	TextureLoader* m_TexLoader; ///< Minimises slow input/output of textures by preloading them
 	bool m_bActive; ///< bool which is true if dropdown box is being hovered over
 	sf::Font m_BlockFont; ///< sf::font holding the Font for dropdown box
 	vector<sf::Text>m_DropDownOptions; ///< vector of sf::text which Holds the options for the drop down box

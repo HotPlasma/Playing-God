@@ -18,6 +18,7 @@ TextBox::TextBox(int xPos, int yPos)
 	m_sText = "";
 
 	m_TextInBox.setFont(m_BlockFont);
+	m_TextInBox.setFillColor(sf::Color::Green);
 	m_TextInBox.setString(m_sText);
 	m_TextInBox.setCharacterSize(50);
 
@@ -30,8 +31,11 @@ TextBox::TextBox(int xPos, int yPos)
 
 void TextBox::ProcessKeyRelease(sf::Keyboard::Key code)
 {
-	m_sText.push_back(toupper(char(code))); // Add uppercase letter to string
-	m_TextInBox.setString(m_sText); // Update visible text box
+	if (m_sText.length() < 18) // Stop entering text that is too long
+	{
+		m_sText.push_back(toupper(char(code))); // Add uppercase letter to string
+		m_TextInBox.setString(m_sText); // Update visible text box
+	}
 }
 
 int TextBox::returnStringSize()

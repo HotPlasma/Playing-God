@@ -90,12 +90,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>./libraries/GLFW/glfw-3.2.1.bin.WIN64/include;./libraries/tinyxml;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./libraries/GLFW/glfw-3.2.1.bin.WIN64/include;./libraries/tinyxml;./libraries/freetype-2.7.1/include;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>./libraries/GLFW/glfw-3.2.1.bin.WIN64/lib-vc2015</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-audio-d.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./libraries/GLFW/glfw-3.2.1.bin.WIN64/lib-vc2015;./libraries/freetype-2.7.1/objs/vc2010/x64\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-audio-d.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;opengl32.lib;glfw3.lib;freetype271d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -135,10 +135,6 @@
     <None Include="shaders\shader.vert" />
     <None Include="shaders\skybox.frag" />
     <None Include="shaders\skybox.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="assets\scenes\Scene.txt" />
-    <Text Include="assets\scenes\ScenePrototype.txt" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="assets\scenes\LabScene.xml">
