@@ -1,54 +1,12 @@
-﻿  DropDown.cpp
-  Freetype.cpp
-C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\PlayingGod\include\glslprogram.h(69): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\PlayingGod\include\glslprogram.h(70): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\PlayingGod\include\glslprogram.h(72): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\PlayingGod\include\glslprogram.h(74): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\PlayingGod\include\glslprogram.h(75): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\PlayingGod\include\glslprogram.h(76): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-src\Freetype.cpp(58): warning C4838: conversion from 'FT_Pos' to 'GLuint' requires a narrowing conversion
-  GenerationMenu.cpp
-src\GenerationMenu.cpp(123): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-src\GenerationMenu.cpp(123): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-src\GenerationMenu.cpp(125): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  LoadingMenu.cpp
-src\LoadingMenu.cpp(36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-src\LoadingMenu.cpp(36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-src\LoadingMenu.cpp(38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  World.cpp
-src\World.cpp(48): warning C4390: ';': empty controlled statement found; is this the intent?
-src\World.cpp(53): warning C4390: ';': empty controlled statement found; is this the intent?
-src\World.cpp(58): warning C4390: ';': empty controlled statement found; is this the intent?
-src\World.cpp(63): warning C4390: ';': empty controlled statement found; is this the intent?
-src\World.cpp(68): warning C4390: ';': empty controlled statement found; is this the intent?
-src\World.cpp(219): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-src\World.cpp(228): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-src\World.cpp(237): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
-  WorldGen.cpp
-src\WorldGen.cpp(7): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-src\WorldGen.cpp(43): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(52): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(54): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(108): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(110): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(146): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(148): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(150): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(190): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(192): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(232): warning C4018: '<': signed/unsigned mismatch
-src\WorldGen.cpp(235): warning C4018: '<': signed/unsigned mismatch
-  main.cpp
-src\main.cpp(66): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-src\main.cpp(112): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
-src\main.cpp(113): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
-src\main.cpp(170): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+﻿  WorldReader.cpp
+src\WorldReader.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+src\WorldReader.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+src\WorldReader.cpp(15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  69 of 2380 functions ( 2.9%) were compiled, the rest were copied from previous compilation.
+  50 of 2380 functions ( 2.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    10 functions had inline decision re-evaluated but remain unchanged
+    14 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Release\PlayingGod.exe
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Release\PlayingGod.pdb (Full PDB)

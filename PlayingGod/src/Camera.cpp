@@ -48,7 +48,7 @@ void Camera::ProcessUserInput(float yAngle, float zAngle)
 		// Sprint functionality
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::RShift)) 
 		{
-			fMovementSpeed = 0.5;
+			fMovementSpeed = 0.3;
 		}
 		else
 		{

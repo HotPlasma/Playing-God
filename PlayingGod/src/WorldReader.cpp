@@ -287,7 +287,7 @@ void WorldReader::LoadModels()
 				{
 					if (m_WorldList[i + 1][j] == 'M' && m_WorldList[i][j + 1] == 'M' && m_WorldList[i + 1][j + 1] == 'M') // Ensure only ran once selection of 4 Ms
 					{
-						iMountainType = rand() % 4 + 1;
+						iMountainType = rand() % 3 + 1;
 
 						if (iMountainType == 1)
 						{
@@ -314,16 +314,6 @@ void WorldReader::LoadModels()
 							ModelList.resize(ModelList.size() + 1);
 							ModelList.at(ModelList.size() - 1).setName("Mountain");
 							ModelList.at(ModelList.size() - 1).setFileLocation("assets/models/WorldTiles/Mountains/Mountain3.obj");
-							ModelList.at(ModelList.size() - 1).setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + (u_kiTileSize / 2)), -5, (j*u_kiTileSize + (u_kiTileSize / 2)))); //Make the gametile empty
-							ModelList.at(ModelList.size() - 1).setRotation(glm::vec3(0, 0, 0));
-							ModelList.at(ModelList.size() - 1).setScale(glm::vec3(1, 1, 1));
-							ModelList.at(ModelList.size() - 1).setMaterial(1);
-						}
-						else if (iMountainType == 4)
-						{
-							ModelList.resize(ModelList.size() + 1);
-							ModelList.at(ModelList.size() - 1).setName("Mountain");
-							ModelList.at(ModelList.size() - 1).setFileLocation("assets/models/WorldTiles/Mountains/Mountain4.obj");
 							ModelList.at(ModelList.size() - 1).setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + (u_kiTileSize / 2)), -5, (j*u_kiTileSize + (u_kiTileSize / 2)))); //Make the gametile empty
 							ModelList.at(ModelList.size() - 1).setRotation(glm::vec3(0, 0, 0));
 							ModelList.at(ModelList.size() - 1).setScale(glm::vec3(1, 1, 1));

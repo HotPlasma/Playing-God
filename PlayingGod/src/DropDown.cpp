@@ -75,7 +75,6 @@ void DropDownMenu::CheckHoverDropDownOptions(Vector2f MousePos)
 		{
 			m_CurrentlySelected.setString(m_DropDownOptions.at(i).getString()); // If hovered option becomes new currently selected
 			m_iOptionSelected = i;
-			cout << m_iOptionSelected << endl;
 		}
 	}
 }
