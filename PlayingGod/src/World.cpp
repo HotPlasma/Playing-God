@@ -43,7 +43,7 @@ void World::initScene(Freetype* Overlay)
 
 	LoadMap("assets/scenes/LabScene.xml", true);
 
-	Cube = new CubeMap(1, vec3(10000,0,0), "FullMoon/Moon");
+	Cube = new CubeMap(0, vec3(10000,0,0), "FullMoon/Moon");
 
 	if (!m_ThemeSong.loadFromFile("assets/sound/backgroundmusic.wav"));
 	{
@@ -201,7 +201,7 @@ void World::update(float t)
 		}
 	}
 
-
+	
 	
 }
 
@@ -242,6 +242,7 @@ void World::render()
 
 	// Skybox
 	m_SkyBox.use(); // Shader for turning a cubemap into a beleiveable skybox
+	Cube->ChangeCubeMapPosition(FirstPersonView.GetCameraPos());
 	SetMatices(&m_SkyBox, Cube->M, V, P);
 	Cube->render();
 	

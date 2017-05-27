@@ -1,6 +1,12 @@
-﻿LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+﻿  GenerationMenu.cpp
+src\GenerationMenu.cpp(123): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+src\GenerationMenu.cpp(123): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+src\GenerationMenu.cpp(125): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  All 2452 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  70 of 2453 functions ( 2.9%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    25 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Release\PlayingGod.exe
   PlayingGod.vcxproj -> C:\Users\egor\Desktop\Projects\Uni Projects\Year 3\Computing Project\PlayingGod\x64\Release\PlayingGod.pdb (Full PDB)

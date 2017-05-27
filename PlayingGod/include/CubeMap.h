@@ -45,6 +45,8 @@ public:
 	////////////////////////////////////////////////////////////
 	GLuint GetTexID();
 
+	void ChangeCubeMapPosition(glm::vec3 newPos);
+
 
 	glm::mat4 M; ///< Allows manipulation of the model matrix and therefore repositioning of the cube
 };

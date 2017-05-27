@@ -5,6 +5,16 @@ GLuint CubeMap::GetTexID()
 	return texID;
 }
 
+void CubeMap::ChangeCubeMapPosition(glm::vec3 newPos)
+{
+	glm::mat4 transMatrix = { 1,0,0,0,
+		0,1,0,0,
+		0,0,1,0,
+		newPos.x,newPos.y,newPos.z,1 };
+
+	M = transMatrix;
+}
+
 CubeMap::CubeMap(float size, glm::vec3 position, std::string FileLocations)
 {
 	faces = 6;

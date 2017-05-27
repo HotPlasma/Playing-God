@@ -78,7 +78,7 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 	// Sets up main menu buttons positions and starting textures
 
 	// Mountains DropBox
-	m_MountainousOptions.SetProperties(460, 460, 5, &m_TexLoader, vector<string>{"None", "Slightly", "Heavily"});
+	m_MountainousOptions.SetProperties(460, 460, 5, &m_TexLoader, vector<string>{"None", "Slightly", "Very"});
 
 	//CIVILISATION
 	m_Civilisation.setFont(m_BlockFont);
@@ -92,7 +92,7 @@ GenerationMenu::GenerationMenu(int WindowWidth, int WindowHeight)
 	// Sets up main menu buttons positions and starting textures
 
 	// Civilization DropBox
-	m_CivilisationOptions.SetProperties(1200, 260, 5, &m_TexLoader, vector<string>{"None", "Some", "Many"});
+	m_CivilisationOptions.SetProperties(1200, 260, 5, &m_TexLoader, vector<string>{"None", "Some", "Lots"});
 
 	//SKYBOX
 	m_SkyBox.setFont(m_BlockFont);
