@@ -94,7 +94,7 @@ void SceneReader::ReadSceneFile(string sFilename)
 							iss >> sData;
 							if (sData == "true")
 							{
-								temp.setCollectable();
+								temp.setCollectable(true);
 							}
 						}
 					}

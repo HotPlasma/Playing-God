@@ -65,7 +65,7 @@ public:
 };
 
 ////////////////////////////////////////////////////////////
-/// \class FreeType
+/// \class Freetype
 ///
 /// FreeType is used for creating a heads up display by changing
 /// a font into images to put onto a transparent plane.

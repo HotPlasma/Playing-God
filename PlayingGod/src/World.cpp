@@ -180,17 +180,17 @@ void World::update(float t)
 
 
 	// Allows collectables to be picked up
-	for (int i = 0; i < CurrentWorld.ModelList.size(); i++)
+	for (int i = 0; i < CurrentWorld.ModelLocationList.size(); i++)
 	{
-		if (CurrentWorld.ModelList.at(i).isCollectable()) // check if collectable
+		if (CurrentWorld.ModelLocationList.at(i)->isCollectable()) // check if collectable
 		{
-			if (!CurrentWorld.ModelList.at(i).getCollected()) // if collectable then slowly rotate and bob up and down
+			if (!CurrentWorld.ModelLocationList.at(i)->getCollected()) // if collectable then slowly rotate and bob up and down
 			{
-				glm::vec3 distance = FirstPersonView.GetCameraPos() - CurrentWorld.ModelList.at(i).getPosition(); // Work out distance between robot and a collectable
+				glm::vec3 distance = FirstPersonView.GetCameraPos() - CurrentWorld.ModelLocationList.at(i)->getPosition(); // Work out distance between robot and a collectable
 
 				if (sqrtf(powf(distance.x, 2.0f) + powf(distance.z, 2.0f)) < 5) // If collision with a collectable mark it as collected and stop drawing it
 				{
-					CurrentWorld.ModelList.at(i).setCollected(true);
+					CurrentWorld.ModelLocationList.at(i)->setCollected(true);
 					m_uiPowerCellsCollected++; //Increment collectable counter for HUD
 					m_Sound.setBuffer(m_CollectableSound);
 					m_Sound.play();
@@ -200,6 +200,8 @@ void World::update(float t)
 			}
 		}
 	}
+
+
 	
 }
 
@@ -228,13 +230,13 @@ void World::render()
 		gl::DrawArrays(gl::TRIANGLES, 0, LabScene.ModelList.at(4).positionData.size());
 	}
 	// Render all models in current scene
-	for (int j = 0; j < CurrentWorld.ModelList.size(); j++)
+	for (int j = 0; j < CurrentWorld.ModelLocationList.size(); j++)
 	{
-		if (!CurrentWorld.ModelList.at(j).getCollected())
+		if (!CurrentWorld.ModelLocationList.at(j)->getCollected())
 		{
-			CurrentWorld.ModelList.at(j).buffer();
-			m_WorldShader.setUniform("M", CurrentWorld.ModelList.at(j).m_M);
-			gl::DrawArrays(gl::TRIANGLES, 0, CurrentWorld.ModelList.at(j).positionData.size());
+			CurrentWorld.ModelLocationList.at(j)->buffer();
+			m_WorldShader.setUniform("M", CurrentWorld.ModelLocationList.at(j)->m_M);
+			gl::DrawArrays(gl::TRIANGLES, 0, CurrentWorld.ModelLocationList.at(j)->positionData.size());
 		}
 	}
 
@@ -276,11 +278,14 @@ void World::LoadMap(string FileLocation, bool isXML)
 		m_bWorldLoaded = true;
 		CurrentWorld = WorldReader(FileLocation);
 
-		for (int i = 0; i < CurrentWorld.ModelList.size(); i++)
+		for (int i = 0; i < CurrentWorld.ModelLocationList.size(); i++)
 		{
-			CurrentWorld.ModelList[i].DrawModel();
-			Cube = CurrentWorld.m_SkyBox;
+			
+			CurrentWorld.ModelLocationList[i]->DrawModel();
+			
 		}
+		Cube = CurrentWorld.m_SkyBox;
+
 
 		m_Sound.setBuffer(m_PortalIntro); // Introductory voice lines
 		m_Sound.play();

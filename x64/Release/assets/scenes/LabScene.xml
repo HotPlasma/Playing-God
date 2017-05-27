@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding = "utf-8"?>
+
+<Scene>
+  <!--List of Objects to be loaded for the room-->
+  <Object>
+    <Name>LabPlane</Name>
+    <OBJLocation>assets/models/laboratory/LabPlane.obj</OBJLocation>
+    <TexLocation>assets/textures/laboratory/LabPlane.bmp</TexLocation>
+    <Translation>0 -5 0</Translation>
+    <Rotation>0 0 0</Rotation>
+    <Scale>0.999 0.999 0.999</Scale>
+    <Material>1</Material>
+    <Collectable>false</Collectable>
+  </Object>
+
+  <Object>
+    <Name>LabBox</Name>
+    <OBJLocation>assets/models/laboratory/labbox.obj</OBJLocation>
+    <TexLocation>assets/textures/laboratory/labbox.bmp</TexLocation>
+    <Translation>0 -6 0</Translation>
+    <Rotation>0 0 0</Rotation>
+    <Scale>1 1 1</Scale>
+    <Material>1</Material>
+    <Collectable>false</Collectable>
+  </Object>
+
+  <Object>
+    <Name>Archway</Name>
+    <OBJLocation>assets/models/laboratory/Archway.obj</OBJLocation>
+    <TexLocation>assets/textures/laboratory/Archway.bmp</TexLocation>
+    <Translation>80 -5 70</Translation>
+    <Rotation>0 0 0</Rotation>
+    <Scale>1 1 1</Scale>
+    <Material>1</Material>
+    <Collectable>false</Collectable>
+  </Object>
+
+  <Object>
+    <Name>Computer</Name>
+    <OBJLocation>assets/models/laboratory/SuperComputer.obj</OBJLocation>
+    <TexLocation>assets/textures/laboratory/SC.bmp</TexLocation>
+    <Translation>30 -6 25</Translation>
+    <Rotation>0 -90 0</Rotation>
+    <Scale>1 1 1</Scale>
+    <Material>1</Material>
+    <Collectable>false</Collectable>
+  </Object>
+
+  <Object>
+    <Name>Portal</Name>
+    <OBJLocation>assets/models/Portal.obj</OBJLocation>
+    <TexLocation>assets/textures/Portal.bmp</TexLocation>
+    <Translation>80.3 -5 69.6</Translation>
+    <Rotation>0 0 0</Rotation>
+    <Scale>1 1 1</Scale>
+    <Material>1</Material>
+    <Collectable>false</Collectable>
+  </Object>
+
+  
+</Scene>

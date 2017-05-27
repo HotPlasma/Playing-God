@@ -138,7 +138,7 @@ public:
 	/// \brief Sets model's m_bCollectable to true
 	///
 	////////////////////////////////////////////////////////////
-	void setCollectable();
+	void setCollectable(bool newSetting);
 
 	////////////////////////////////////////////////////////////
 	/// \brief Sets model's m_bCollected 

@@ -26,9 +26,9 @@ Model::Model(string sFileLocation, string sTextureLocation, glm::vec3 position, 
 		0,0,0,1
 	};
 }
-void Model::setCollectable()
+void Model::setCollectable(bool newSetting)
 {
-	m_bCollectable = true;
+	m_bCollectable = newSetting;
 }
 
 void Model::setCollected(bool bCollected)
