@@ -43,8 +43,8 @@ void World::initScene(Freetype* Overlay)
 
 	LoadMap("assets/scenes/LabScene.xml", true);
 
-	Cube = new CubeMap(0, vec3(10000,0,0), "FullMoon/Moon");
-
+	Cube = new CubeMap(0, vec3(10000,0,0), "FullMoon/Moon"); // Default Cube
+	// Sounds
 	if (!m_ThemeSong.loadFromFile("assets/sound/backgroundmusic.wav"));
 	{
 		
@@ -251,7 +251,7 @@ void World::render()
 	HUD->RenderText(m_FreeType.getHandle(), "PowerCells Collected: ", 100.f, 1000.f, 1.0f, glm::vec3(0.f, 0.f, 0.f));
 	HUD->RenderText(m_FreeType.getHandle(), to_string(m_uiPowerCellsCollected), 355, 1000.f, 1.0f, glm::vec3(0.3, 0.7f, 0.9f));
 
-	if (m_bCloseToComputer)
+	if (m_bCloseToComputer) // Display message to user 
 	{
 		HUD->RenderText(m_FreeType.getHandle(), "Press E to use computer", 860.f, 560.f, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 	}
@@ -266,7 +266,7 @@ void World::render()
 
 void World::LoadMap(string FileLocation, bool isXML)
 {
-	if (isXML)
+	if (isXML) // Draws scene from XML file
 	{
 		LabScene = SceneReader(FileLocation);
 		for (int i = 0; i < LabScene.ModelList.size(); i++)
@@ -274,7 +274,7 @@ void World::LoadMap(string FileLocation, bool isXML)
 			LabScene.ModelList[i].DrawModel();
 		}
 	}
-	else
+	else // Generates world from .cfg file
 	{
 		m_bWorldLoaded = true;
 		CurrentWorld = WorldReader(FileLocation);
@@ -283,7 +283,10 @@ void World::LoadMap(string FileLocation, bool isXML)
 		{
 			
 			CurrentWorld.ModelLocationList[i]->DrawModel();
-			
+			if (CurrentWorld.ModelLocationList.at(i)->getPosition().x == 0 && CurrentWorld.ModelLocationList.at(i)->getPosition().y == 0 && CurrentWorld.ModelLocationList.at(i)->getPosition().z == 0)
+			{
+				cout << i << " ";
+			}
 		}
 		Cube = CurrentWorld.m_SkyBox;
 

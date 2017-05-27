@@ -17,6 +17,7 @@
 #include "glslprogram.h"
 #include <random>
 #include <time.h>
+#include <memory>
 
 class WorldReader
 {
@@ -67,7 +68,7 @@ public:
 	/// \param TileSize The size of a tile in the world
 	///
 	////////////////////////////////////////////////////////////
-	void SetFlatPlane(int xPos, int yPos, Model TexturedPlane, float WorldOffset, float TileSize);
+
 
 	std::vector<std::vector<char>> m_WorldList; ///< 2D vector of characters which represent the world
 	int m_iSkybox; ///< integer which represents which skybox is requires
@@ -75,15 +76,16 @@ public:
 	int m_iWorldSize; ///< integer which resents how large the world is
 	glm::vec3 m_PortalLocation; ///< vector3 of where the portal is located. Used for portal linking.
 	vector<GLuint> m_textureID; ///< vector if textures used in the scene
-	vector<string> PreviousModels;
 	std::vector<Model> ModelList;
-	std::vector<Model*> ModelLocationList; ///< Vector of models used in the scene
+	std::vector<std::shared_ptr<Model>> ModelLocationList; ///< Vector of models used in the scene
 	GLuint m_programHandle; ///< Program handle for world
 	tex::Texture *m_pTexture; ///< Pointer to a texture
 	Bitmap m_bmp = Bitmap::bitmapFromFile("assets/textures/Default.bmp"); ///< bmp used to set textures for models. Loads a default texture if no texture assigned
 	CubeMap *m_SkyBox; ///< CubeMap for the Skybox
 	
 };
+
+
 
 ////////////////////////////////////////////////////////////
 /// \class WorldReader

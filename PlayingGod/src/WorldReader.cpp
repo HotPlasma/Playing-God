@@ -60,191 +60,191 @@ void WorldReader::ReadWorldFile(string FileName)
 
 	WorldFile.close();
 
-	Model TempModel;
+	Model TemporaryModel;
 
 
 	// Snowy Plane 0
-	TempModel.setName("Snow Plane");
-	TempModel.setFileLocation("assets/models/WorldTiles/Plane.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Snowy.bmp");
-	TempModel.setScale(glm::vec3(1, 1, 1));
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Snow Plane");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Plane.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Snowy.bmp");
+	TemporaryModel.setScale(glm::vec3(1, 1, 1));
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 
 	// Grassy Plane 1
-	TempModel.setName("Grass Plane");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Grassy.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Grass Plane");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Grassy.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 
 	// Sandy Plane 2
-	TempModel.setName("Sand Plane");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Sandy.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Sand Plane");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Sandy.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// Archway 3
-	TempModel.setName("Archway");
-	TempModel.setFileLocation("assets/models/WorldTiles/Portal.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Portal.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Archway");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Portal.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Portal.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 
 	// Portal 4
-	TempModel.setName("Portal");
-	TempModel.setFileLocation("assets/models/Portal.obj");
-	TempModel.setTextureLocation("assets/textures/Portal.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Portal");
+	TemporaryModel.setFileLocation("assets/models/Portal.obj");
+	TemporaryModel.setTextureLocation("assets/textures/Portal.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// Powercell 5
-	TempModel.setName("Powercell");
-	TempModel.setFileLocation("assets/models/Powercell.obj");
-	TempModel.setTextureLocation("assets/textures/Powercell.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Powercell");
+	TemporaryModel.setFileLocation("assets/models/Powercell.obj");
+	TemporaryModel.setTextureLocation("assets/textures/Powercell.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// DeadTree1 6
-	TempModel.setName("DeadTree1");
-	TempModel.setFileLocation("assets/models/WorldTiles/Flora/DeadTree.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Flora/DeadTree.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("DeadTree1");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Flora/DeadTree.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Flora/DeadTree.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// DeadTree2 7
-	TempModel.setName("DeadTree2");
-	TempModel.setFileLocation("assets/models/WorldTiles/Flora/DeadTree2.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Flora/DeadTree.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("DeadTree2");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Flora/DeadTree2.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Flora/DeadTree.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// Stump 8
-	TempModel.setName("Stump");
-	TempModel.setFileLocation("assets/models/WorldTiles/Flora/Stump.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Flora/Stump.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Stump");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Flora/Stump.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Flora/Stump.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// Rock 9
-	TempModel.setName("Rock");
-	TempModel.setFileLocation("assets/models/WorldTiles/Flora/Rock.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Flora/Rock.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Rock");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Flora/Rock.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Flora/Rock.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// GreenTree 10
-	TempModel.setName("GreenTree");
-	TempModel.setFileLocation("assets/models/WorldTiles/Flora/GreenTree.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Flora/GreenTree.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("GreenTree");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Flora/GreenTree.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Flora/GreenTree.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// LeafTree 11
-	TempModel.setName("LeafTree");
-	TempModel.setFileLocation("assets/models/WorldTiles/Flora/LeafTree.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Flora/LeafTree.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("LeafTree");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Flora/LeafTree.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Flora/LeafTree.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// Mountain1 12
-	TempModel.setName("Mountain1");
-	TempModel.setFileLocation("assets/models/WorldTiles/Mountains/Mountain.obj");
+	TemporaryModel.setName("Mountain1");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Mountains/Mountain.obj");
 	if (m_iClimate == 1)
 	{
-		TempModel.setTextureLocation("assets/textures/WorldTiles/Snowy.bmp");
+		TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Snowy.bmp");
 	}
 	else if (m_iClimate == 2)
 	{
-		TempModel.setTextureLocation("assets/textures/WorldTiles/Grassy.bmp");
+		TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Grassy.bmp");
 	}
 	else if (m_iClimate == 3)
 	{
-		TempModel.setTextureLocation("assets/textures/WorldTiles/Sandy.bmp");
+		TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Sandy.bmp");
 	}
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// Mountain2 13
-	TempModel.setName("Mountain2");
-	TempModel.setFileLocation("assets/models/WorldTiles/Mountains/Mountain2.obj");
+	TemporaryModel.setName("Mountain2");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Mountains/Mountain2.obj");
 	if (m_iClimate == 1)
 	{
-		TempModel.setTextureLocation("assets/textures/WorldTiles/Snowy.bmp");
+		TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Snowy.bmp");
 	}
 	else if (m_iClimate == 2)
 	{
-		TempModel.setTextureLocation("assets/textures/WorldTiles/Grassy.bmp");
+		TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Grassy.bmp");
 	}
 	else if (m_iClimate == 3)
 	{
-		TempModel.setTextureLocation("assets/textures/WorldTiles/Sandy.bmp");
+		TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Sandy.bmp");
 	}
-	TempModel.LoadModel(TempModel.getFileLocation());
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
 
-	ModelList.push_back(TempModel);
+	ModelList.push_back(TemporaryModel);
 
 	// Mountain3 14
-	TempModel.setName("Mountain3");
-	TempModel.setFileLocation("assets/models/WorldTiles/Mountains/Mountain3.obj");
+	TemporaryModel.setName("Mountain3");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Mountains/Mountain3.obj");
 	if (m_iClimate == 1)
 	{
-		TempModel.setTextureLocation("assets/textures/WorldTiles/Snowy.bmp");
+		TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Snowy.bmp");
 	}
 	else if (m_iClimate == 2)
 	{
-		TempModel.setTextureLocation("assets/textures/WorldTiles/Grassy.bmp");
+		TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Grassy.bmp");
 	}
 	else if (m_iClimate == 3)
 	{
-		TempModel.setTextureLocation("assets/textures/WorldTiles/Sandy.bmp");
+		TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Sandy.bmp");
 	}
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// Farmhouse 15
-	TempModel.setName("Farmhouse");
-	TempModel.setFileLocation("assets/models/WorldTiles/Civilisation/FarmHouse.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Civilisation/FarmHouse.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Farmhouse");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Civilisation/FarmHouse.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Civilisation/FarmHouse.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// Fence 16
-	TempModel.setName("Fence");
-	TempModel.setFileLocation("assets/models/WorldTiles/Civilisation/Fence.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Civilisation/Fence.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Fence");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Civilisation/Fence.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Civilisation/Fence.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// Cart 17
-	TempModel.setName("Cart");
-	TempModel.setFileLocation("assets/models/WorldTiles/Civilisation/Cart.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Civilisation/Cart.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Cart");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Civilisation/Cart.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Civilisation/Cart.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// Big Rock 18
-	TempModel.setName("Big Rock");
-	TempModel.setFileLocation("assets/models/WorldTiles/Civilisation/BigRock.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Civilisation/BigRock.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Big Rock");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Civilisation/BigRock.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Civilisation/BigRock.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// Logs 19
-	TempModel.setName("Logs");
-	TempModel.setFileLocation("assets/models/WorldTiles/Civilisation/Logs.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Civilisation/Logs.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Logs");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Civilisation/Logs.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Civilisation/Logs.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 	// Crate 20
-	TempModel.setName("Crate");
-	TempModel.setFileLocation("assets/models/WorldTiles/Civilisation/Crate.obj");
-	TempModel.setTextureLocation("assets/textures/WorldTiles/Civilisation/Crate.bmp");
-	TempModel.LoadModel(TempModel.getFileLocation());
-	ModelList.push_back(TempModel);
+	TemporaryModel.setName("Crate");
+	TemporaryModel.setFileLocation("assets/models/WorldTiles/Civilisation/Crate.obj");
+	TemporaryModel.setTextureLocation("assets/textures/WorldTiles/Civilisation/Crate.bmp");
+	TemporaryModel.LoadModel(TemporaryModel.getFileLocation());
+	ModelList.push_back(TemporaryModel);
 
 }
 
@@ -265,7 +265,8 @@ void WorldReader::LoadModels()
 	 //Mountains
 	 int iMountainType;
 
-	 Model *Plane = new Model(ModelList.at(0));
+	 
+	 std::shared_ptr<Model> Plane( new Model(ModelList.at(0)));
 	// CubeMap *SkyBox;
 	 //Plane->setFileLocation("assets/models/WorldTiles/Plane.obj");
 	
@@ -292,15 +293,15 @@ void WorldReader::LoadModels()
 
 				 if (m_iClimate == 1)
 				 {
-					 Plane = new Model(ModelList.at(0));
+					 Plane.reset(new Model(ModelList.at(0)));
 				 }
 				 else if (m_iClimate == 2)
 				 {
-					 Plane = new Model(ModelList.at(1));
+					 Plane.reset(new Model(ModelList.at(1)));
 				 }
 				 else if (m_iClimate == 3)
 				 {
-					 Plane = new Model(ModelList.at(2));
+					 Plane.reset(new Model(ModelList.at(2)));
 				 }
 				 Plane->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize), -5, (j*u_kiTileSize)));
 				 Plane->setRotation(glm::vec3(0, 0, 0));
@@ -325,7 +326,7 @@ void WorldReader::LoadModels()
 		// cout << "Loading: " << ((i + 1) * 100) / ModelLocationList.size() << "%" << endl; // Loading cout
 	 //}
 
-	 Model *TempModel = new Model(ModelList.at(0));
+	 std::shared_ptr<Model> TempModel(new Model(ModelList.at(0)));
 
 	 for (int i = 0; i < m_WorldList.size(); i++) //For every Row
 	 {
@@ -335,7 +336,7 @@ void WorldReader::LoadModels()
 			 {
 			 case 'P': // Portal
 				 // Portal archway
-				 TempModel = new Model(ModelList.at(3));
+				 TempModel.reset(new Model(ModelList.at(3)));
 				 m_textureID.resize(m_textureID.size() + 1);
 				 TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize), -5, (j*u_kiTileSize))); //Make the gametile empty
 				 TempModel->setRotation(glm::vec3(0, 0, 0));
@@ -344,7 +345,7 @@ void WorldReader::LoadModels()
 				 ModelLocationList.push_back(TempModel);
 
 				 // Portal
-				 TempModel = new Model(ModelList.at(4));
+				 TempModel.reset(new Model(ModelList.at(4)));
 				 m_textureID.resize(m_textureID.size() + 1);
 				 TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize) + 0.3f, -5, (j*u_kiTileSize))); //Make the gametile empty
 				 TempModel->setRotation(glm::vec3(0, 0, 0));
@@ -361,7 +362,7 @@ void WorldReader::LoadModels()
 
 				if (iPowerCellChance == 1)
 				{
-					TempModel = new Model(ModelList.at(5));
+					TempModel.reset(new Model(ModelList.at(5)));
 				 	m_textureID.resize(m_textureID.size() + 1);
 					TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize), -5, (j*u_kiTileSize))); //Make the gametile empty
 					TempModel->setRotation(glm::vec3(0, 0, 0));
@@ -376,7 +377,7 @@ void WorldReader::LoadModels()
 			case 'T': // Flora
 				iNumTrees = rand() % 4 + 1;
 
-				for (int i = 0; i < iNumTrees; i++)
+				for (int k = 0; k < iNumTrees; k++)
 				{
 				 	if (m_iClimate == 1 || m_iClimate == 3)
 				 	{
@@ -384,15 +385,15 @@ void WorldReader::LoadModels()
 
 				 		if (iTreeType == 1)
 				 		{
-							TempModel = new Model(ModelList.at(6));
+							TempModel.reset(new Model(ModelList.at(6)));
 				 			iPositionVariance = vec2(rand() % 50 + (-25), rand() % 50 + (-25)); // Random number between -25 and 25
-				 			ModelList.at(ModelList.size() - 1).setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + iPositionVariance.x), -5, (j*u_kiTileSize + iPositionVariance.y))); //Make the gametile empty
-				 			ModelList.at(ModelList.size() - 1).setRotation(glm::vec3(0, 0, 0));
+							TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + iPositionVariance.x), -5, (j*u_kiTileSize + iPositionVariance.y))); //Make the gametile empty
+							TempModel->setRotation(glm::vec3(0, 0, 0));
 							ModelLocationList.push_back(TempModel);
 				 		}
 				 		else if (iTreeType == 2)
 				 		{
-							TempModel = new Model(ModelList.at(7));
+							TempModel.reset(new Model(ModelList.at(7)));
 				 			iPositionVariance = vec2(rand() % 50 + (-25), rand() % 50 + (-25)); // Random number between -25 and 25
 				 			TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + iPositionVariance.x), -5, (j*u_kiTileSize + iPositionVariance.y))); //Make the gametile empty
 				 			TempModel->setRotation(glm::vec3(0, 0, 0));
@@ -400,7 +401,7 @@ void WorldReader::LoadModels()
 				 		}
 				 		else if (iTreeType == 3)
 				 		{
-							TempModel = new Model(ModelList.at(8));
+							TempModel.reset(new Model(ModelList.at(8)));
 				 			iPositionVariance = vec2(rand() % 50 + (-25), rand() % 50 + (-25)); // Random number between -25 and 25
 							TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + iPositionVariance.x), -5, (j*u_kiTileSize + iPositionVariance.y))); //Make the gametile empty
 							TempModel->setRotation(glm::vec3(0, 0, 0));
@@ -408,7 +409,7 @@ void WorldReader::LoadModels()
 				 		}
 				 		else if (iTreeType == 4)
 				 		{
-							TempModel = new Model(ModelList.at(9));
+							TempModel.reset(new Model(ModelList.at(9)));
 				 			iPositionVariance = vec2(rand() % 50 + (-25), rand() % 50 + (-25)); // Random number between -25 and 25
 							TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + iPositionVariance.x), -5, (j*u_kiTileSize + iPositionVariance.y))); //Make the gametile empty
 							TempModel->setRotation(glm::vec3(0, rand() % 359, 0));
@@ -421,7 +422,7 @@ void WorldReader::LoadModels()
 				 		iTreeType = rand() % 4 + 1;
 				 		if (iTreeType == 1)
 				 		{
-							TempModel = new Model(ModelList.at(10));
+							TempModel.reset(new Model(ModelList.at(10)));
 				 			iPositionVariance = vec2(rand() % 50 + (-25), rand() % 50 + (-25)); // Random number between -25 and 25
 							TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + iPositionVariance.x), -5, (j*u_kiTileSize + iPositionVariance.y))); //Make the gametile empty
 							TempModel->setRotation(glm::vec3(0, 0, 0));
@@ -429,7 +430,7 @@ void WorldReader::LoadModels()
 				 		}
 				 		else if (iTreeType == 2)
 				 		{
-							TempModel = new Model(ModelList.at(8));
+							TempModel.reset(new Model(ModelList.at(8)));
 							iPositionVariance = vec2(rand() % 50 + (-25), rand() % 50 + (-25)); // Random number between -25 and 25
 							TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + iPositionVariance.x), -5, (j*u_kiTileSize + iPositionVariance.y))); //Make the gametile empty
 							TempModel->setRotation(glm::vec3(0, 0, 0));
@@ -437,14 +438,15 @@ void WorldReader::LoadModels()
 				 		}
 				 		else if (iTreeType == 3)
 				 		{
-							TempModel = new Model(ModelList.at(11));
+							TempModel.reset(new Model(ModelList.at(11)));
 				 			iPositionVariance = vec2(rand() % 50 + (-25), rand() % 50 + (-25)); // Random number between -25 and 25
 							TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + iPositionVariance.x), -5, (j*u_kiTileSize + iPositionVariance.y))); //Make the gametile empty
 							TempModel->setRotation(glm::vec3(0, rand() % 359, 0));
+							ModelLocationList.push_back(TempModel);
 				 		}
 				 		else if (iTreeType == 4)
 				 		{
-							TempModel = new Model(ModelList.at(9));
+							TempModel.reset(new Model(ModelList.at(9)));
 							iPositionVariance = vec2(rand() % 50 + (-25), rand() % 50 + (-25)); // Random number between -25 and 25
 							TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + iPositionVariance.x), -5, (j*u_kiTileSize + iPositionVariance.y))); //Make the gametile empty
 							TempModel->setRotation(glm::vec3(0, rand() % 359, 0));
@@ -471,7 +473,7 @@ void WorldReader::LoadModels()
 				 		if (iMountainType == 1)
 				 		{
 							m_textureID.resize(m_textureID.size() + 1);
-							TempModel = new Model(ModelList.at(12));
+							TempModel.reset(new Model(ModelList.at(12)));
 							TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + (u_kiTileSize / 2)), -5, (j*u_kiTileSize + (u_kiTileSize / 2)))); //Make the gametile empty
 							TempModel->setRotation(glm::vec3(0, 0, 0));
 							TempModel->setScale(glm::vec3(1, 1, 1));
@@ -482,7 +484,7 @@ void WorldReader::LoadModels()
 				 		else if (iMountainType == 2)
 				 		{
 							m_textureID.resize(m_textureID.size() + 1);
-							TempModel = new Model(ModelList.at(13));
+							TempModel.reset(new Model(ModelList.at(13)));
 							TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + (u_kiTileSize / 2)), -5, (j*u_kiTileSize + (u_kiTileSize / 2)))); //Make the gametile empty
 							TempModel->setRotation(glm::vec3(0, 0, 0));
 							TempModel->setScale(glm::vec3(1, 1, 1));
@@ -494,7 +496,7 @@ void WorldReader::LoadModels()
 				 		else if (iMountainType == 3)
 				 		{
 							m_textureID.resize(m_textureID.size() + 1);
-							TempModel = new Model(ModelList.at(14));
+							TempModel.reset(new Model(ModelList.at(14)));
 							TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize + (u_kiTileSize / 2)), -5, (j*u_kiTileSize + (u_kiTileSize / 2)))); //Make the gametile empty
 							TempModel->setRotation(glm::vec3(0, 0, 0));
 							TempModel->setScale(glm::vec3(1, 1, 1));
@@ -514,7 +516,7 @@ void WorldReader::LoadModels()
 
 				if (iCivType == 1)
 				{
-				 	TempModel = new Model(ModelList.at(15));
+					TempModel.reset(new Model(ModelList.at(15)));
 				 	//iPositionVariance = vec2(rand() % 50 + (-25), rand() % 50 + (-25)); // Random number between -25 and 25
 				 	TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize), -5, (j*u_kiTileSize))); //Make the gametile empty
 				 	TempModel->setRotation(glm::vec3(0, 0, 0));
@@ -524,7 +526,7 @@ void WorldReader::LoadModels()
 				}
 				else if (iCivType == 2)
 				{
-					TempModel = new Model(ModelList.at(16));
+					TempModel.reset(new Model(ModelList.at(16)));
 				 	//iPositionVariance = vec2(rand() % 50 + (-25), rand() % 50 + (-25)); // Random number between -25 and 25
 					TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize), -5, (j*u_kiTileSize))); //Make the gametile empty
 					TempModel->setRotation(glm::vec3(0, 0, 0));
@@ -534,7 +536,7 @@ void WorldReader::LoadModels()
 				}
 				else if (iCivType == 3)
 				{
-					TempModel = new Model(ModelList.at(17));
+					TempModel.reset(new Model(ModelList.at(17)));
 				 	//iPositionVariance = vec2(rand() % 50 + (-25), rand() % 50 + (-25)); // Random number between -25 and 25
 					TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize), -5, (j*u_kiTileSize))); //Make the gametile empty
 					TempModel->setRotation(glm::vec3(0, rand() % 359, 0));
@@ -544,7 +546,7 @@ void WorldReader::LoadModels()
 				}
 				else if (iCivType == 4)
 				{
-				 	TempModel = new Model(ModelList.at(18));
+					TempModel.reset(new Model(ModelList.at(18)));
 					TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize), -5, (j*u_kiTileSize))); //Make the gametile empty
 					TempModel->setRotation(glm::vec3(0, rand() % 359, 0));
 					TempModel->setScale(glm::vec3(1, 1, 1));
@@ -553,7 +555,7 @@ void WorldReader::LoadModels()
 				}
 				else if (iCivType == 5)
 				{
-					TempModel = new Model(ModelList.at(19));
+					TempModel.reset(new Model(ModelList.at(19)));
 					TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize), -4, (j*u_kiTileSize))); //Make the gametile empty
 					TempModel->setRotation(glm::vec3(0, 0, 0));
 					TempModel->setScale(glm::vec3(1, 1, 1));
@@ -562,7 +564,7 @@ void WorldReader::LoadModels()
 				}
 				else if (iCivType == 6)
 				{
-					TempModel = new Model(ModelList.at(20));
+					TempModel.reset(new Model(ModelList.at(20)));
 					TempModel->setPosition(glm::vec3(u_kWorldOffset + (i*u_kiTileSize), -5, (j*u_kiTileSize))); //Make the gametile empty
 					TempModel->setRotation(glm::vec3(0, 0, 0));
 					TempModel->setScale(glm::vec3(1, 1, 1));
@@ -573,41 +575,8 @@ void WorldReader::LoadModels()
 				break;
 			}
 		}
-		}
-
-				 //for (int i = 0; i < ModelList.size(); i++)
-				 //{
-					// if (i > 0) // Avoid checking none existant memory
-					// {
-					//	 // If model is has the same name as previous model reuse model and dont load it in again
-					//	 if (ModelList.at(i).getName().compare(ModelList.at(i - 1).getName()) == 0)
-					//	 {
-					//		 ModelList.at(i).m_pModelReader = ModelList.at(i - 1).m_pModelReader; // Set model to previous model
-					//		 ModelList.at(i).m_bmp = ModelList.at(i - 1).m_bmp; // Set texture to previous texture
-					//		 ModelList.at(i).LoadTexture(ModelList.at(i - 1).getTextureLocation());
-					//	 }
-					//	 else
-					//	 {
-					//		 ModelList[i].LoadModel(ModelList[i].getFileLocation()); // Load in models to be ready for drawing
-					//	 }
-					// }
-					// else
-					// {
-					//	 ModelList[i].LoadModel(ModelList[i].getFileLocation()); // Load in models to be ready for drawing
-					// }
-				 //}
-		//	cout << "Loading: " << ((i + 1) * 100) / ModelList.size() << "%" << endl; // Loading cout
-
+	}
 
 }
 
-void WorldReader::SetFlatPlane(int xPos, int yPos, Model TexturedPlane, float WorldOffset, float TileSize)
-{
-	ModelList.resize(ModelList.size() + 1);
-	ModelList.at(xPos * m_WorldList.size() + yPos) = TexturedPlane;
-	ModelList.at(xPos * m_WorldList.size() + yPos).setPosition(glm::vec3(WorldOffset + (xPos*TileSize), -5, (yPos*TileSize))); 
-	ModelList.at(xPos * m_WorldList.size() + yPos).setRotation(glm::vec3(0, 0, 0));
-	ModelList.at(xPos * m_WorldList.size() + yPos).setScale(glm::vec3(1, 1, 1));
-	ModelList.at(xPos * m_WorldList.size() + yPos).setMaterial(1);
-}
 
